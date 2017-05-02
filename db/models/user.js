@@ -34,7 +34,7 @@ module.exports = db => db.define('users', {
   }
 })
 
-module.exports.associations = (User, {OAuth, Favorite}) => {
+module.exports.associations = (User, {OAuth}) => {
   User.hasOne(OAuth)
 }
 
