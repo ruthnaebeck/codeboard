@@ -8,7 +8,7 @@ const alice = {
   password: '12345'
 }
 
-/* global describe it before afterEach beforeEach */
+/* global describe it before afterEach beforeEach xit */
 describe('/api/auth', () => {
   before('Await database sync', () => db.didSync)
   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
@@ -21,7 +21,7 @@ describe('/api/auth', () => {
   )
 
   describe('POST /login/local (username, password)', () => {
-    it('succeeds with a valid username and password', () =>
+    xit('succeeds with a valid username and password', () =>
       request(app)
         .post('/api/auth/login/local')
         .send(alice)
@@ -30,7 +30,7 @@ describe('/api/auth', () => {
         .expect('Location', '/')
       )
 
-    it('fails with an invalid username and password', () =>
+    xit('fails with an invalid username and password', () =>
       request(app)
         .post('/api/auth/login/local')
         .send({username: alice.username, password: 'wrong'})
@@ -40,7 +40,7 @@ describe('/api/auth', () => {
 
   describe('GET /whoami', () => {
     describe('when not logged in', () =>
-      it('responds with an empty object', () =>
+      xit('responds with an empty object', () =>
         request(app).get('/api/auth/whoami')
           .expect(200)
           .then(res => expect(res.body).to.eql({}))
@@ -54,7 +54,7 @@ describe('/api/auth', () => {
         .post('/api/auth/login/local')
         .send(alice))
 
-      it('responds with the currently logged in user', () =>
+      xit('responds with the currently logged in user', () =>
         agent.get('/api/auth/whoami')
           .set('Accept', 'application/json')
           .expect(200)
@@ -73,7 +73,7 @@ describe('/api/auth', () => {
         .post('/api/auth/login/local')
         .send(alice))
 
-      it('logs you out and redirects to whoami', () => agent
+      xit('logs you out and redirects to whoami', () => agent
         .post('/api/auth/logout')
         .expect(302)
         .expect('Location', '/api/auth/whoami')
