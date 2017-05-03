@@ -1,6 +1,6 @@
 'use strict'
 
-const {STRING, TEXT} = require('sequelize')
+const { STRING, TEXT } = require('sequelize')
 
 module.exports = db => db.define('questions', {
   name: STRING,
@@ -9,7 +9,7 @@ module.exports = db => db.define('questions', {
   tests: TEXT
 })
 
-module.exports.associations = (Question, {Category, Difficulty, Hint, User}) => {
+module.exports.associations = (Question, { Category, Difficulty, Hint }) => {
   Question.belongsTo(Category)
   Question.belongsTo(Difficulty)
   Question.hasMany(Hint)
