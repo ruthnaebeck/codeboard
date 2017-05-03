@@ -7,9 +7,9 @@ export const Home = (props) => (
     <Card>
       <CardMedia
         overlay={<CardTitle title="Welcome to Code Board!" subtitle="" />}>
+        <center><RaisedButton label="Get Started" /></center>
         <img src="/images/pen-marker-hand.png" />
       </CardMedia>
-      <RaisedButton label="Get Started" />
     </Card>
   )
 
