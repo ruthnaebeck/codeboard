@@ -24,11 +24,12 @@ export default class Whiteboard extends Component {
   }
 
   render() {
+    console.log('IS THIS PROCESS? ', process.env)
     return (
       <div id="myScript">
         <myscript-text-web id="textInput"
-          applicationkey="94c6ca22-7b13-45c7-8373-3646a965968a"
-          hmackey="9210ab3c-5e61-4a0e-8bd0-f0ef912c7208"
+          applicationkey={process.env.MYSCRIPT_APP_KEY}
+          hmackey={process.env.MYSCRIPT_HMAC_KEY}
           language="en_US"
           recognitioncandidates="1"></myscript-text-web>
       </div>
