@@ -14,7 +14,4 @@ export const Login = ({ login }) => (
 import {login} from 'APP/app/reducers/auth'
 import {connect} from 'react-redux'
 
-export default connect(
-  state => ({}),
-  {login},
-)(Login)
+export default connect(state => ({}), {login})(Login)
