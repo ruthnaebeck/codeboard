@@ -13,6 +13,7 @@ function seedEverything() {
 
   seeded.questions = questions(seeded)
   seeded.hints = hints(seeded)
+  seeded.userQuestions = userQuestions(seeded)
 
   return Promise.props(seeded)
 }
@@ -32,16 +33,16 @@ const users = seed(User, {
 
 const categories = seed(Category, {
   stringsArrays: {
-    name: 'Strings-Arrays'
+    name: 'Strings & Arrays'
   },
   linkedLists: {
     name: 'Linked Lists'
   },
   stacksQueues: {
-    name: 'Stacks-Queues'
+    name: 'Stacks & Queues'
   },
   treesGraphs: {
-    name: 'Trees-Graphs'
+    name: 'Trees & Graphs'
   }
 })
 
@@ -65,10 +66,10 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     isUnique: {
       name: 'Is Unique',
       text: 'Write a solution to find a unique string',
-      test: 'tests.js',
+      test: '1.01-isUnique.spec.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
-      solution: "this is our solution"
+      solution: '1.01-isUnique.js'
     }
   }))
 
@@ -77,6 +78,16 @@ const hints = seed(Hint, ({ questions }) =>
     isUnique: {
       text: 'This is our first hint',
       question_id: questions.isUnique.id
+    }
+  }))
+
+const userQuestions = seed(userQuestion, ({ users, questions }) =>
+  ({
+    godQuestion1: {
+      status: 'complete',
+      question_id: questions.isUnique.id,
+      user_id: users.god.id,
+      user_answer: 'this is my answer'
     }
   }))
 
