@@ -8,12 +8,14 @@ import store from './store'
 import App from './components/App'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
+import Whiteboard from './components/Whiteboard'
 
 const Routes = () => ( // { functions from mapDispatch }
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
       </Route>
+      <Route path="/whiteboard" component={Whiteboard} />
       <Route path='*' component={NotFound} />
     </Router>
 )
