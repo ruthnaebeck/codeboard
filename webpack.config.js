@@ -1,4 +1,5 @@
 'use strict'
+var webpack = require('webpack')
 
 const LiveReloadPlugin = require('webpack-livereload-plugin')
     , devMode = require('.').isDevelopment
@@ -14,6 +15,7 @@ const LiveReloadPlugin = require('webpack-livereload-plugin')
 
 module.exports = {
   entry: './app/main.jsx',
+  target: 'node',
   output: {
     path: __dirname,
     filename: './public/bundle.js'

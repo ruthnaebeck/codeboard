@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import Synthesize from '../text2speech'
 
 const _ = require('lodash')
 const fp = require('lodash/fp')
@@ -19,8 +20,8 @@ export default class Whiteboard extends Component {
     textInput.addEventListener('myscript-text-web-result', function(e) {
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', 'not found, default')
       console.log('IS THIS OUR RESULT???', inputTextPath)
-      // console.log('WHAT IS RESULT PATH', e.detail.result)
     })
+    Synthesize()
   }
 
   render() {
