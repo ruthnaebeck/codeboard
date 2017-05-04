@@ -10,9 +10,13 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Whiteboard from './components/Whiteboard'
 
-const Routes = () => ( // { functions from mapDispatch }
+// Dispathers
+import {whoami} from './reducers/auth'
+import {fetchQuestions} from './reducers/questions'
+
+const Routes = ({onAppEnter}) => (
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
+      <Route path="/" component={App} onEnter={onAppEnter}>
         <IndexRoute component={Home}/>
       </Route>
       <Route path="/whiteboard" component={Whiteboard} />
@@ -23,6 +27,11 @@ const Routes = () => ( // { functions from mapDispatch }
 /* ------------- CONTAINER ---------------- */
 
 const mapStateToProps = null
-const mapDispatch = null
+const mapDispatch = dispatch => ({
+  onAppEnter: () => {
+    dispatch(whoami())
+    dispatch(fetchQuestions())
+  }
+})
 
 export default connect(mapStateToProps, mapDispatch)(Routes)
