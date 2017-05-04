@@ -1,36 +1,64 @@
+.splash {
+  height: 88vh;
+  margin: auto;
+  overflow: hidden;
+  background-size: cover;
+  background-position: 50% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+}
+
+.started {
+  padding-bottom: 100px;
+}
+
+.App a {
+  color: white;
+}
+
+.App a:hover {
+  text-decoration: none;
+}
+
 body {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            height: 100%;
-            max-height: 100%;
-            overflow-x : hidden;
-        }
-        header {
-            height: 49px;
-            border-bottom: 1px solid #dddddd;
-            display: -webkit-flex;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .write-here-wrapper{
-            position: relative;
-        }
-        .write-here{
-            position: absolute;
-            width : 100vw;
-            text-align : center;
-            padding:  0;
-            margin: -33px auto 0;
-            top: 50%;
-            font-family: 'Waiting for the Sunrise', cursive;
-            font-size: 40px;
-            z-index: 1;
-        }
-        #textInput {
-            height : calc(100vh - 50px);
-        }
-        paper-button[toggles][active] {
-            background: rgba(0, 0, 0, 0.2);
-        }
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 100%;
+    max-height: 100%;
+    overflow-x : hidden;
+}
+
+header {
+    height: 49px;
+    border-bottom: 1px solid #dddddd;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.write-here-wrapper{
+    position: relative;
+}
+
+.write-here{
+    position: absolute;
+    width : 100vw;
+    text-align : center;
+    padding:  0;
+    margin: -33px auto 0;
+    top: 50%;
+    font-family: 'Waiting for the Sunrise', cursive;
+    font-size: 40px;
+    z-index: 1;
+}
+#textInput {
+    height : calc(100vh - 50px);
+}
+
+paper-button[toggles][active] {
+    background: rgba(0, 0, 0, 0.2);
+}
