@@ -7,6 +7,8 @@ import {List, ListItem} from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
 
+import { fetchQuestion } from '../reducers/question'
+
 export class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -15,6 +17,7 @@ export class Home extends React.Component {
   }
 
   handleToggle = () => this.setState({ open: !this.state.open })
+  handleNav = (evt, id) => this.props.fetchQuestion(id)
 
   render() {
     return (
@@ -44,6 +47,7 @@ export class Home extends React.Component {
                       <ListItem
                       key={question.id}
                       primaryText={question.name}
+                      onTouchTap={(evt) => this.handleNav(evt, question.id)}
                       />
                     )
                   }
@@ -62,6 +66,7 @@ export class Home extends React.Component {
                       <ListItem
                       key={question.id}
                       primaryText={question.name}
+                      onTouchTap={(evt) => this.handleNav(evt, question.id)}
                       />
                     )
                   }
@@ -78,6 +83,6 @@ export class Home extends React.Component {
 }
 
 const mapStateToProps = ({categories, difficulties}) => ({categories, difficulties})
-const mapDispatchToProps = null
+const mapDispatchToProps = { fetchQuestion }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
