@@ -16,3 +16,6 @@ public/css/bootstrap.min.js
 
 #notes
 notes.md
+
+#tokens
+tokens.json
