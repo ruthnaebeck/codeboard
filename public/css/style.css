@@ -1,0 +1,16 @@
+.splash {
+  width: 32vw;
+  height: 43vw;
+  margin: auto;
+  overflow: hidden;
+  background-size: cover;
+  background-position: 50% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+}
+
+.started {
+  padding-bottom: 100px;
+}
