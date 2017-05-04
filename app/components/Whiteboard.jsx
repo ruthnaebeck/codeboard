@@ -5,9 +5,6 @@ const _ = require('lodash')
 const fp = require('lodash/fp')
 const object = require('lodash/fp/object')
 
-const MYSCRIPT_APP_KEY = require('../../tokens.json').MYSCRIPT_APP_KEY
-const MYSCRIPT_HMAC_KEY = require('../../tokens.json').MYSCRIPT_HMAC_KEY
-
 export default class Whiteboard extends Component {
   constructor(props) {
     super(props)
@@ -31,8 +28,8 @@ export default class Whiteboard extends Component {
     return (
       <div id="myScript">
         <myscript-text-web id="textInput"
-          applicationkey={MYSCRIPT_APP_KEY}
-          hmackey={MYSCRIPT_HMAC_KEY}
+          applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
+          hmackey="bc9ba480-0640-44bc-b9e5-8480e9954577"
           language="en_US"
           recognitioncandidates="1"></myscript-text-web>
       </div>
