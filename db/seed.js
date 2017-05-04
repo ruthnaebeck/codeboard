@@ -1,13 +1,19 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Promise} = db
+    , {User, Question, Category, Difficulty, Hint, userQuestion, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
-    users: users()
+    users: users(),
+    difficulties: difficulties(),
+    categories: categories()
   }
+
+  seeded.questions = questions(seeded)
+  seeded.hints = hints(seeded)
+  seeded.userQuestions = userQuestions(seeded)
 
   return Promise.props(seeded)
 }
@@ -24,6 +30,66 @@ const users = seed(User, {
     password: '1234'
   },
 })
+
+const categories = seed(Category, {
+  stringsArrays: {
+    name: 'Strings & Arrays'
+  },
+  linkedLists: {
+    name: 'Linked Lists'
+  },
+  stacksQueues: {
+    name: 'Stacks & Queues'
+  },
+  treesGraphs: {
+    name: 'Trees & Graphs'
+  }
+})
+
+const difficulties = seed(Difficulty, {
+  easy: {
+    level: 'easy',
+    minutes: 15
+  },
+  medium: {
+    level: 'medium',
+    minutes: 20
+  },
+  hard: {
+    level: 'hard',
+    minutes: 30
+  }
+})
+
+const questions = seed(Question, ({ categories, difficulties }) =>
+  ({
+    isUnique: {
+      name: 'Is Unique',
+      text: 'Write a solution to find a unique string',
+      test: '1.01-isUnique.spec.js',
+      category_id: categories.stringsArrays.id,
+      difficulty_id: difficulties.easy.id,
+      solution: '1.01-isUnique.js'
+    }
+  }))
+
+const hints = seed(Hint, ({ questions }) =>
+  ({
+    isUnique: {
+      text: 'This is our first hint',
+      question_id: questions.isUnique.id
+    }
+  }))
+
+const userQuestions = seed(userQuestion, ({ users, questions }) =>
+  ({
+    godQuestion1: {
+      status: 'complete',
+      question_id: questions.isUnique.id,
+      user_id: users.god.id,
+      user_answer: 'this is my answer'
+    }
+  }))
 
 if (module === require.main) {
   db.didSync
