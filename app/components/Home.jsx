@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { Card, CardMedia, CardTitle } from 'material-ui/Card'
 import Drawer from 'material-ui/Drawer'
 import {List, ListItem} from 'material-ui/List'
+import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
 
 export class Home extends React.Component {
@@ -32,20 +33,38 @@ export class Home extends React.Component {
               title="Questions"
               iconElementLeft={<span/>}
               />
-              {this.props.questions.map(category =>
+              {this.props.categories.map(category =>
                 <ListItem
                   key={category.id}
                   primaryText={category.name}
                   initiallyOpen={false}
                   primaryTogglesNestedList={true}
-                  nestedItems={[
+                  nestedItems={
                     category.questions.map(question =>
                       <ListItem
                       key={question.id}
                       primaryText={question.name}
                       />
                     )
-                  ]}
+                  }
+                  >
+                </ListItem>
+              )}
+              <Divider />
+              {this.props.difficulties.map((difficulty, index) =>
+                <ListItem
+                  key={difficulty.id}
+                  primaryText={difficulty.level}
+                  initiallyOpen={false}
+                  primaryTogglesNestedList={true}
+                  nestedItems={
+                    difficulty.questions.map(question =>
+                      <ListItem
+                      key={question.id}
+                      primaryText={question.name}
+                      />
+                    )
+                  }
                   >
                 </ListItem>
               )}
@@ -58,7 +77,7 @@ export class Home extends React.Component {
   }
 }
 
-const mapStateToProps = ({questions}) => ({questions})
+const mapStateToProps = ({categories, difficulties}) => ({categories, difficulties})
 const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

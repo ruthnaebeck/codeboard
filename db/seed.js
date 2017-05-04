@@ -48,15 +48,15 @@ const categories = seed(Category, {
 
 const difficulties = seed(Difficulty, {
   easy: {
-    level: 'easy',
+    level: 'Easy',
     minutes: 15
   },
   medium: {
-    level: 'medium',
+    level: 'Medium',
     minutes: 20
   },
   hard: {
-    level: 'hard',
+    level: 'Hard',
     minutes: 30
   }
 })
@@ -68,6 +68,30 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       text: 'Write a solution to find a unique string',
       test: '1.01-isUnique.spec.js',
       category_id: categories.stringsArrays.id,
+      difficulty_id: difficulties.easy.id,
+      solution: '1.01-isUnique.js'
+    },
+    question2: {
+      name: 'linkedLists',
+      text: 'lorem ipsum',
+      test: '1.01-isUnique.spec.js',
+      category_id: categories.linkedLists.id,
+      difficulty_id: difficulties.medium.id,
+      solution: '1.01-isUnique.js'
+    },
+    question3: {
+      name: 'stacksQueues',
+      text: 'Write a solution to find a unique string',
+      test: '1.01-isUnique.spec.js',
+      category_id: categories.stacksQueues.id,
+      difficulty_id: difficulties.hard.id,
+      solution: '1.01-isUnique.js'
+    },
+    question4: {
+      name: 'treesGraphs',
+      text: 'Write a solution to find a unique string',
+      test: '1.01-isUnique.spec.js',
+      category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.easy.id,
       solution: '1.01-isUnique.js'
     }

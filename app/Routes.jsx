@@ -12,7 +12,8 @@ import Whiteboard from './components/Whiteboard'
 
 // Dispathers
 import {whoami} from './reducers/auth'
-import {fetchQuestions} from './reducers/questions'
+import {fetchCategories} from './reducers/categories'
+import {fetchDifficulties} from './reducers/difficulties'
 
 const Routes = ({onAppEnter}) => (
     <Router history={browserHistory}>
@@ -30,7 +31,8 @@ const mapStateToProps = null
 const mapDispatch = dispatch => ({
   onAppEnter: () => {
     dispatch(whoami())
-    dispatch(fetchQuestions())
+    dispatch(fetchCategories())
+    dispatch(fetchDifficulties())
   }
 })
 
