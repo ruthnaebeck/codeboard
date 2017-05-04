@@ -1,0 +1,25 @@
+{
+  "name": "code-board",
+  "description": "A whiteboarding app for algorithm practice",
+  "main": "index.js",
+  "authors": [
+    "Ashi Krishnan <me@ashi.works>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "redux",
+    "skeleton"
+  ],
+  "homepage": "https://github.com/ruthnaebeck/codeboard",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "myscript-text-web": "^1.2.3"
+  }
+}
