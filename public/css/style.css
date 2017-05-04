@@ -13,3 +13,11 @@
 .started {
   padding-bottom: 100px;
 }
+
+.App a {
+  color: white;
+}
+
+.App a:hover {
+  text-decoration: none;
+}
