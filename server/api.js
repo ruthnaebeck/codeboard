@@ -9,15 +9,9 @@ api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
-  // @ Ruth and Cigdem, we're going to move this to the right place after merge
-  .get('/question/:id', (req, res, next) => {
-    Question.findById(req.params.id)
-    .then(question => {
-      console.log('WHATS QUESTION? ', question.text)
-      Synthesize(question.text)
-    })
-    .catch(next)
-  })
+  .use('/categories', require('./categories'))
+  .use('/difficulties', require('./difficulties'))
+  .use('/question', require('./question'))
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

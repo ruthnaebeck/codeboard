@@ -14,8 +14,9 @@ export default function reducer(state=null, action) {
   switch (action.type) {
   case AUTHENTICATED:
     return action.user
+  default:
+    return state
   }
-  return state
 }
 
 /* ------------- DISPATCHERS ---------------- */
@@ -34,10 +35,11 @@ export const logout = () =>
       .catch(() => dispatch(whoami()))
 
 export const whoami = () =>
-  dispatch =>
+  dispatch => {
     axios.get('/api/auth/whoami')
       .then(response => {
         const user = response.data
         dispatch(authenticated(user))
       })
       .catch(failed => dispatch(authenticated(null)))
+  }
