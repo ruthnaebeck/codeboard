@@ -7,19 +7,17 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **/
 var request = require('request'),
-    xmlbuilder = require('xmlbuilder'),
-    wav = require('wav'),
-    Speaker = require('speaker')
+  xmlbuilder = require('xmlbuilder'),
+  wav = require('wav'),
+  Speaker = require('speaker')
     // text = 'Find all the possible substrings within a string'
 
-
 module.exports = function Synthesize(text) {
-
     // Note: The way to get api key:
     // Free: https://www.microsoft.com/cognitive-services/en-us/subscriptions?productId=/products/Bing.Speech.Preview
     // Paid: https://portal.azure.com/#create/Microsoft.CognitiveServices/apitype/Bing.Speech/pricingtier/S0
-    var apiKey = "7070e7bb329343b68a15e96f697ce629"
-    var ssml_doc = xmlbuilder.create('speak')
+  var apiKey = '7070e7bb329343b68a15e96f697ce629'
+  var ssml_doc = xmlbuilder.create('speak')
         .att('version', '1.0')
         .att('xml:lang', 'en-us')
         .ele('voice')
@@ -27,53 +25,53 @@ module.exports = function Synthesize(text) {
         .att('xml:gender', 'Female')
         .att('name', 'Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)')
         .txt(text)
-        .end();
-    var post_speak_data = ssml_doc.toString();
+        .end()
+  var post_speak_data = ssml_doc.toString()
 
-    request.post({
-      url: 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken',
-        headers: {
-            'Ocp-Apim-Subscription-Key' : apiKey
-        }
-    }, function (err, resp, access_token) {
-        if (err || resp.statusCode != 200) {
-            console.log(err, resp.body);
-        } else {
+  request.post({
+    url: 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken',
+    headers: {
+      'Ocp-Apim-Subscription-Key': apiKey
+    }
+  }, function(err, resp, access_token) {
+    if (err || resp.statusCode != 200) {
+      console.log(err, resp.body)
+    } else {
+      try {
+        request.post({
+          url: 'https://speech.platform.bing.com/synthesize',
+          body: post_speak_data,
+          headers: {
+            'content-type': 'application/ssml+xml',
+            'X-Microsoft-OutputFormat': 'riff-16khz-16bit-mono-pcm',
+            'Authorization': 'Bearer ' + access_token,
+            'X-Search-AppId': '07D3234E49CE426DAA29772419F436CA',
+            'X-Search-ClientID': '1ECFAE91408841A480F00935DC390960',
+            'User-Agent': 'TTSNodeJS'
+          },
+          encoding: null
+        }, function(err, resp, speak_data) {
+          if (err || resp.statusCode !== 200) {
+            console.log(err, resp.body)
+          } else {
             try {
-                request.post({
-                    url: 'https://speech.platform.bing.com/synthesize',
-                    body: post_speak_data,
-                    headers: {
-                        'content-type' : 'application/ssml+xml',
-                        'X-Microsoft-OutputFormat' : 'riff-16khz-16bit-mono-pcm',
-                        'Authorization': 'Bearer ' + access_token,
-                        'X-Search-AppId': '07D3234E49CE426DAA29772419F436CA',
-                        'X-Search-ClientID': '1ECFAE91408841A480F00935DC390960',
-                        'User-Agent': 'TTSNodeJS'
-                    },
-                    encoding: null
-                }, function (err, resp, speak_data) {
-                    if (err || resp.statusCode != 200) {
-                        console.log(err, resp.body);
-                    } else {
-                        try {
-                            var reader = new wav.Reader();
-                            reader.on('format', function (format) {
-                                reader.pipe(new Speaker(format));
-                            });
-                            var Readable = require('stream').Readable;
-                            var s = new Readable;
-                            s.push(speak_data);
-                            s.push(null);
-                            s.pipe(reader);
-                        } catch (e) {
-                            console.log(e.message);
-                        }
-                    }
-                });
+              var reader = new wav.Reader()
+              reader.on('format', function(format) {
+                reader.pipe(new Speaker(format))
+              })
+              var Readable = require('stream').Readable
+              var s = new Readable
+              s.push(speak_data)
+              s.push(null)
+              s.pipe(reader)
             } catch (e) {
-                console.log(e.message);
+              console.log(e.message)
             }
-        }
-    });
-};
+          }
+        })
+      } catch (e) {
+        console.log(e.message)
+      }
+    }
+  })
+}
