@@ -65,42 +65,50 @@ const questions = seed(Question, ({ categories, difficulties }) =>
   ({
     isUnique: {
       name: 'Is Unique',
-      text: 'Write a solution to find a unique string',
+      text: 'Implement an algorithm to determine if a string has all unique characters.  What if you cannot use additional data structures?',
       test: '1.01-isUnique.spec.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
       solution: '1.01-isUnique.js'
     },
-    question2: {
-      name: 'linkedLists',
-      text: 'lorem ipsum',
-      test: '1.01-isUnique.spec.js',
+    removeDupes: {
+      name: 'Remove Duplicates',
+      text: 'Write code to remove duplicates from an unsorted linked list.',
+      test: '2.01-removeDupes.spec.js',
       category_id: categories.linkedLists.id,
       difficulty_id: difficulties.medium.id,
-      solution: '1.01-isUnique.js'
+      solution: '2.01-removeDupes.js'
     },
-    question3: {
-      name: 'stacksQueues',
-      text: 'Write a solution to find a unique string',
-      test: '1.01-isUnique.spec.js',
+    threeStacksInOne: {
+      name: 'Three Stacks in One',
+      text: 'Describe how you could use a single array to implement three stacks.',
+      test: '3.01-threeStacksInOne.spec.js',
       category_id: categories.stacksQueues.id,
-      difficulty_id: difficulties.hard.id,
-      solution: '1.01-isUnique.js'
+      difficulty_id: difficulties.medium.id,
+      solution: '3.01-threeStacksInOne.js'
     },
-    question4: {
-      name: 'treesGraphs',
-      text: 'Write a solution to find a unique string',
-      test: '1.01-isUnique.spec.js',
+    routesBetweenNodes: {
+      name: 'Routes Between Nodes',
+      text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
+      test: '4.01-routesBetweenNodes.spec.js',
       category_id: categories.treesGraphs.id,
-      difficulty_id: difficulties.easy.id,
-      solution: '1.01-isUnique.js'
+      difficulty_id: difficulties.hard.id,
+      solution: '4.01-routesBetweenNodes.js'
     }
   }))
 
 const hints = seed(Hint, ({ questions }) =>
   ({
-    isUnique: {
-      text: 'This is our first hint',
+    isUnique1: {
+      text: 'Try a hash table.',
+      question_id: questions.isUnique.id
+    },
+    isUnique2: {
+      text: 'Could a bit vector be useful?',
+      question_id: questions.isUnique.id
+    },
+    isUnique3: {
+      text: 'Can you solve it in O(n log n) time?  What might a solution like that look like.',
       question_id: questions.isUnique.id
     }
   }))
@@ -111,7 +119,7 @@ const userQuestions = seed(userQuestion, ({ users, questions }) =>
       status: 'complete',
       question_id: questions.isUnique.id,
       user_id: users.god.id,
-      user_answer: 'this is my answer'
+      user_answer: 'My answer is awesome!'
     }
   }))
 
