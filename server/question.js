@@ -7,7 +7,7 @@ module.exports = require('express').Router()
     Question.findById(req.params.id)
     .then(question => {
       Synthesize(question.text)
-      res.json(question)
     })
+    .then(question => res.json(question))
     .catch(next)
   })
