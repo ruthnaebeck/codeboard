@@ -10,14 +10,14 @@ var request = require('request'),
     xmlbuilder = require('xmlbuilder'),
     wav = require('wav'),
     Speaker = require('speaker');
+    text = 'Find all the possible substrings within a string'
 
 
-module.exports = function Synthesize(){
+module.exports = function Synthesize(text){
 
     // Note: The way to get api key:
     // Free: https://www.microsoft.com/cognitive-services/en-us/subscriptions?productId=/products/Bing.Speech.Preview
     // Paid: https://portal.azure.com/#create/Microsoft.CognitiveServices/apitype/Bing.Speech/pricingtier/S0
-    var question = 'Find all the unique substrings in a string'
     var apiKey = "7070e7bb329343b68a15e96f697ce629";
     var ssml_doc = xmlbuilder.create('speak')
         .att('version', '1.0')
@@ -26,7 +26,7 @@ module.exports = function Synthesize(){
         .att('xml:lang', 'en-us')
         .att('xml:gender', 'Female')
         .att('name', 'Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)')
-        .txt(question)
+        .txt(text)
         .end();
     var post_speak_data = ssml_doc.toString();
 
