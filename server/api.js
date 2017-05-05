@@ -1,6 +1,9 @@
 'use strict'
 
 const api = module.exports = require('express').Router()
+const Synthesize = require('./textToSpeech')
+const db = require('APP/db')
+const Question = db.model('questions')
 
 api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
@@ -12,3 +15,4 @@ api
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
+

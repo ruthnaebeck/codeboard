@@ -57,10 +57,12 @@
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
+    "fs": "0.0.1-security",
     "homedir": "^0.6.0",
     "lodash": "^4.17.4",
     "material-ui": "^0.18.0",
     "myscript": "^1.1.2",
+    "net": "^1.0.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-github2": "^0.1.10",
@@ -77,9 +79,14 @@
     "redux-devtools-extension": "^2.13.0",
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
+    "request": "^2.81.0",
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "speaker": "^0.3.0",
+    "tls": "0.0.1",
+    "wav": "^1.0.1",
+    "xmlbuilder": "^9.0.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",

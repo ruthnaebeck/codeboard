@@ -19,7 +19,6 @@ export default class Whiteboard extends Component {
     textInput.addEventListener('myscript-text-web-result', function(e) {
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', 'not found, default')
       console.log('IS THIS OUR RESULT???', inputTextPath)
-      // console.log('WHAT IS RESULT PATH', e.detail.result)
     })
   }
 
