@@ -3,7 +3,7 @@
 const {ENUM, INTEGER} = require('sequelize')
 
 module.exports = db => db.define('difficulties', {
-  level: ENUM('easy', 'medium', 'hard'),
+  level: ENUM('Easy', 'Medium', 'Hard'),
   minutes: INTEGER
 })
 
