@@ -15,7 +15,6 @@ const LiveReloadPlugin = require('webpack-livereload-plugin')
 
 module.exports = {
   entry: './app/main.jsx',
-  target: 'node',
   output: {
     path: __dirname,
     filename: './public/bundle.js'
