@@ -6,6 +6,7 @@ import Drawer from 'material-ui/Drawer'
 import {List, ListItem} from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
+import { Link } from 'react-router'
 
 import { fetchQuestion } from '../reducers/question'
 
@@ -45,6 +46,7 @@ export class Home extends React.Component {
                   nestedItems={
                     category.questions.map(question =>
                       <ListItem
+                      containerElement={<Link to="/whiteboard"/>}
                       key={question.id}
                       primaryText={question.name}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}
@@ -64,6 +66,7 @@ export class Home extends React.Component {
                   nestedItems={
                     difficulty.questions.map(question =>
                       <ListItem
+                      containerElement={<Link to="/whiteboard"/>}
                       key={question.id}
                       primaryText={question.name}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}
