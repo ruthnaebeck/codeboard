@@ -81,7 +81,6 @@
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
-    "speaker": "^0.3.0",
     "wav": "^1.0.1",
     "xmlbuilder": "^9.0.0"
   },
