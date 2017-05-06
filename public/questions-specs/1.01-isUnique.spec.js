@@ -5,7 +5,7 @@ for (const key in funcs) {
 
   describe('ch1-q1: ' + key, function() {
     [
-      'abcdefghi',
+      'abcdefghia',
       'jklpoiuqwerzxcvmnsadf',
       '1234567890',
       'AaBbCcDdeFg1234567890(*&^%$#@!)'
