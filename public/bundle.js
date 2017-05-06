@@ -21903,9 +21903,9 @@ var Routes = function Routes(_ref) {
     _react2.default.createElement(
       _reactRouter.Route,
       { path: '/', component: _App2.default, onEnter: onAppEnter },
-      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
+      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: '/whiteboard', component: _Whiteboard2.default })
     ),
-    _react2.default.createElement(_reactRouter.Route, { path: '/whiteboard', component: _Whiteboard2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: '*', component: _NotFound2.default })
   );
 };
