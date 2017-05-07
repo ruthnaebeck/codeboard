@@ -7,18 +7,39 @@ import TextField from 'material-ui/TextField'
 
 class Login extends React.Component {
   state = {
-    open: false
+    open: false,
+    emailError: '',
+    passError: ''
   }
   handleOpen = () => {
     this.setState({ open: true })
   }
   handleClose = () => {
-    this.setState({ open: false })
+    this.setState({
+      open: false,
+      emailError: '',
+      passError: ''
+    })
   }
   handleSubmit = (evt) => {
     evt.preventDefault()
-    this.props.login(evt.target.email.value, evt.target.password.value)
-    this.setState({ open: false })
+    const email = evt.target.email.value
+    const password = evt.target.password.value
+    const emailTrue = email.indexOf('@') > -1 && email.indexOf('.') > -1
+    const passTrue = password.length > 0
+    if (emailTrue) {
+      if (passTrue) {
+        this.props.login(email, password)
+        this.setState({ open: false })
+      } else {
+        this.setState({
+          emailError: '',
+          passError: 'Enter Password'
+        })
+      }
+    } else {
+      this.setState({ emailError: 'Enter Valid Email Address' })
+    }
   }
   render() {
     const dialogStyle = { width: '325px' }
@@ -54,12 +75,14 @@ class Login extends React.Component {
             <TextField
               name="email"
               hintText="Email Address"
+              errorText={this.state.emailError}
             /><br />
             <br />
             <TextField
               name="password"
               type="password"
               hintText="Password"
+              errorText={this.state.passError}
             /><br />
             <br />
           </form>
