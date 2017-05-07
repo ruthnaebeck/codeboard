@@ -25,12 +25,14 @@ class Login extends React.Component {
     evt.preventDefault()
     const email = evt.target.email.value
     const password = evt.target.password.value
-    const emailTrue = this.validateEmail(email)
-    const passTrue = password.length > 0
-    if (emailTrue) {
-      if (passTrue) {
+    if (this.validateEmail(email)) {
+      if (password.length > 0) {
         this.props.login(email, password)
-        this.setState({ open: false })
+        this.setState({
+          open: false,
+          emailError: '',
+          passError: ''
+        })
       } else {
         this.setState({
           emailError: '',
@@ -42,7 +44,7 @@ class Login extends React.Component {
     }
   }
   validateEmail = (email) => {
-    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    var re = /\S+@\S+\.\S+/
     return re.test(email)
   }
   render() {
