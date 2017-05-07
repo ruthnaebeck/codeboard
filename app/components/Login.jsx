@@ -25,7 +25,7 @@ class Login extends React.Component {
     evt.preventDefault()
     const email = evt.target.email.value
     const password = evt.target.password.value
-    const emailTrue = email.indexOf('@') > -1 && email.indexOf('.') > -1
+    const emailTrue = this.validateEmail(email)
     const passTrue = password.length > 0
     if (emailTrue) {
       if (passTrue) {
@@ -34,12 +34,16 @@ class Login extends React.Component {
       } else {
         this.setState({
           emailError: '',
-          passError: 'Enter Password'
+          passError: 'Enter password'
         })
       }
     } else {
-      this.setState({ emailError: 'Enter Valid Email Address' })
+      this.setState({ emailError: 'Enter valid email address' })
     }
+  }
+  validateEmail = (email) => {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(email)
   }
   render() {
     const dialogStyle = { width: '325px' }
