@@ -11,4 +11,7 @@ export const Logout = ({ logout }) => (
   />
 )
 
-export default connect(state => ({}), { logout })(Logout)
+const mapStateToProps = state => ({})
+const mapDispatchToProps = { logout }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Logout)
