@@ -23,10 +23,9 @@ export default function reducer(state=null, action) {
 
 export const login = (username, password) =>
   dispatch =>
-    axios.post('/api/auth/login/local',
-      {username, password})
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))
+    axios.post('/api/auth/login/local', {username, password})
+    .then(() => dispatch(whoami()))
+    .catch(() => dispatch(whoami()))
 
 export const logout = () =>
   dispatch =>
