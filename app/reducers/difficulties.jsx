@@ -23,8 +23,6 @@ export default function reducer(difficulties = [], action) {
 
 export const fetchDifficulties = () => dispatch => {
   axios.get('/api/difficulties')
-  .then(res => {
-    dispatch(get(res.data))
-  })
+  .then(res => dispatch(get(res.data)))
   .catch(err => console.error('Error fetchDifficulties', err))
 }
