@@ -27,12 +27,20 @@ class Login extends React.Component {
     const password = evt.target.password.value
     if (this.validateEmail(email)) {
       if (password.length > 0) {
-        this.props.login(email, password)
-        this.setState({
-          open: false,
-          emailError: '',
-          passError: ''
-        })
+        this.props.login(email, password,
+          () => {
+            this.setState({
+              open: false,
+              emailError: '',
+              passError: ''
+            })
+          },
+          () => {
+            this.setState({
+              passError: 'Invalid password'
+            })
+          }
+        )
       } else {
         this.setState({
           emailError: '',
@@ -98,7 +106,7 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = ({ auth }) => ({ auth })
 const mapDispatchToProps = { login }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

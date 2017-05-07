@@ -21,11 +21,18 @@ export default function reducer(state=null, action) {
 
 /* ------------- DISPATCHERS ---------------- */
 
-export const login = (username, password) =>
-  dispatch =>
+export const login = (username, password, success, fail) =>
+  dispatch => {
     axios.post('/api/auth/login/local', {username, password})
-    .then(() => dispatch(whoami()))
-    .catch(() => dispatch(whoami()))
+    .then(() => {
+      dispatch(whoami())
+      success()
+    })
+    .catch(() => {
+      dispatch(whoami())
+      fail()
+    })
+  }
 
 export const logout = () =>
   dispatch =>
