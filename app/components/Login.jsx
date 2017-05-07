@@ -30,7 +30,7 @@ class Login extends React.Component {
         onTouchTap={this.handleClose}
       />,
       <FlatButton
-        label="Login"
+        label="Login / Signup"
         type="submit"
         form="login"
         primary={true}
@@ -40,11 +40,11 @@ class Login extends React.Component {
     return (
       <div>
         <FlatButton
-          label="Login"
+          label="Login / Signup"
           onTouchTap={this.handleOpen}
           style={buttonStyle} />
         <Dialog
-          title="Login"
+          title="Login / Signup"
           actions={actions}
           modal={false}
           contentStyle={dialogStyle}
