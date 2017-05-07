@@ -80220,6 +80220,7 @@ var Login = function (_React$Component) {
             _react2.default.createElement('br', null),
             _react2.default.createElement(_TextField2.default, {
               name: 'password',
+              type: 'password',
               hintText: 'Password'
             }),
             _react2.default.createElement('br', null),

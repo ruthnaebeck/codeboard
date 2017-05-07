@@ -58,6 +58,7 @@ class Login extends React.Component {
             <br />
             <TextField
               name="password"
+              type="password"
               hintText="Password"
             /><br />
             <br />
