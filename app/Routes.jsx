@@ -10,7 +10,7 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Whiteboard from './components/Whiteboard'
 
-// Dispathers
+// Dispatchers
 import {whoami} from './reducers/auth'
 import {fetchCategories} from './reducers/categories'
 import {fetchDifficulties} from './reducers/difficulties'
