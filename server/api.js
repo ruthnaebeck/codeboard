@@ -1,7 +1,6 @@
 'use strict'
 
 const api = module.exports = require('express').Router()
-const Synthesize = require('./textToSpeech')
 const db = require('APP/db')
 const Question = db.model('questions')
 
