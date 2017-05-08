@@ -1,3 +1,5 @@
+/* global SpeechSynthesisUtterance */
+
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -16,7 +18,9 @@ class Whiteboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputText: ''
+      inputText: '',
+      colWB: 'col-sm-6',
+      colEditor: 'col-sm-6'
     }
   }
 
@@ -32,26 +36,26 @@ class Whiteboard extends Component {
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-        
+
     return (
       <div>
         <div>
-          {voice.speak(words)}
+          { /*voice.speak(words)*/ }
         </div>
         <div className="row">
-          <div className="col-sm-6">
+          <div className={this.state.colEditor}>
             <Paper className="ace" zDepth={3}>
               <AceEditor
                 mode="text"
                 theme="github"
                 name="editor"
-                width="94%"
+                width= "94%"
                 height="94%"
                 editorProps={{ $blockScrolling: true }}
               />
             </Paper>
           </div>
-          <div className="col-sm-6" id="myScript">
+          <div className={this.state.colWB}>
             <Paper className="ace" zDepth={3}>
               <myscript-text-web id="textInput"
                 applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
