@@ -14,7 +14,7 @@ export class Home extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { open: false }
+    this.state = { open: this.props.drawer }
   }
 
   handleToggle = () => this.setState({ open: !this.state.open })
@@ -90,7 +90,7 @@ export class Home extends React.Component {
   }
 }
 
-const mapStateToProps = ({categories, difficulties}) => ({categories, difficulties})
+const mapStateToProps = ({categories, difficulties, drawer}) => ({categories, difficulties, drawer})
 const mapDispatchToProps = { fetchQuestion }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

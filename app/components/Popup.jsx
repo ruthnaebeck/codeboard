@@ -34,7 +34,7 @@ export default class DialogExampleAlert extends React.Component {
       <div>
         <Dialog
           actions={actions}
-          modal={false}
+          modal={true}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
