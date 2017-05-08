@@ -23,8 +23,6 @@ export default function reducer(categories = [], action) {
 
 export const fetchCategories = () => dispatch => {
   axios.get('/api/categories')
-  .then(res => {
-    dispatch(get(res.data))
-  })
+  .then(res => dispatch(get(res.data)))
   .catch(err => console.error('Error fetchCategories', err))
 }

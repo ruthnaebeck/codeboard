@@ -37,6 +37,8 @@ export class Home extends React.Component {
               title="Questions"
               iconElementLeft={<span/>}
               />
+              <h4>By Category:</h4>
+              <Divider />
               {this.props.categories.map(category =>
                 <ListItem
                   key={category.id}
@@ -56,6 +58,9 @@ export class Home extends React.Component {
                   >
                 </ListItem>
               )}
+              <br/>
+              <br/>
+              <h4>By Difficulty:</h4>
               <Divider />
               {this.props.difficulties.map((difficulty, index) =>
                 <ListItem

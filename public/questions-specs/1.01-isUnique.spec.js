@@ -1,22 +1,18 @@
-import { expect } from 'chai';
-import * as funcs from './1.01-isUnique';
+/* global chai describe it expect funcs */
 
-for (let key in funcs) {
-  let func = funcs[key];
+for (const key in funcs) {
+  const func = funcs[key]
 
   describe('ch1-q1: ' + key, function() {
-
     [
-      'abcdefghi',
+      'abcdefghia',
       'jklpoiuqwerzxcvmnsadf',
       '1234567890',
       'AaBbCcDdeFg1234567890(*&^%$#@!)'
     ].forEach(arg => {
-
       it(`returns true for unique string: '${arg}'`, function() {
-        expect(func(arg)).to.be.true;
-      });
-
+        chai.assert.deepEqual(func(arg), true)
+      })
     });
 
     [
@@ -26,10 +22,9 @@ for (let key in funcs) {
       '1234567890asdklf1',
       '!@#$%^&*()(*#($&#(*$&#*($&#()))))'
     ].forEach(arg => {
-
       it(`returns false for string with dupes: '${arg}'`, function() {
-        expect(func(arg)).to.be.false;
-      });
-    });
-  });
+        chai.assert.deepEqual(func(arg), false)
+      })
+    })
+  })
 }

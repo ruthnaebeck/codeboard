@@ -11,9 +11,6 @@ public/bundle.js.map
 # NPM errors
 npm-debug.log
 
-# bootstrap
-public/css/bootstrap.min.js
-
 #notes
 notes.md
 

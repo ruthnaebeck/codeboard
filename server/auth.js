@@ -97,33 +97,35 @@ passport.deserializeUser(
 passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
-    User.findOne({
+    User.findOrCreate({
       where: {email},
-      attributes: {include: ['password_digest']}
+      attributes: {include: ['password_digest']},
+      defaults: {password: password}
     })
-      .then(user => {
-        if (!user) {
-          debug('authenticate user(email: "%s") did fail: no such user', email)
-          return done(null, false, { message: 'Login incorrect' })
-        }
-        return user.authenticate(password)
-          .then(ok => {
-            if (!ok) {
-              debug('authenticate user(email: "%s") did fail: bad password')
-              return done(null, false, { message: 'Login incorrect' })
-            }
-            debug('authenticate user(email: "%s") did ok: user.id=%d', email, user.id)
-            done(null, user)
-          })
-      })
-      .catch(done)
+    .spread((user, created) => user)
+    .then(user => {
+      if (!user) {
+        debug('authenticate user(email: "%s") did fail: no such user', email)
+        return done(null, false, { message: 'Login incorrect' })
+      }
+      return user.authenticate(password)
+        .then(ok => {
+          if (!ok) {
+            debug('authenticate user(email: "%s") did fail: bad password')
+            return done(null, false, { message: 'Login incorrect' })
+          }
+          debug('authenticate user(email: "%s") did ok: user.id=%d', email, user.id)
+          done(null, user)
+        })
+    })
+    .catch(done)
   }
 ))
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+auth.post('/login/local', passport.authenticate('local', { successRedirect: '/' }))
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider

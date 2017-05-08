@@ -51,6 +51,9 @@ module.exports = app
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
   .use(express.static(resolve(__dirname, '..', 'bower_components')))
+  .use(express.static(resolve(__dirname, '..', 'node_modules/chai')))
+  .use(express.static(resolve(__dirname, '..', 'node_modules/mocha')))
+  .use(express.static(resolve(__dirname, '..', 'node_modules/bootstrap')))
 
   // Serve our api - ./api also requires in ../db, which syncs with our database
   .use('/api', require('./api'))
