@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper'
 const _ = require('lodash')
 const fp = require('lodash/fp')
 const object = require('lodash/fp/object')
+const ace = require('ace-code-editor')
 
 export default class Whiteboard extends Component {
   constructor(props) {
@@ -31,10 +32,15 @@ export default class Whiteboard extends Component {
       textAlign: 'center',
       display: 'inline-block'
     }
+
+    const editor = ace.edit('editor')
+
     return (
       <div className="row">
         <div className="col-sm-6">
           <Paper style={style} zDepth={3} />
+            <div id="editor">some text</div>
+
         </div>
         <div className="col-sm-6" id="myScript">
           <Paper style={style} zDepth={3}>

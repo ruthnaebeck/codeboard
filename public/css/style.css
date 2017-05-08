@@ -62,3 +62,9 @@ header {
 paper-button[toggles][active] {
     background: rgba(0, 0, 0, 0.2);
 }
+
+#editor {
+    position: absolute;
+    width: 500px;
+    height: 400px;
+}
