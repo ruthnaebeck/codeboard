@@ -54,7 +54,6 @@ module.exports = app
   .use(express.static(resolve(__dirname, '..', 'node_modules/chai')))
   .use(express.static(resolve(__dirname, '..', 'node_modules/mocha')))
   .use(express.static(resolve(__dirname, '..', 'node_modules/bootstrap')))
-  .use(express.static(resolve(__dirname, '..', 'node_modules/ace-code-editor')))
 
   // Serve our api - ./api also requires in ../db, which syncs with our database
   .use('/api', require('./api'))
