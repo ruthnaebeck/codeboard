@@ -27,20 +27,17 @@ class Login extends React.Component {
     const password = evt.target.password.value
     if (this.validateEmail(email)) {
       if (password.length > 0) {
-        this.props.login(email, password,
-          () => {
-            this.setState({
-              open: false,
-              emailError: '',
-              passError: ''
-            })
-          },
-          () => {
-            this.setState({
-              passError: 'Invalid password'
-            })
-          }
-        )
+        const success = () =>
+          this.setState({
+            open: false,
+            emailError: '',
+            passError: ''
+          })
+        const fail = () =>
+          this.setState({
+            passError: 'Invalid password'
+          })
+        this.props.login(email, password, success, fail)
       } else {
         this.setState({
           emailError: '',
