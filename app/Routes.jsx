@@ -9,6 +9,7 @@ import App from './components/App'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Whiteboard from './components/Whiteboard'
+import Popup from './components/Popup'
 
 // Dispatchers
 import {whoami} from './reducers/auth'
@@ -19,7 +20,7 @@ const Routes = ({onAppEnter}) => (
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={onAppEnter}>
         <IndexRoute component={Home}/>
-        <Route path="/whiteboard" component={Whiteboard} />
+        <Route path="/whiteboard" component={Popup} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

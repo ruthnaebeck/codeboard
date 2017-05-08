@@ -2,11 +2,11 @@ import React from 'react'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 
-/**
- * Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
- */
-export default class DialogExampleAlert extends React.Component {
+import { set } from '../reducers/drawer'
+
+class DialogExampleAlert extends React.Component {
   state = {
     open: true,
   }
@@ -21,6 +21,7 @@ export default class DialogExampleAlert extends React.Component {
         <FlatButton
           label="Change Question"
           primary={true}
+          onTouchTap={this.props.set}
         />
       </Link>,
       <FlatButton
@@ -36,7 +37,6 @@ export default class DialogExampleAlert extends React.Component {
           actions={actions}
           modal={true}
           open={this.state.open}
-          onRequestClose={this.handleClose}
         >
           When you're ready to start, make sure that your volume is on, then click I'm Ready.
         </Dialog>
@@ -44,3 +44,7 @@ export default class DialogExampleAlert extends React.Component {
     )
   }
 }
+
+const mapDispatch = ({ set })
+
+export default connect(null, mapDispatch)(DialogExampleAlert)
