@@ -56,9 +56,22 @@ header {
     z-index: 1;
 }
 #textInput {
-    height : calc(100vh - 50px);
+    height : calc(100vh - 100px);
 }
 
 paper-button[toggles][active] {
     background: rgba(0, 0, 0, 0.2);
+}
+
+#editor {
+    position: absolute;
+    width: 1000px;
+}
+
+.ace {
+    height: calc(100vh - 100px);
+    width: 48vw;
+    margin: 10px 0px 10px 0px;
+    text-align: center;
+    display: inline-block;
 }
