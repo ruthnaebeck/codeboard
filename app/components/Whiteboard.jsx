@@ -48,31 +48,31 @@ class Whiteboard extends Component {
         </div>
         <div className="row">
           <div className={this.state.colEditor}>
-            <SvgIcon className="right-arrow" style={arrowStyle}>
-              <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
-            </SvgIcon>
-          </div>
-          <div className={this.state.colWB}>
-            <SvgIcon className="left-arrow" style={arrowStyle}>
-              <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
-            </SvgIcon>
-          </div>
-        </div>
-        <div className="row">
-          <div className={this.state.colEditor}>
             <Paper className="ace" zDepth={3}>
+              <SvgIcon className="left-arrow">
+                <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+              </SvgIcon>
+              <SvgIcon className="right-arrow">
+                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+              </SvgIcon>
               <AceEditor
                 mode="text"
                 theme="github"
                 name="editor"
                 width="94%"
-                height="94%"
+                height="90%"
                 editorProps={{ $blockScrolling: true }}
               />
             </Paper>
           </div>
           <div className={this.state.colWB}>
             <Paper className="ace" zDepth={3}>
+              <SvgIcon className="left-arrow">
+                <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+              </SvgIcon>
+              <SvgIcon className="right-arrow">
+                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+              </SvgIcon>
               <myscript-text-web id="textInput"
                 applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
                 hmackey="bc9ba480-0640-44bc-b9e5-8480e9954577"
