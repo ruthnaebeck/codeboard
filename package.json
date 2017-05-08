@@ -59,6 +59,7 @@
     "finalhandler": "^1.0.0",
     "homedir": "^0.6.0",
     "lodash": "^4.17.4",
+    "material-design-icons": "^3.0.1",
     "material-ui": "^0.18.0",
     "myscript": "^1.1.2",
     "passport": "^0.3.2",

@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import SvgIcon from 'material-ui/SvgIcon'
 
 import Paper from 'material-ui/Paper'
 import brace from 'brace'
@@ -36,11 +37,26 @@ class Whiteboard extends Component {
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-
+    const arrowStyle = {
+      height: '18px',
+      width: '18px'
+    }
     return (
       <div>
         <div>
-          { /*voice.speak(words)*/ }
+          { /* voice.speak(words) */}
+        </div>
+        <div className="row">
+          <div className={this.state.colEditor}>
+            <SvgIcon className="right-arrow" style={arrowStyle}>
+              <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+            </SvgIcon>
+          </div>
+          <div className={this.state.colWB}>
+            <SvgIcon className="left-arrow" style={arrowStyle}>
+              <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+            </SvgIcon>
+          </div>
         </div>
         <div className="row">
           <div className={this.state.colEditor}>
@@ -49,7 +65,7 @@ class Whiteboard extends Component {
                 mode="text"
                 theme="github"
                 name="editor"
-                width= "94%"
+                width="94%"
                 height="94%"
                 editorProps={{ $blockScrolling: true }}
               />
@@ -70,6 +86,6 @@ class Whiteboard extends Component {
   }
 }
 
-const mapState = ({question}) => ({question})
+const mapState = ({ question }) => ({ question })
 
 export default connect(mapState, null)(Whiteboard)
