@@ -16,6 +16,8 @@ class AccountPage extends React.Component {
   //   super(props)
   // }
   render() {
+    const user = this.props.auth
+    const questions = this.props.userQuestions
     return (
       <div>
       <Card>
@@ -34,12 +36,14 @@ class AccountPage extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody>
+          { questions.map(userQuestion =>
             <TableRow>
-              <TableRowColumn>1</TableRowColumn>
-              <TableRowColumn>John Smith</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-              <TableRowColumn>Completed</TableRowColumn>
+              <TableRowColumn>{userQuestion.question.name}</TableRowColumn>
+              <TableRowColumn>{userQuestion.question.category.name}</TableRowColumn>
+              <TableRowColumn>{userQuestion.question.difficulty.level}</TableRowColumn>
+              <TableRowColumn>{userQuestion.status}</TableRowColumn>
             </TableRow>
+          )}
           </TableBody>
         </Table>
       </div>
@@ -47,7 +51,7 @@ class AccountPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({ auth })
+const mapStateToProps = ({ auth, userQuestions }) => ({ auth, userQuestions })
 const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)

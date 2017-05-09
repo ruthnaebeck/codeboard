@@ -6,7 +6,7 @@ const GET_USER_QUESTIONS = 'GET_USER_QUESTIONS'
 
 /* ------------- ACTION CREATER ---------------- */
 
-export const get = (userId) => ({ type: GET_USER_QUESTIONS, questions })
+export const got = (userId) => ({ type: GET_USER_QUESTIONS, questions })
 // where the questions are coming from?
 
 /* ------------- REDUCERS ---------------- */

@@ -33,7 +33,12 @@ module.exports = require('express').Router()
       UserQuestion.findAll({where: {
         user_id: req.params.id
       },
-        include: [Question, {include: [Category, Difficulty]}]})
+        include: [
+          {
+            model: Question, include: [Category, Difficulty]
+          }
+        ]
+      })
       .then(userQuestions => {
         console.log('is this userQuestions?', userQuestions)
         res.json(userQuestions)
