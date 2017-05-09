@@ -9,8 +9,9 @@ module.exports = db => db.define('questions', {
   tests: TEXT
 })
 
-module.exports.associations = (Question, { Category, Difficulty, Hint }) => {
+module.exports.associations = (Question, { Category, Difficulty, Hint, User }) => {
   Question.belongsTo(Category)
   Question.belongsTo(Difficulty)
   Question.hasMany(Hint)
+  Question.belongsToMany(User, {through: 'users_questions'})
 }

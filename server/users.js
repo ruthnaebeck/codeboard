@@ -2,6 +2,10 @@
 
 const db = require('APP/db')
 const User = db.model('users')
+const UserQuestion = db.model('users_questions')
+const Question = db.model('questions')
+const Category = db.model('categories')
+const Difficulty = db.model('difficulties')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -26,6 +30,12 @@ module.exports = require('express').Router()
   .get('/:id',
     mustBeLoggedIn,
     (req, res, next) =>
-      User.findById(req.params.id)
-      .then(user => res.json(user))
+      UserQuestion.findAll({where: {
+        user_id: req.params.id
+      },
+        include: [Question, {include: [Category, Difficulty]}]})
+      .then(userQuestions => {
+        console.log('is this userQuestions?', userQuestions)
+        res.json(userQuestions)
+      })
       .catch(next))
