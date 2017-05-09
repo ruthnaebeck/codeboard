@@ -77,9 +77,6 @@ class Whiteboard extends Component {
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-    const leftArrow = 'M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z'
-    const rightArrow = 'M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'
-    // Move SVG icons here
     return (
       <div>
         <div>
@@ -91,12 +88,12 @@ class Whiteboard extends Component {
               <span
                 className="span-arrow"
                 onClick={this.handleEdit}>
-                <SvgIcon><path d={leftArrow} /></SvgIcon>
+                <LeftArrow/>
               </span>
               <span
                 className="span-arrow"
                 onClick={this.handleEdit}>
-                <SvgIcon><path d={rightArrow} /></SvgIcon>
+                <RightArrow/>
               </span>
               <AceEditor
                 className="ace-editor"
@@ -116,12 +113,12 @@ class Whiteboard extends Component {
               <span
                 className="span-arrow"
                 onClick={this.handleWB}>
-                <SvgIcon><path d={leftArrow} /></SvgIcon>
+                <LeftArrow/>
               </span>
               <span
                 className="span-arrow"
                 onClick={this.handleWB}>
-                <SvgIcon><path d={rightArrow} /></SvgIcon>
+                <RightArrow/>
               </span>
               <myscript-text-web id="textInput"
                 applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
@@ -135,6 +132,18 @@ class Whiteboard extends Component {
     )
   }
 }
+
+const LeftArrow = () => (
+  <SvgIcon>
+    <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+  </SvgIcon>
+)
+
+const RightArrow = () => (
+  <SvgIcon>
+    <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+  </SvgIcon>
+)
 
 const mapStateToProps = ({ question }) => ({ question })
 const mapDispatchToProps = null
