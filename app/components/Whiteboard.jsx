@@ -26,10 +26,10 @@ class Whiteboard extends Component {
 
   componentDidMount() {
     const textInput = document.getElementById('textInput')
-    // console.log('TEXT INPUT: ', textInput)
+    const wbThis = this
     textInput.addEventListener('myscript-text-web-result', function(e) {
-      const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', 'not found, default')
-      // console.log('IS THIS OUR RESULT???', inputTextPath)
+      const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
+      wbThis.setState({inputText: inputTextPath})
     })
   }
 
@@ -61,6 +61,7 @@ class Whiteboard extends Component {
                 width="94%"
                 height="90%"
                 editorProps={{ $blockScrolling: true }}
+                value={this.state.inputText}
               />
             </Paper>
           </div>
