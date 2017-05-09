@@ -28,12 +28,13 @@ class Whiteboard extends Component {
     const textInput = document.getElementById('textInput')
     const wbThis = this
     textInput.addEventListener('myscript-text-web-result', function(e) {
+      // Can you do this outside the listener?
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
       wbThis.setState({ inputText: inputTextPath })
     })
   }
-
-  handleEdit() {
+  // Change the onClicks
+  handleEdit = () => {
     if (this.state.colEdit === 'col-sm-12') {
       this.setState({
         colEdit: 'col-sm-6',
@@ -47,7 +48,7 @@ class Whiteboard extends Component {
     }
   }
 
-  handleWB() {
+  handleWB = () => {
     if (this.state.colWB === 'col-sm-12') {
       this.setState({
         colEdit: 'col-sm-6',
@@ -66,7 +67,8 @@ class Whiteboard extends Component {
     const words = new SpeechSynthesisUtterance(this.props.question.text)
     const leftArrow = 'M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z'
     const rightArrow = 'M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'
-
+    // Move SVG icons here
+    // Fire window.resize
     return (
       <div>
         <div>

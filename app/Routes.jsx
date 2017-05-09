@@ -16,6 +16,7 @@ import {whoami} from './reducers/auth'
 import {fetchCategories} from './reducers/categories'
 import {fetchDifficulties} from './reducers/difficulties'
 
+// Change routes so we are navigating to /question/:id
 const Routes = ({onAppEnter}) => (
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={onAppEnter}>
