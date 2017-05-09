@@ -77,10 +77,20 @@ class Whiteboard extends Component {
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
+    function speakOnce(func) {
+      var count = 0
+      return function() {
+        if (count === 0) {
+          count++
+          return func()
+        }
+      }
+    }
+    const speak = speakOnce(voice.speak(words))
     return (
       <div>
         <div>
-          { voice.speak(words) }
+          { speak() }
         </div>
         <div className="row">
           <div className={`${this.state.colEdit} colEdit`}>
