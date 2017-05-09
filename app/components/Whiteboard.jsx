@@ -29,9 +29,36 @@ class Whiteboard extends Component {
     const wbThis = this
     textInput.addEventListener('myscript-text-web-result', function(e) {
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
-      wbThis.setState({inputText: inputTextPath})
+      wbThis.setState({ inputText: inputTextPath })
     })
+  }
 
+  handleEdit() {
+    if (this.state.colEdit === 'col-sm-12') {
+      this.setState({
+        colEdit: 'col-sm-6',
+        colWB: 'col-sm-6'
+      })
+    } else {
+      this.setState({
+        colEdit: 'col-hide',
+        colWB: 'col-sm-12'
+      })
+    }
+  }
+
+  handleWB() {
+    if (this.state.colWB === 'col-sm-12') {
+      this.setState({
+        colEdit: 'col-sm-6',
+        colWB: 'col-sm-6'
+      })
+    } else {
+      this.setState({
+        colWB: 'col-hide',
+        colEdit: 'col-sm-12'
+      })
+    }
   }
 
   render() {
@@ -43,28 +70,28 @@ class Whiteboard extends Component {
     return (
       <div>
         <div>
-          { /* voice.speak(words) */ }
+          { /* voice.speak(words) */}
         </div>
         <div className="row">
           <div className={`${this.state.colEdit} colEdit`}>
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={() => console.log('left click')}>
-                <SvgIcon><path d={leftArrow}/></SvgIcon>
+                onClick={() => this.handleEdit()}>
+                <SvgIcon><path d={leftArrow} /></SvgIcon>
               </span>
               <span
                 className="span-arrow"
-                onClick={() => this.setState({colEdit: 'col-sm-12', colWB: 'col-hide'})}>
-                <SvgIcon><path d={rightArrow}/></SvgIcon>
+                onClick={() => this.setState({ colEdit: 'col-sm-12', colWB: 'col-hide' })}>
+                <SvgIcon><path d={rightArrow} /></SvgIcon>
               </span>
               <AceEditor
                 className="ace-editor"
                 mode="text"
                 theme="github"
                 name="editor"
-                width= "94%"
-                height= "90%"
+                width="94%"
+                height="90%"
                 wrapEnabled={true}
                 editorProps={{ $blockScrolling: true }}
                 value={this.state.inputText}
@@ -75,13 +102,13 @@ class Whiteboard extends Component {
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={() => this.setState({colEdit: 'col-hide', colWB: 'col-sm-12'})}>
-                <SvgIcon><path d={leftArrow}/></SvgIcon>
+                onClick={() => this.setState({ colEdit: 'col-hide', colWB: 'col-sm-12' })}>
+                <SvgIcon><path d={leftArrow} /></SvgIcon>
               </span>
               <span
                 className="span-arrow"
-                onClick={() => console.log('right click')}>
-                <SvgIcon><path d={rightArrow}/></SvgIcon>
+                onClick={() => this.handleWB()}>
+                <SvgIcon><path d={rightArrow} /></SvgIcon>
               </span>
               <myscript-text-web id="textInput"
                 applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
