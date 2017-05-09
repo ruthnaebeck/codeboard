@@ -41,19 +41,21 @@ class Whiteboard extends Component {
     return (
       <div>
         <div>
-          { /* voice.speak(words) */}
+          { /* voice.speak(words) */ }
         </div>
         <div className="row">
           <div className={`${this.state.colEdit} colEdit`}>
             <Paper className="ace" zDepth={3}>
-              <span onClick={() => console.log('span clicked')}>
+              <span
+                className="span-arrow"
+                onClick={() => console.log('left click')}>
                 <SvgIcon><path d={leftArrow}/></SvgIcon>
               </span>
-              <button
-                className="btn-arrow"
-                onClick={() => console.log('button click')}>
+              <span
+                className="span-arrow"
+                onClick={() => console.log('right click')}>
                 <SvgIcon><path d={rightArrow}/></SvgIcon>
-              </button>
+              </span>
               <AceEditor
                 mode="text"
                 theme="github"
@@ -67,12 +69,16 @@ class Whiteboard extends Component {
           </div>
           <div className={`${this.state.colWB} colWB`}>
             <Paper className="ace" zDepth={3}>
-              <button className="btn-arrow">
+              <span
+                className="span-arrow"
+                onClick={() => console.log('left click')}>
                 <SvgIcon><path d={leftArrow}/></SvgIcon>
-              </button>
-              <button className="btn-arrow">
+              </span>
+              <span
+                className="span-arrow"
+                onClick={() => console.log('right click')}>
                 <SvgIcon><path d={rightArrow}/></SvgIcon>
-              </button>
+              </span>
               <myscript-text-web id="textInput"
                 applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
                 hmackey="bc9ba480-0640-44bc-b9e5-8480e9954577"
