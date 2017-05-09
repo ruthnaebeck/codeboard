@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance */
+/* global SpeechSynthesisUtterance Event */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -28,23 +28,30 @@ class Whiteboard extends Component {
     const textInput = document.getElementById('textInput')
     const wbThis = this
     textInput.addEventListener('myscript-text-web-result', function(e) {
-      // Can you do this outside the listener?
+      // Can you do this outside the listener? -- LOW PRIORITY
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
       wbThis.setState({ inputText: inputTextPath })
     })
   }
-  // Change the onClicks
+
+  resize = () => window.dispatchEvent(new Event('resize'))
+
   handleEdit = () => {
     if (this.state.colEdit === 'col-sm-12') {
       this.setState({
         colEdit: 'col-sm-6',
         colWB: 'col-sm-6'
-      })
+      }, this.resize)
+    } else if (this.state.colEdit === 'col-sm-6') {
+      this.setState({
+        colWB: 'col-hide',
+        colEdit: 'col-sm-12'
+      }, this.resize)
     } else {
       this.setState({
         colEdit: 'col-hide',
         colWB: 'col-sm-12'
-      })
+      }, this.resize)
     }
   }
 
@@ -53,39 +60,40 @@ class Whiteboard extends Component {
       this.setState({
         colEdit: 'col-sm-6',
         colWB: 'col-sm-6'
-      })
+      }, this.resize)
+    } else if (this.state.colWB === 'col-sm-6') {
+      this.setState({
+        colEdit: 'col-hide',
+        colWB: 'col-sm-12'
+      }, this.resize)
     } else {
       this.setState({
         colWB: 'col-hide',
         colEdit: 'col-sm-12'
-      })
+      }, this.resize)
     }
   }
 
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-    const leftArrow = 'M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z'
-    const rightArrow = 'M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'
-    // Move SVG icons here
-    // Fire window.resize
     return (
       <div>
         <div>
-          {voice.speak(words)}
+          { voice.speak(words) }
         </div>
         <div className="row">
           <div className={`${this.state.colEdit} colEdit`}>
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={() => this.handleEdit()}>
-                <SvgIcon><path d={leftArrow} /></SvgIcon>
+                onClick={this.handleEdit}>
+                <LeftArrow/>
               </span>
               <span
                 className="span-arrow"
-                onClick={() => this.setState({ colEdit: 'col-sm-12', colWB: 'col-hide' })}>
-                <SvgIcon><path d={rightArrow} /></SvgIcon>
+                onClick={this.handleEdit}>
+                <RightArrow/>
               </span>
               <AceEditor
                 className="ace-editor"
@@ -104,13 +112,13 @@ class Whiteboard extends Component {
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={() => this.setState({ colEdit: 'col-hide', colWB: 'col-sm-12' })}>
-                <SvgIcon><path d={leftArrow} /></SvgIcon>
+                onClick={this.handleWB}>
+                <LeftArrow/>
               </span>
               <span
                 className="span-arrow"
-                onClick={() => this.handleWB()}>
-                <SvgIcon><path d={rightArrow} /></SvgIcon>
+                onClick={this.handleWB}>
+                <RightArrow/>
               </span>
               <myscript-text-web id="textInput"
                 applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
@@ -124,6 +132,18 @@ class Whiteboard extends Component {
     )
   }
 }
+
+const LeftArrow = () => (
+  <SvgIcon>
+    <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+  </SvgIcon>
+)
+
+const RightArrow = () => (
+  <SvgIcon>
+    <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+  </SvgIcon>
+)
 
 const mapStateToProps = ({ question }) => ({ question })
 const mapDispatchToProps = null

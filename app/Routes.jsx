@@ -15,17 +15,17 @@ import Popup from './components/Popup'
 import {whoami} from './reducers/auth'
 import {fetchCategories} from './reducers/categories'
 import {fetchDifficulties} from './reducers/difficulties'
+import {fetchQuestion} from './reducers/question'
 
-// Change routes so we are navigating to /question/:id
-const Routes = ({onAppEnter}) => (
-    <Router history={browserHistory}>
-      <Route path="/" component={App} onEnter={onAppEnter}>
-        <IndexRoute component={Home}/>
-        <Route path="/whiteboard" component={Whiteboard} />
-        <Route path="/popup" component={Popup} />
-      </Route>
-      <Route path='*' component={NotFound} />
-    </Router>
+const Routes = ({onAppEnter, onQuestionEnter}) => (
+  <Router history={browserHistory}>
+    <Route path="/" component={App} onEnter={onAppEnter}>
+      <IndexRoute component={Home}/>
+      <Route path="/question/:id" component={Whiteboard} onEnter={onQuestionEnter} />
+      <Route path="/popup" component={Popup} />
+    </Route>
+    <Route path='*' component={NotFound} />
+  </Router>
 )
 
 /* ------------- CONTAINER ---------------- */
@@ -36,6 +36,10 @@ const mapDispatch = dispatch => ({
     dispatch(whoami())
     dispatch(fetchCategories())
     dispatch(fetchDifficulties())
+  },
+  onQuestionEnter: (nextRouterState) => {
+    const id = nextRouterState.params.id
+    dispatch(fetchQuestion(id))
   }
 })
 
