@@ -23,7 +23,7 @@ const Routes = ({onAppEnter, onAccountEnter}) => (
       <Route path="/" component={App} onEnter={onAppEnter}>
         <IndexRoute component={Home}/>
         <Route path="/whiteboard" component={Popup} />
-        <Route path="/myaccount" component={AccountPage} onEnter={onAccountEnter}/>
+        <Route path="/users/:id" component={AccountPage} onEnter={onAccountEnter}/>
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
@@ -38,8 +38,9 @@ const mapDispatch = dispatch => ({
     dispatch(fetchCategories())
     dispatch(fetchDifficulties())
   },
-  onAccountEnter: () => {
-    dispatch(fetchUserQuestions())
+  onAccountEnter: (nextRouterState) => {
+    const userId = nextRouterState.params.id
+    dispatch(fetchUserQuestions(userId))
   }
 })
 

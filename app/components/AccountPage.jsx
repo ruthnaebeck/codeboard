@@ -12,9 +12,6 @@ import {
 import { Link } from 'react-router'
 
 class AccountPage extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
   render() {
     const user = this.props.auth
     const questions = this.props.userQuestions
@@ -22,11 +19,11 @@ class AccountPage extends React.Component {
       <div>
       <Card>
         <CardHeader
-          title="Name" // will be dynamic according to the logged in user
-          subtitle="Email"
+          title={user.name}
+          subtitle={user.email}
         />
       </Card>
-        <Table>
+        <Table >
           <TableHeader>
             <TableRow>
               <TableHeaderColumn>Question Name</TableHeaderColumn>
@@ -36,8 +33,8 @@ class AccountPage extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody>
-          { questions.map(userQuestion =>
-            <TableRow>
+          { questions.map((userQuestion, idx) =>
+            <TableRow key={`idx`}>
               <TableRowColumn>{userQuestion.question.name}</TableRowColumn>
               <TableRowColumn>{userQuestion.question.category.name}</TableRowColumn>
               <TableRowColumn>{userQuestion.question.difficulty.level}</TableRowColumn>

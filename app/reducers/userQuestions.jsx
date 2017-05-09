@@ -6,8 +6,7 @@ const GET_USER_QUESTIONS = 'GET_USER_QUESTIONS'
 
 /* ------------- ACTION CREATER ---------------- */
 
-export const got = (userId) => ({ type: GET_USER_QUESTIONS, questions })
-// where the questions are coming from?
+export const got = (res) => ({ type: GET_USER_QUESTIONS, questions: res })
 
 /* ------------- REDUCERS ---------------- */
 
@@ -25,7 +24,7 @@ export default function reducer(questions = [], action) {
 export const fetchUserQuestions = (id) => dispatch => {
   axios.get(`/api/users/${id}`)
   .then(res => {
-    dispatch(get(res.data))
+    dispatch(got(res.data))
   })
   .catch(err => console.error('Error fetchUserQuestions', err))
 }
