@@ -24,11 +24,14 @@ class DialogExampleAlert extends React.Component {
           onTouchTap={this.props.set}
         />
       </Link>,
-      <FlatButton
-        label="I'm Ready"
-        primary={true}
-        onTouchTap={this.handleReady}
-      />,
+      <Link to='/whiteboard'>
+        <FlatButton
+          label="I'm Ready"
+          primary={true}
+          onTouchTap={this.handleReady}
+        />
+      </Link>
+      ,
     ]
 
     return (

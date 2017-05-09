@@ -20,7 +20,8 @@ const Routes = ({onAppEnter}) => (
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={onAppEnter}>
         <IndexRoute component={Home}/>
-        <Route path="/whiteboard" component={Popup} />
+        <Route path="/whiteboard" component={Whiteboard} />
+        <Route path="/popup" component={Popup} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

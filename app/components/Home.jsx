@@ -48,7 +48,7 @@ export class Home extends React.Component {
                   nestedItems={
                     category.questions.map(question =>
                       <ListItem
-                      containerElement={<Link to="/whiteboard"/>}
+                      containerElement={<Link to="/popup"/>}
                       key={question.id}
                       primaryText={question.name}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}

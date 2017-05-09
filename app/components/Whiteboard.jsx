@@ -70,7 +70,7 @@ class Whiteboard extends Component {
     return (
       <div>
         <div>
-          { /* voice.speak(words) */}
+          {voice.speak(words)}
         </div>
         <div className="row">
           <div className={`${this.state.colEdit} colEdit`}>
