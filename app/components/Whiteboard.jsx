@@ -31,6 +31,7 @@ class Whiteboard extends Component {
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
       wbThis.setState({inputText: inputTextPath})
     })
+
   }
 
   render() {
@@ -38,6 +39,7 @@ class Whiteboard extends Component {
     const words = new SpeechSynthesisUtterance(this.props.question.text)
     const leftArrow = 'M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z'
     const rightArrow = 'M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'
+
     return (
       <div>
         <div>
@@ -53,15 +55,17 @@ class Whiteboard extends Component {
               </span>
               <span
                 className="span-arrow"
-                onClick={() => console.log('right click')}>
+                onClick={() => this.setState({colEdit: 'col-sm-12', colWB: 'col-hide'})}>
                 <SvgIcon><path d={rightArrow}/></SvgIcon>
               </span>
               <AceEditor
+                className="ace-editor"
                 mode="text"
                 theme="github"
                 name="editor"
-                width="94%"
-                height="90%"
+                width= "94%"
+                height= "90%"
+                wrapEnabled={true}
                 editorProps={{ $blockScrolling: true }}
                 value={this.state.inputText}
               />
@@ -71,7 +75,7 @@ class Whiteboard extends Component {
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={() => console.log('left click')}>
+                onClick={() => this.setState({colEdit: 'col-hide', colWB: 'col-sm-12'})}>
                 <SvgIcon><path d={leftArrow}/></SvgIcon>
               </span>
               <span

@@ -75,6 +75,7 @@ paper-button[toggles][active] {
     margin: 5px 0px 5px 0px;
     text-align: center;
     display: inline-block;
+    position: relative;
 }
 
 .colEdit {
@@ -91,4 +92,8 @@ paper-button[toggles][active] {
 
 .span-arrow {
     cursor: pointer;
+}
+
+.ace-editor {
+  position: absolute;
 }
