@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance */
+/* global SpeechSynthesisUtterance Event */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -33,18 +33,25 @@ class Whiteboard extends Component {
       wbThis.setState({ inputText: inputTextPath })
     })
   }
-  // Change the onClicks
+
+  resize = () => window.dispatchEvent(new Event('resize'))
+
   handleEdit = () => {
     if (this.state.colEdit === 'col-sm-12') {
       this.setState({
         colEdit: 'col-sm-6',
         colWB: 'col-sm-6'
-      })
+      }, this.resize)
+    } else if (this.state.colEdit === 'col-sm-6') {
+      this.setState({
+        colWB: 'col-hide',
+        colEdit: 'col-sm-12'
+      }, this.resize)
     } else {
       this.setState({
         colEdit: 'col-hide',
         colWB: 'col-sm-12'
-      })
+      }, this.resize)
     }
   }
 
@@ -53,12 +60,17 @@ class Whiteboard extends Component {
       this.setState({
         colEdit: 'col-sm-6',
         colWB: 'col-sm-6'
-      })
+      }, this.resize)
+    } else if (this.state.colWB === 'col-sm-6') {
+      this.setState({
+        colEdit: 'col-hide',
+        colWB: 'col-sm-12'
+      }, this.resize)
     } else {
       this.setState({
         colWB: 'col-hide',
         colEdit: 'col-sm-12'
-      })
+      }, this.resize)
     }
   }
 
@@ -68,23 +80,22 @@ class Whiteboard extends Component {
     const leftArrow = 'M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z'
     const rightArrow = 'M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'
     // Move SVG icons here
-    // Fire window.resize
     return (
       <div>
         <div>
-          {voice.speak(words)}
+          { /* voice.speak(words) */ }
         </div>
         <div className="row">
           <div className={`${this.state.colEdit} colEdit`}>
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={() => this.handleEdit()}>
+                onClick={this.handleEdit}>
                 <SvgIcon><path d={leftArrow} /></SvgIcon>
               </span>
               <span
                 className="span-arrow"
-                onClick={() => this.setState({ colEdit: 'col-sm-12', colWB: 'col-hide' })}>
+                onClick={this.handleEdit}>
                 <SvgIcon><path d={rightArrow} /></SvgIcon>
               </span>
               <AceEditor
@@ -104,12 +115,12 @@ class Whiteboard extends Component {
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={() => this.setState({ colEdit: 'col-hide', colWB: 'col-sm-12' })}>
+                onClick={this.handleWB}>
                 <SvgIcon><path d={leftArrow} /></SvgIcon>
               </span>
               <span
                 className="span-arrow"
-                onClick={() => this.handleWB()}>
+                onClick={this.handleWB}>
                 <SvgIcon><path d={rightArrow} /></SvgIcon>
               </span>
               <myscript-text-web id="textInput"
