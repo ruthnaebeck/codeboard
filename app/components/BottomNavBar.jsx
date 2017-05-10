@@ -19,27 +19,38 @@ class BottomNavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
+      prompt: ''
     }
   }
 
   select = (index) => this.setState({selectedIndex: index})
+  reset = () => this.setState({ prompt: '' })
 
   handlePlay = () => {
     const code = this.props.inputText
     const test = this.props.question.tests
-    const func = eval(`(${code})`)
-    for (let i=0; i<test.length; i++) {
-      console.log('INPUT', test[i].input)
-      if (func(test[i].input) !== test[i].output) {
-        console.log('Test failed')
-        return
+    if (code.slice(0, 8) !== 'function') {
+      this.setState({ prompt: 'Please write a function' }, this.reset)
+    }
+    else {
+      const func = eval(`(${code})`)
+      if (typeof func === 'function') {
+        for (let i=0; i<test.length; i++) {
+          if (func(test[i].input) !== test[i].output) {
+            this.setState({ prompt: `Your function failed with the input ${test[i].input}` }, this.reset)
+            return
+          }
+        }
+        this.setState({ prompt: 'Congrats, your function passed all of the tests' }, this.reset)
       }
     }
-    console.log('All tests pass')
   }
 
   render() {
+    const voice = window.speechSynthesis
+    const words = new SpeechSynthesisUtterance(this.state.prompt)
+    voice.speak(words)
     return (
       <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
