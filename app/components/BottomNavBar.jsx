@@ -21,7 +21,7 @@ class BottomNavBar extends Component {
     this.state = {
       selectedIndex: 0,
       spoken: false,
-      currentHintIdx: 0
+      currentHintIdx: 0,
       prompt: ''
     }
   }
