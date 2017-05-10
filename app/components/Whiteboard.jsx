@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance Event */
+/* global SpeechSynthesisUtterance test Event */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -36,6 +36,13 @@ class Whiteboard extends Component {
       wbThis.setState({ inputText: inputTextPath })
     })
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   const script = document.createElement('script')
+  //   script.src = `/questions-specs/${nextProps.question.tests}`
+  //   script.async = true
+  //   document.body.appendChild(script)
+  // }
 
   componentDidUpdate() {
     if (!this.state.spoken) this.setState({ spoken: true })
@@ -93,6 +100,10 @@ class Whiteboard extends Component {
     }
   }
 
+  handleChange = (code) => {
+    this.setState({ inputText: code })
+  }
+
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
@@ -106,9 +117,6 @@ class Whiteboard extends Component {
                 className="span-arrow"
                 onClick={() => this.handleEdit('left')}>
                 <LeftArrow />
-              </span>
-              <span
-                className="span-arrow">
               </span>
               <span
                 className="span-arrow">
@@ -128,6 +136,7 @@ class Whiteboard extends Component {
                 wrapEnabled={true}
                 editorProps={{ $blockScrolling: true }}
                 value={this.state.inputText}
+                onChange={this.handleChange}
               />
             </Paper>
           </div>
@@ -151,7 +160,7 @@ class Whiteboard extends Component {
             </Paper>
           </div>
         </div>
-        <BottomNavBar />
+        <BottomNavBar inputText={this.state.inputText} />
       </div>
     )
   }

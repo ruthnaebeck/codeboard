@@ -22,6 +22,7 @@ class BottomNavBar extends Component {
       selectedIndex: 0,
       spoken: false,
       currentHintIdx: 0
+      prompt: ''
     }
   }
   repeatQuestion = (voice, words) => {
@@ -44,7 +45,25 @@ class BottomNavBar extends Component {
 
   speak = (voice, words) => voice.speak(words)
 
-  select = (index) => this.setState({selectedIndex: index});
+  select = (index) => this.setState({selectedIndex: index})
+  reset = () => this.setState({ prompt: '' })
+
+  handlePlay = () => {
+    const code = this.props.inputText
+    const test = this.props.question.tests
+    try {
+      const func = eval(`(${code})`)
+      for (let i=0; i<test.length; i++) {
+        if (func(test[i].input) !== test[i].output) {
+          this.setState({ prompt: `Your function failed with the input ${test[i].input}` }, this.reset)
+          return
+        }
+      }
+      this.setState({ prompt: 'Congrats, your function passed all of the tests' }, this.reset)
+    } catch (err) {
+      this.setState({ prompt: 'Please write a valid function' }, this.reset)
+    }
+  }
 
   render() {
     const voice = window.speechSynthesis
@@ -52,7 +71,8 @@ class BottomNavBar extends Component {
     const words = new SpeechSynthesisUtterance(this.props.question.text)
     const currentHint = !this.props.question.hints ? '' : (this.props.question.hints[currentHintIdx] ? this.props.question.hints[currentHintIdx].text : 'You are out of hints')
     const hint = new SpeechSynthesisUtterance(currentHint)
-
+    const prompt = new SpeechSynthesisUtterance(this.state.prompt)
+    voice.speak(prompt)
     return (
       <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
@@ -69,6 +89,7 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Run Code"
             icon={play}
+            onClick={this.handlePlay}
             onTouchTap={() => this.select(2)}
           />
           <BottomNavigationItem
