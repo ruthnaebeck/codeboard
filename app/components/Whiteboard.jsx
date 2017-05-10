@@ -20,7 +20,8 @@ class Whiteboard extends Component {
     this.state = {
       inputText: '',
       colWB: 'col-sm-6',
-      colEdit: 'col-sm-6'
+      colEdit: 'col-sm-6',
+      spoken: false
     }
   }
 
@@ -32,6 +33,10 @@ class Whiteboard extends Component {
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
       wbThis.setState({ inputText: inputTextPath })
     })
+  }
+
+  componentDidUpdate() {
+    if (!this.state.spoken) this.setState({ spoken: true })
   }
 
   resize = () => window.dispatchEvent(new Event('resize'))
@@ -74,36 +79,30 @@ class Whiteboard extends Component {
     }
   }
 
+  speak = (voice, words) => {
+    if (!this.state.spoken) {
+      voice.speak(words)
+    }
+  }
+
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-    function speakOnce(func) {
-      var count = 0
-      return function() {
-        if (count === 0) {
-          count++
-          return func()
-        }
-      }
-    }
-    const speak = speakOnce(voice.speak(words))
+    this.speak(voice, words)
     return (
       <div>
-        <div>
-          { speak() }
-        </div>
         <div className="row">
           <div className={`${this.state.colEdit} colEdit`}>
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
                 onClick={this.handleEdit}>
-                <LeftArrow/>
+                <LeftArrow />
               </span>
               <span
                 className="span-arrow"
                 onClick={this.handleEdit}>
-                <RightArrow/>
+                <RightArrow />
               </span>
               <AceEditor
                 className="ace-editor"
@@ -123,12 +122,12 @@ class Whiteboard extends Component {
               <span
                 className="span-arrow"
                 onClick={this.handleWB}>
-                <LeftArrow/>
+                <LeftArrow />
               </span>
               <span
                 className="span-arrow"
                 onClick={this.handleWB}>
-                <RightArrow/>
+                <RightArrow />
               </span>
               <myscript-text-web id="textInput"
                 applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
