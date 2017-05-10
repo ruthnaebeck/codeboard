@@ -24,7 +24,7 @@ class AccountPage extends React.Component {
         />
       </Card>
         <Table >
-          <TableHeader>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn>Question Name</TableHeaderColumn>
               <TableHeaderColumn>Category</TableHeaderColumn>
@@ -32,7 +32,7 @@ class AccountPage extends React.Component {
               <TableHeaderColumn>Status</TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody displayRowCheckbox={false}>
           { questions.map((userQuestion, idx) =>
             <TableRow key={`idx`}>
               <TableRowColumn>{userQuestion.question.name}</TableRowColumn>
