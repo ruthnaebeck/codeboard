@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { set } from '../reducers/drawer'
 
-class DialogExampleAlert extends React.Component {
+class Popup extends React.Component {
   state = {
     open: true,
   }
@@ -24,11 +24,13 @@ class DialogExampleAlert extends React.Component {
           onTouchTap={this.props.set}
         />
       </Link>,
-      <FlatButton
-        label="I'm Ready"
-        primary={true}
-        onTouchTap={this.handleReady}
-      />,
+      <Link to={`/question/${this.props.question}`}>
+        <FlatButton
+          label="I'm Ready"
+          primary={true}
+          onTouchTap={this.handleReady}
+        />
+      </Link>,
     ]
 
     return (
@@ -45,6 +47,7 @@ class DialogExampleAlert extends React.Component {
   }
 }
 
-const mapDispatch = ({ set })
+const mapStateToProps = ({ question }) => ({ question })
+const mapDispatchToProps = ({ set })
 
-export default connect(null, mapDispatch)(DialogExampleAlert)
+export default connect(mapStateToProps, mapDispatchToProps)(Popup)

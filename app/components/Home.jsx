@@ -8,7 +8,7 @@ import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
 import { Link } from 'react-router'
 
-import { fetchQuestion } from '../reducers/question'
+import { setId } from '../reducers/question'
 
 export class Home extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export class Home extends React.Component {
   }
 
   handleToggle = () => this.setState({ open: !this.state.open })
-  handleNav = (evt, id) => this.props.fetchQuestion(id)
+  handleNav = (evt, id) => this.props.setId(id)
 
   render() {
     return (
@@ -48,7 +48,7 @@ export class Home extends React.Component {
                   nestedItems={
                     category.questions.map(question =>
                       <ListItem
-                      containerElement={<Link to="/whiteboard"/>}
+                      containerElement={<Link to="/popup"/>}
                       key={question.id}
                       primaryText={question.name}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}
@@ -71,7 +71,7 @@ export class Home extends React.Component {
                   nestedItems={
                     difficulty.questions.map(question =>
                       <ListItem
-                      containerElement={<Link to="/whiteboard"/>}
+                      containerElement={<Link to="/popup"/>}
                       key={question.id}
                       primaryText={question.name}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}
@@ -90,7 +90,8 @@ export class Home extends React.Component {
   }
 }
 
-const mapStateToProps = ({categories, difficulties, drawer}) => ({categories, difficulties, drawer})
-const mapDispatchToProps = { fetchQuestion }
+const mapStateToProps = ({categories, difficulties, drawer}) =>
+  ({categories, difficulties, drawer})
+const mapDispatchToProps = { setId }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

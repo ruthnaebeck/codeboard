@@ -55,8 +55,9 @@ header {
     font-size: 40px;
     z-index: 1;
 }
+
 #textInput {
-    height : calc(100vh - 100px);
+    height : calc(100vh - 125px);
 }
 
 paper-button[toggles][active] {
@@ -70,8 +71,29 @@ paper-button[toggles][active] {
 
 .ace {
     height: calc(100vh - 100px);
-    width: 48vw;
-    margin: 10px 0px 10px 0px;
+    width: 100%;
+    margin: 5px 0px 5px 0px;
     text-align: center;
     display: inline-block;
+    position: relative;
+}
+
+.colEdit {
+    padding-right: 3px
+}
+
+.colWB {
+    padding-left: 3px;
+}
+
+.col-hide {
+  display: none;
+}
+
+.span-arrow {
+    cursor: pointer;
+}
+
+.ace-editor {
+  position: absolute;
 }
