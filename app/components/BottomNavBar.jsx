@@ -19,13 +19,35 @@ class BottomNavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
+      prompt: ''
     }
   }
 
-  select = (index) => this.setState({selectedIndex: index});
+  select = (index) => this.setState({selectedIndex: index})
+  reset = () => this.setState({ prompt: '' })
+
+  handlePlay = () => {
+    const code = this.props.inputText
+    const test = this.props.question.tests
+    try {
+      const func = eval(`(${code})`)
+      for (let i=0; i<test.length; i++) {
+        if (func(test[i].input) !== test[i].output) {
+          this.setState({ prompt: `Your function failed with the input ${test[i].input}` }, this.reset)
+          return
+        }
+      }
+      this.setState({ prompt: 'Congrats, your function passed all of the tests' }, this.reset)
+    } catch (err) {
+      this.setState({ prompt: 'Please write a valid function' }, this.reset)
+    }
+  }
 
   render() {
+    const voice = window.speechSynthesis
+    const words = new SpeechSynthesisUtterance(this.state.prompt)
+    voice.speak(words)
     return (
       <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
@@ -42,6 +64,7 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Run Code"
             icon={play}
+            onClick={this.handlePlay}
             onTouchTap={() => this.select(2)}
           />
           <BottomNavigationItem
@@ -55,7 +78,7 @@ class BottomNavBar extends Component {
   }
 }
 
-const mapStateToProps = null
+const mapStateToProps = ({ question }) => ({ question })
 const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomNavBar)

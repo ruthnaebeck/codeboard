@@ -66,7 +66,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     isUnique: {
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
-      tests: '1.01-isUnique.test.js',
+      tests: [{input: 'abcdefghi', output: true}, {input: 'jklpoiuqwerzxcvmnsadf', output: true}, {input: '1234567890', output: true}, {input: 'AaBbCcDdeFg1234567890(*&^%$#@!)', output: true}, {input: 'abcadef', output: false}, {input: 'aaaaaaaaaa', output: false}, {input: 'abcdefghijklmnopqrstuvwxyza', output: false}, {input: '1234567890asdklf1', output: false}, {input: '!@#$%^&*()(*#($&#(*$&#*($&#()))))', output: false}],
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
       solution: '1.01-isUnique.js'
@@ -74,7 +74,6 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     removeDupes: {
       name: 'Remove Duplicates',
       text: 'Write code to remove duplicates from an unsorted linked list.',
-      tests: '2.01-removeDupes.test.js',
       category_id: categories.linkedLists.id,
       difficulty_id: difficulties.medium.id,
       solution: '2.01-removeDupes.js'
@@ -82,7 +81,6 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     threeStacksInOne: {
       name: 'Three Stacks in One',
       text: 'Describe how you could use a single array to implement three stacks.',
-      tests: '3.01-threeStacksInOne.test.js',
       category_id: categories.stacksQueues.id,
       difficulty_id: difficulties.medium.id,
       solution: '3.01-threeStacksInOne.js'
@@ -90,7 +88,6 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     routesBetweenNodes: {
       name: 'Routes Between Nodes',
       text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
-      tests: '4.01-routesBetweenNodes.test.js',
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id,
       solution: '4.01-routesBetweenNodes.js'
