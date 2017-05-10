@@ -131,10 +131,6 @@ class Whiteboard extends Component {
                 onClick={() => this.handleEdit('left')}>
                 <LeftArrow />
               </span>
-                <span
-                  onClick={() => this.handlePlay(this.state.inputText)}>
-                  <Play/>
-                </span>
               <span
                 className="span-arrow">
               </span>
