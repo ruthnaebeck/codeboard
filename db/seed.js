@@ -19,15 +19,10 @@ function seedEverything() {
 }
 
 const users = seed(User, {
-  god: {
-    email: 'god@example.com',
-    name: 'So many names',
+  test: {
+    email: 'test@email.com',
+    name: 'Test User',
     password: '1234',
-  },
-  barack: {
-    name: 'Barack Obama',
-    email: 'barack@example.gov',
-    password: '1234'
   },
 })
 
@@ -112,11 +107,11 @@ const hints = seed(Hint, ({ questions }) =>
 
 const userQuestions = seed(userQuestion, ({ users, questions }) =>
   ({
-    godQuestion1: {
+    testQuestion1: {
       status: 'complete',
-      question_id: questions.isUnique.id,
-      user_id: users.god.id,
-      user_answer: 'My answer is awesome!'
+      question_id: questions.removeDupes.id,
+      user_id: users.test.id,
+      user_answer: ''
     }
   }))
 

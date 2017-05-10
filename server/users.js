@@ -43,3 +43,22 @@ module.exports = require('express').Router()
         res.json(userQuestions)
       })
       .catch(next))
+    .post('/:uId/question/:qId',
+      mustBeLoggedIn,
+      (req, res, next) =>
+      UserQuestion.findOne({
+        where: {
+          user_id: req.params.uId,
+          question_id: req.params.qId
+        }
+      })
+      .then(entry => {
+        if (entry) {
+          return entry.update(req.body)
+          .then(entry => res.json(entry))
+        } else {
+          return UserQuestion.create(req.body)
+          .then(entry => res.json(entry))
+        }
+      })
+      .catch(next))

@@ -48,7 +48,9 @@ class BottomNavBar extends Component {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.state.prompt)
     voice.speak(words)
-    return (
+    const user = this.props.auth
+    if (user) {
+      return (
       <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
@@ -70,15 +72,39 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Save Code"
             icon={save}
-            onTouchTap={() => this.select(3)}
+            onTouchTap={() => this.select(3) }
+            />
+        </BottomNavigation>
+      </Paper>
+      )
+    } else {
+      return (
+      <Paper zDepth={1}>
+        <BottomNavigation selectedIndex={this.state.selectedIndex}>
+          <BottomNavigationItem
+            label="Repeat Question"
+            icon={repeat}
+            onTouchTap={() => this.select(0)}
+          />
+          <BottomNavigationItem
+            label="Hints"
+            icon={hints}
+            onTouchTap={() => this.select(1)}
+          />
+          <BottomNavigationItem
+            label="Run Code"
+            icon={play}
+            onClick={this.handlePlay}
+            onTouchTap={() => this.select(2)}
           />
         </BottomNavigation>
       </Paper>
-    )
+      )
+    }
   }
 }
 
-const mapStateToProps = ({ question }) => ({ question })
+const mapStateToProps = ({ question, auth }) => ({ question, auth })
 const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomNavBar)
