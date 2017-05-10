@@ -41,40 +41,46 @@ class Whiteboard extends Component {
 
   resize = () => window.dispatchEvent(new Event('resize'))
 
-  handleEdit = () => {
-    if (this.state.colEdit === 'col-sm-12') {
-      this.setState({
-        colEdit: 'col-sm-6',
-        colWB: 'col-sm-6'
-      }, this.resize)
-    } else if (this.state.colEdit === 'col-sm-6') {
+  handleEdit = (arrow) => {
+    const colEdit = this.state.colEdit
+    if (arrow === 'left') {
+      if (colEdit === 'col-sm-6') {
+        this.setState({
+          colEdit: 'col-hide',
+          colWB: 'col-sm-12'
+        }, this.resize)
+      } else {
+        this.setState({
+          colEdit: 'col-sm-6',
+          colWB: 'col-sm-6'
+        }, this.resize)
+      }
+    } else {
       this.setState({
         colWB: 'col-hide',
         colEdit: 'col-sm-12'
-      }, this.resize)
-    } else {
-      this.setState({
-        colEdit: 'col-hide',
-        colWB: 'col-sm-12'
       }, this.resize)
     }
   }
 
-  handleWB = () => {
-    if (this.state.colWB === 'col-sm-12') {
-      this.setState({
-        colEdit: 'col-sm-6',
-        colWB: 'col-sm-6'
-      }, this.resize)
-    } else if (this.state.colWB === 'col-sm-6') {
+  handleWB = (arrow) => {
+    const colWB = this.state.colWB
+    if (arrow === 'right') {
+      if (colWB === 'col-sm-6') {
+        this.setState({
+          colWB: 'col-hide',
+          colEdit: 'col-sm-12'
+        }, this.resize)
+      } else {
+        this.setState({
+          colEdit: 'col-sm-6',
+          colWB: 'col-sm-6'
+        }, this.resize)
+      }
+    } else {
       this.setState({
         colEdit: 'col-hide',
         colWB: 'col-sm-12'
-      }, this.resize)
-    } else {
-      this.setState({
-        colWB: 'col-hide',
-        colEdit: 'col-sm-12'
       }, this.resize)
     }
   }
@@ -88,7 +94,7 @@ class Whiteboard extends Component {
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-    this.speak(voice, words)
+    // this.speak(voice, words)
     return (
       <div>
         <div className="row">
@@ -96,8 +102,16 @@ class Whiteboard extends Component {
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
-                onClick={this.handleEdit}>
+                onClick={() => this.handleEdit('left')}>
                 <LeftArrow />
+              </span>
+              <span
+                className="span-arrow">
+                <Play />
+              </span>
+              <span
+                className="span-arrow">
+                <Save />
               </span>
               <span
                 className="span-arrow"
@@ -126,7 +140,7 @@ class Whiteboard extends Component {
               </span>
               <span
                 className="span-arrow"
-                onClick={this.handleWB}>
+                onClick={() => this.handleWB('right')}>
                 <RightArrow />
               </span>
               <myscript-text-web id="textInput"
@@ -151,6 +165,18 @@ const LeftArrow = () => (
 const RightArrow = () => (
   <SvgIcon>
     <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+  </SvgIcon>
+)
+
+const Play = () => (
+  <SvgIcon>
+    <path d="M8 5v14l11-7z" />
+  </SvgIcon>
+)
+
+const Save = () => (
+  <SvgIcon>
+    <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
   </SvgIcon>
 )
 
