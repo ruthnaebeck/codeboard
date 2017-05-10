@@ -65,7 +65,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
   ({
     isUnique: {
       name: 'Is Unique',
-      text: 'Implement an algorithm to determine if a string has all unique characters.  What if you cannot use additional data structures?',
+      text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
       test: '1.01-isUnique.spec.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,

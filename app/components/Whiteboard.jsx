@@ -91,6 +91,16 @@ class Whiteboard extends Component {
     }
   }
 
+  handlePlay = (code) => {
+    console.log('CODE', code)
+    const func = eval(`(${code})`)
+    console.log(func())
+  }
+
+  handleChange = (code) => {
+    this.setState({ inputText: code })
+  }
+
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
@@ -107,7 +117,10 @@ class Whiteboard extends Component {
               </span>
               <span
                 className="span-arrow">
-                <Play />
+                <span
+                  onClick={() => this.handlePlay(this.state.inputText)}>
+                  <Play/>
+                </span>
               </span>
               <span
                 className="span-arrow">
@@ -128,6 +141,7 @@ class Whiteboard extends Component {
                 wrapEnabled={true}
                 editorProps={{ $blockScrolling: true }}
                 value={this.state.inputText}
+                onChange={this.handleChange}
               />
             </Paper>
           </div>
