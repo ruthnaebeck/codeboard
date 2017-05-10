@@ -40,7 +40,6 @@ module.exports = require('express').Router()
         ]
       })
       .then(userQuestions => {
-        // console.log('userQuestion????', userQuestions)
         res.json(userQuestions)
       })
       .catch(next))
