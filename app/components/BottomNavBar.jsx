@@ -21,30 +21,37 @@ class BottomNavBar extends Component {
     this.state = {
       selectedIndex: 0,
       spoken: false,
-      hints: this.props.question.hints || []// an array of hints
+      currentHintIdx: 0
     }
   }
-
-  speak = (voice, words) => {
-    const hintsArr = this.state.hints
+  repeatQuestion = (voice, words) => {
+    this.select(0)
     if (!this.state.spoken) {
-      voice.speak(words)
+      this.speak(voice, words)
       this.setState({
-        spoken: true,
-        hints: hintsArr.shift()
+        spoken: true
       })
     }
   }
 
+  giveHint = (voice, hint) => {
+    this.select(1)
+    this.speak(voice, hint)
+    this.setState({
+      currentHintIdx: this.state.currentHintIdx + 1
+    })
+  }
+
+  speak = (voice, words) => voice.speak(words)
+
   select = (index) => this.setState({selectedIndex: index});
 
   render() {
-    console.log('PROPS: ', this.props)
     const voice = window.speechSynthesis
+    const currentHintIdx = this.state.currentHintIdx
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-    const currentHint = this.props.question.hints ? this.props.question.hints[0] : 'You are out of hints'
+    const currentHint = !this.props.question.hints ? '' : (this.props.question.hints[currentHintIdx] ? this.props.question.hints[currentHintIdx].text : 'You are out of hints')
     const hint = new SpeechSynthesisUtterance(currentHint)
-
 
     return (
       <Paper zDepth={1}>
@@ -52,21 +59,12 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Repeat Question"
             icon={repeat}
-            onTouchTap={
-              () => {
-                this.select(0)
-                this.speak(voice, words)
-              }
-            }
+            onTouchTap={() => this.repeatQuestion(voice, words)}
           />
           <BottomNavigationItem
             label="Hints"
             icon={hints}
-            onTouchTap={() => {
-              this.select(1)
-              this.speak(voice, hint)
-            }
-          }
+            onTouchTap={() => this.giveHint(voice, hint) }
           />
           <BottomNavigationItem
             label="Run Code"
