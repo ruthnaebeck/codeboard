@@ -94,7 +94,7 @@ class Whiteboard extends Component {
   render() {
     const voice = window.speechSynthesis
     const words = new SpeechSynthesisUtterance(this.props.question.text)
-    // this.speak(voice, words)
+    this.speak(voice, words)
     return (
       <div>
         <div className="row">
