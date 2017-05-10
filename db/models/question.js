@@ -1,12 +1,12 @@
 'use strict'
 
-const { STRING, TEXT } = require('sequelize')
+const { STRING, TEXT, ARRAY, JSON } = require('sequelize')
 
 module.exports = db => db.define('questions', {
   name: STRING,
   text: TEXT,
   solution: TEXT,
-  tests: TEXT
+  tests: ARRAY(JSON)
 })
 
 module.exports.associations = (Question, { Category, Difficulty, Hint, User }) => {

@@ -37,12 +37,12 @@ class Whiteboard extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    const script = document.createElement('script')
-    script.src = `/questions-specs/${nextProps.question.tests}`
-    script.async = true
-    document.body.appendChild(script)
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const script = document.createElement('script')
+  //   script.src = `/questions-specs/${nextProps.question.tests}`
+  //   script.async = true
+  //   document.body.appendChild(script)
+  // }
 
   componentDidUpdate() {
     if (!this.state.spoken) this.setState({ spoken: true })
@@ -98,19 +98,6 @@ class Whiteboard extends Component {
     if (!this.state.spoken) {
       voice.speak(words)
     }
-  }
-
-  handlePlay = (code) => {
-    console.log('CODE', code)
-    const func = eval(`(${code})`)
-    for (let i=0; i<test.length; i++) {
-      console.log('INPUT', test[i].input)
-      if (func(test[i].input) !== test[i].output) {
-        console.log('Test failed')
-        return
-      }
-    }
-    console.log('All tests pass')
   }
 
   handleChange = (code) => {
@@ -173,7 +160,7 @@ class Whiteboard extends Component {
             </Paper>
           </div>
         </div>
-        <BottomNavBar />
+        <BottomNavBar inputText={this.state.inputText} />
       </div>
     )
   }

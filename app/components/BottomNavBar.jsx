@@ -23,7 +23,21 @@ class BottomNavBar extends Component {
     }
   }
 
-  select = (index) => this.setState({selectedIndex: index});
+  select = (index) => this.setState({selectedIndex: index})
+
+  handlePlay = () => {
+    const code = this.props.inputText
+    const test = this.props.question.tests
+    const func = eval(`(${code})`)
+    for (let i=0; i<test.length; i++) {
+      console.log('INPUT', test[i].input)
+      if (func(test[i].input) !== test[i].output) {
+        console.log('Test failed')
+        return
+      }
+    }
+    console.log('All tests pass')
+  }
 
   render() {
     return (
@@ -42,6 +56,7 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Run Code"
             icon={play}
+            onClick={this.handlePlay}
             onTouchTap={() => this.select(2)}
           />
           <BottomNavigationItem
@@ -55,7 +70,7 @@ class BottomNavBar extends Component {
   }
 }
 
-const mapStateToProps = null
+const mapStateToProps = ({ question }) => ({ question })
 const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomNavBar)
