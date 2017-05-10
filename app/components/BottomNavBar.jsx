@@ -30,20 +30,17 @@ class BottomNavBar extends Component {
   handlePlay = () => {
     const code = this.props.inputText
     const test = this.props.question.tests
-    if (code.slice(0, 8) !== 'function') {
-      this.setState({ prompt: 'Please write a function' }, this.reset)
-    }
-    else {
+    try {
       const func = eval(`(${code})`)
-      if (typeof func === 'function') {
-        for (let i=0; i<test.length; i++) {
-          if (func(test[i].input) !== test[i].output) {
-            this.setState({ prompt: `Your function failed with the input ${test[i].input}` }, this.reset)
-            return
-          }
+      for (let i=0; i<test.length; i++) {
+        if (func(test[i].input) !== test[i].output) {
+          this.setState({ prompt: `Your function failed with the input ${test[i].input}` }, this.reset)
+          return
         }
-        this.setState({ prompt: 'Congrats, your function passed all of the tests' }, this.reset)
       }
+      this.setState({ prompt: 'Congrats, your function passed all of the tests' }, this.reset)
+    } catch (err) {
+      this.setState({ prompt: 'Please write a valid function' }, this.reset)
     }
   }
 
