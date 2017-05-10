@@ -19,20 +19,36 @@ class BottomNavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
+      spoken: false
+    }
+  }
+
+  speak = (voice, words) => {
+    if (!this.state.spoken) {
+      voice.speak(words)
+      this.setState({ spoken: true })
     }
   }
 
   select = (index) => this.setState({selectedIndex: index});
 
   render() {
+    const voice = window.speechSynthesis
+    const words = new SpeechSynthesisUtterance(this.props.question.text)
+
     return (
       <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
             label="Repeat Question"
             icon={repeat}
-            onTouchTap={() => this.select(0)}
+            onTouchTap={
+              () => {
+                this.select(0)
+                this.speak(voice, words)
+              }
+            }
           />
           <BottomNavigationItem
             label="Hints"
@@ -55,7 +71,7 @@ class BottomNavBar extends Component {
   }
 }
 
-const mapStateToProps = null
+const mapStateToProps = ({ question }) => ({ question })
 const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomNavBar)
