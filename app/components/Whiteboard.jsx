@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance Event */
+/* global SpeechSynthesisUtterance test Event */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -33,6 +33,13 @@ class Whiteboard extends Component {
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
       wbThis.setState({ inputText: inputTextPath })
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const script = document.createElement('script')
+    script.src = `/questions-specs/${nextProps.question.tests}`
+    script.async = true
+    document.body.appendChild(script)
   }
 
   componentDidUpdate() {
@@ -94,7 +101,14 @@ class Whiteboard extends Component {
   handlePlay = (code) => {
     console.log('CODE', code)
     const func = eval(`(${code})`)
-    console.log(func())
+    for (let i=0; i<test.length; i++) {
+      console.log('INPUT', test[i].input)
+      if (func(test[i].input) !== test[i].output) {
+        console.log('Test failed')
+        return
+      }
+    }
+    console.log('All tests pass')
   }
 
   handleChange = (code) => {
