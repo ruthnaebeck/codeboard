@@ -70,7 +70,7 @@ paper-button[toggles][active] {
 }
 
 .ace {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 140px);
     width: 100%;
     margin: 5px 0px 5px 0px;
     text-align: center;
