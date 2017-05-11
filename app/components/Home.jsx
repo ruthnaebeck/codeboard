@@ -40,7 +40,7 @@ export class Home extends React.Component {
         <CardMedia
           overlay={<CardTitle title="Welcome to Code Board!" subtitle="" />}>
           <div className="splash row"
-            style={{ backgroundImage: 'url(/images/pen-marker-hand.png)' }}>
+            style={{ backgroundImage: 'url(/images/woman_coding.jpg)' }}>
             <div className="col-sm-12 started">
               <RaisedButton
                 label="Get Started"
