@@ -9,7 +9,11 @@ import AppBar from 'material-ui/AppBar'
 import {GridList, GridTile} from 'material-ui/GridList'
 import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
-import StarBorder from 'material-ui/svg-icons/toggle/star-border'
+import LooksOne from 'material-ui/svg-icons/image/looks-one'
+import LooksTwo from 'material-ui/svg-icons/image/looks-two'
+import Looks3 from 'material-ui/svg-icons/image/looks-3'
+import Looks4 from 'material-ui/svg-icons/image/looks-4'
+import Looks5 from 'material-ui/svg-icons/image/looks-5'
 import { Link } from 'react-router'
 
 import { setId } from '../reducers/question'
@@ -31,8 +35,29 @@ export class Home extends React.Component {
   render() {
     const tilesData = [
       {
-        img: 'http://placekitten.com/g/300/300',
-        title: 'Breakfast'
+        img: '/images/screenshot.png',
+        title: 'Select question by category or difficulty',
+        button: <LooksOne color='white'/>
+      },
+      {
+        img: '/images/screenshot.png',
+        title: 'App speaks the question prompt',
+        button: <LooksTwo color='white'/>
+      },
+      {
+        img: '/images/screenshot.png',
+        title: 'Code with whiteboard and text editor',
+        button: <Looks3 color='white'/>
+      },
+      {
+        img: '/images/screenshot.png',
+        title: 'Ask for hints and test your code',
+        button: <Looks4 color='white'/>
+      },
+      {
+        img: '/images/screenshot.png',
+        title: 'Sign in to save your work',
+        button: <Looks5 color='white'/>
       }
     ]
     return (
@@ -108,16 +133,25 @@ export class Home extends React.Component {
                 showMenuIconButton={ false }
               />
               <div>
+                <div style={{margin: '20px'}}>
+                  <h4 style={{textAlign: 'left'}}>Code Board helps developers prepare for the technical portion of interviews</h4>
+                </div>
                 <GridList
-                  cellHeight={'auto'}
-                  cols={'1'}
+                  cellHeight={150}
+                  cols={1}
+                  padding={10}
+                  style={{margin: 20}}
                 >
-                <Subheader>December</Subheader>
                 {tilesData.map((tile) => (
                   <GridTile
-                    key={tile.img}
+                    actionIcon={<IconButton>{tile.button}</IconButton>}
+                    key={tile.title}
                     title={tile.title}
-                    subtitle={<span>by <b>{'subtitle'}</b></span>}>
+                    titlePosition='top'
+                    titleStyle={{fontSize: '97%', textAlign: 'left'}}
+                    actionPosition='left'
+                    style={{borderStyle: 'solid', borderWidth: '2px'}}
+                    titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
                     <img src={tile.img} />
                   </GridTile>
                 ))}
