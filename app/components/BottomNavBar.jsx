@@ -2,14 +2,16 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { saveQuestion } from '../reducers/userQuestions'
+
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
 import Paper from 'material-ui/Paper'
+import Snackbar from 'material-ui/Snackbar'
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on'
 import Save from 'material-ui/svg-icons/content/save'
 import Play from 'material-ui/svg-icons/av/play-arrow'
 import Hints from 'material-ui/svg-icons/action/help'
 import Repeat from 'material-ui/svg-icons/action/record-voice-over'
-import { saveQuestion } from '../reducers/userQuestions'
 
 const save = <Save />
 const play = <Play />
@@ -25,6 +27,7 @@ class BottomNavBar extends Component {
       questionStatus: 'pending',
       spoken: false,
       currentHintIdx: 0,
+      snackbar: false
     }
   }
   repeatQuestion = (voice, words) => {
@@ -80,6 +83,7 @@ class BottomNavBar extends Component {
       status: this.state.questionStatus
     }
     this.props.saveQuestion(uId, qId, question)
+    this.setState({ snackbar: true })
   }
 
   render() {
@@ -93,32 +97,40 @@ class BottomNavBar extends Component {
     const user = this.props.auth
     if (user) {
       return (
-      <Paper zDepth={1}>
-        <BottomNavigation selectedIndex={this.state.selectedIndex}>
-          <BottomNavigationItem
-            label="Repeat Question"
-            icon={repeat}
-            onTouchTap={() => this.repeatQuestion(voice, words)}
+        <div>
+          <Paper zDepth={1}>
+            <BottomNavigation selectedIndex={this.state.selectedIndex}>
+              <BottomNavigationItem
+                label="Repeat Question"
+                icon={repeat}
+                onTouchTap={() => this.repeatQuestion(voice, words)}
+              />
+              <BottomNavigationItem
+                label="Hints"
+                icon={hints}
+                onTouchTap={() => this.giveHint(voice, hint) }
+              />
+              <BottomNavigationItem
+                label="Run Code"
+                icon={play}
+                onClick={this.handlePlay}
+                onTouchTap={() => this.select(2)}
+              />
+              <BottomNavigationItem
+                label="Save Code"
+                icon={save}
+                onClick={this.handleSave}
+                onTouchTap={() => this.select(3) }
+                />
+            </BottomNavigation>
+          </Paper>
+          <Snackbar
+            className="snackbar"
+            open={this.state.snackbar}
+            message="Code Saved"
+            autoHideDuration={2000}
           />
-          <BottomNavigationItem
-            label="Hints"
-            icon={hints}
-            onTouchTap={() => this.giveHint(voice, hint) }
-          />
-          <BottomNavigationItem
-            label="Run Code"
-            icon={play}
-            onClick={this.handlePlay}
-            onTouchTap={() => this.select(2)}
-          />
-          <BottomNavigationItem
-            label="Save Code"
-            icon={save}
-            onClick={this.handleSave}
-            onTouchTap={() => this.select(3) }
-            />
-        </BottomNavigation>
-      </Paper>
+      </div>
       )
     } else {
       return (
