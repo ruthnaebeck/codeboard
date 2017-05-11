@@ -6,6 +6,10 @@ import Drawer from 'material-ui/Drawer'
 import {List, ListItem} from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
+import {GridList, GridTile} from 'material-ui/GridList'
+import IconButton from 'material-ui/IconButton'
+import Subheader from 'material-ui/Subheader'
+import StarBorder from 'material-ui/svg-icons/toggle/star-border'
 import { Link } from 'react-router'
 
 import { setId } from '../reducers/question'
@@ -14,13 +18,23 @@ export class Home extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { open: this.props.drawer }
+    this.state = {
+      openLeft: this.props.drawer,
+      openRight: false
+    }
   }
 
-  handleToggle = () => this.setState({ open: !this.state.open })
+  handleLeftToggle = () => this.setState({ openLeft: !this.state.openLeft })
+  handleRightToggle = () => this.setState({ openRight: !this.state.openRight })
   handleNav = (evt, id) => this.props.setId(id)
 
   render() {
+    const tilesData = [
+      {
+        img: 'http://placekitten.com/g/300/300',
+        title: 'Breakfast'
+      }
+    ]
     return (
       <Card>
         <CardMedia
@@ -31,8 +45,14 @@ export class Home extends React.Component {
               <RaisedButton
                 label="Get Started"
                 primary={true}
-                onTouchTap={this.handleToggle} />
-              <Drawer open={this.state.open}>
+                onTouchTap={this.handleLeftToggle}
+                style={{margin: 8}} />
+              <RaisedButton
+                label="How To Use"
+                primary={true}
+                onTouchTap={this.handleRightToggle}
+                style={{margin: 8}} />
+              <Drawer open={this.state.openLeft}>
               <AppBar
               title="Questions"
               iconElementLeft={<span/>}
@@ -81,6 +101,28 @@ export class Home extends React.Component {
                   >
                 </ListItem>
               )}
+              </Drawer>
+              <Drawer width={ '25%' } openSecondary={true} open={this.state.openRight} >
+              <AppBar
+                title="How To Use"
+                showMenuIconButton={ false }
+              />
+              <div>
+                <GridList
+                  cellHeight={'auto'}
+                  cols={'1'}
+                >
+                <Subheader>December</Subheader>
+                {tilesData.map((tile) => (
+                  <GridTile
+                    key={tile.img}
+                    title={tile.title}
+                    subtitle={<span>by <b>{'subtitle'}</b></span>}>
+                    <img src={tile.img} />
+                  </GridTile>
+                ))}
+              </GridList>
+              </div>
               </Drawer>
             </div>
           </div>
