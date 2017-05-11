@@ -51,7 +51,7 @@ class Whiteboard extends Component {
           data.filter(question =>
             question.question_id === this.props.question.id
           )
-        this.setState({ inputText: userQuestion[0].user_answer })
+        if (userQuestion.length) this.setState({ inputText: userQuestion[0].user_answer })
       }
       this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
     }
