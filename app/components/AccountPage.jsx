@@ -14,7 +14,7 @@ import { Link } from 'react-router'
 class AccountPage extends React.Component {
   render() {
     const user = this.props.auth || {}
-    const questions = this.props.userQuestions
+    const questions = this.props.userQuestions || []
     return (
       <div>
         <Card>

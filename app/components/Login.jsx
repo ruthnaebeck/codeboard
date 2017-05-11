@@ -11,9 +11,11 @@ class Login extends React.Component {
     emailError: '',
     passError: ''
   }
+
   handleOpen = () => {
     this.setState({ open: true })
   }
+
   handleClose = () => {
     this.setState({
       open: false,
@@ -21,6 +23,7 @@ class Login extends React.Component {
       passError: ''
     })
   }
+
   handleSubmit = (evt) => {
     evt.preventDefault()
     const email = evt.target.email.value
@@ -48,10 +51,12 @@ class Login extends React.Component {
       this.setState({ emailError: 'Enter valid email address' })
     }
   }
+
   validateEmail = (email) => {
     var re = /\S+@\S+\.\S+/
     return re.test(email)
   }
+
   render() {
     const dialogStyle = { width: '325px' }
     const buttonStyle = { color: 'white' }

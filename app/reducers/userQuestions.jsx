@@ -17,7 +17,10 @@ export default function reducer(questions = [], action) {
   case GET:
     return action.questions
   case SAVE:
-    return [...questions, action.question]
+    // This is not putting the correct answer in props
+    return questions.map(question => (
+      action.question.question_id === question.question_id
+        ? action.question : question))
   default:
     return questions
   }

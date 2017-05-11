@@ -34,9 +34,7 @@ module.exports = require('express').Router()
         user_id: req.params.id
       },
         include: [
-          {
-            model: Question, include: [Category, Difficulty]
-          }
+          { model: Question, include: [Category, Difficulty] }
         ]
       })
       .then(userQuestions => {
@@ -52,9 +50,18 @@ module.exports = require('express').Router()
           question_id: req.params.qId
         }
       })
-      .then(entry => {
-        if (entry) return entry.update(req.body)
-        else return UserQuestion.create(req.body)
-      })
-      .then(entry => res.json(entry))
+      .then(entry => (
+        entry ? entry.update(req.body) : UserQuestion.create(req.body)
+      )
+      .then(entry =>
+        UserQuestion.findAll({where: {
+          user_id: req.params.uId
+        },
+          include: [
+            { model: Question, include: [Category, Difficulty] }
+          ]
+        }))
+      .then(userQuestions => {
+        res.json(userQuestions)
+      }))
       .catch(next))

@@ -45,7 +45,7 @@ export const whoami = () =>
     axios.get('/api/auth/whoami')
       .then(response => {
         const user = response.data
-        dispatch(authenticated(user))
+        return dispatch(authenticated(user))
       })
       .catch(failed => dispatch(authenticated(null)))
   }

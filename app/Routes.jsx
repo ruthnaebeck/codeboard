@@ -34,7 +34,7 @@ const Routes = ({onAppEnter, onQuestionEnter, onAccountEnter}) => (
 /* ------------- CONTAINER ---------------- */
 
 const mapStateToProps = null
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch) => ({
   onAppEnter: () => {
     dispatch(whoami())
     dispatch(fetchCategories())
