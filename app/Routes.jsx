@@ -34,7 +34,7 @@ const Routes = ({onAppEnter, onQuestionEnter, onAccountEnter}) => (
 /* ------------- CONTAINER ---------------- */
 
 const mapStateToProps = null
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch) => ({
   onAppEnter: () => {
     dispatch(whoami())
     dispatch(fetchCategories())
@@ -42,7 +42,8 @@ const mapDispatch = dispatch => ({
   },
   onAccountEnter: (nextRouterState) => {
     const userId = nextRouterState.params.id
-    dispatch(fetchUserQuestions(userId))},
+    dispatch(fetchUserQuestions(userId))
+  },
   onQuestionEnter: (nextRouterState) => {
     const id = nextRouterState.params.id
     dispatch(fetchQuestion(id))

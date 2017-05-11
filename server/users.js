@@ -34,12 +34,35 @@ module.exports = require('express').Router()
         user_id: req.params.id
       },
         include: [
-          {
-            model: Question, include: [Category, Difficulty]
-          }
+          { model: Question, include: [Category, Difficulty] }
         ]
       })
       .then(userQuestions => {
         res.json(userQuestions)
       })
+      .catch(next))
+    .post('/:uId/question/:qId',
+      mustBeLoggedIn,
+      (req, res, next) =>
+      UserQuestion.findOne({
+        where: {
+          user_id: req.params.uId,
+          question_id: req.params.qId
+        }
+      })
+      .then(entry => (
+        entry ? entry.update(req.body) : UserQuestion.create(req.body)
+      )
+      .then(entry =>
+        UserQuestion.findOne({where: {
+          user_id: req.params.uId,
+          question_id: req.params.qId
+        },
+          include: [
+            { model: Question, include: [Category, Difficulty] }
+          ]
+        }))
+      .then(userQuestions => {
+        res.json(userQuestions)
+      }))
       .catch(next))

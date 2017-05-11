@@ -57,7 +57,7 @@ header {
 }
 
 #textInput {
-    height : calc(100vh - 125px);
+    height : calc(100vh - 170px);
 }
 
 paper-button[toggles][active] {

@@ -13,36 +13,36 @@ import { Link } from 'react-router'
 
 class AccountPage extends React.Component {
   render() {
-    const user = this.props.auth
-    const questions = this.props.userQuestions
+    const user = this.props.auth || {}
+    const questions = this.props.userQuestions || []
     return (
       <div>
-      <Card>
-        <CardHeader
-          title={user.name}
-          subtitle={user.email}
-        />
-      </Card>
-        <Table >
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn>Question Name</TableHeaderColumn>
-              <TableHeaderColumn>Category</TableHeaderColumn>
-              <TableHeaderColumn>Difficulty</TableHeaderColumn>
-              <TableHeaderColumn>Status</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-          { questions.map((userQuestion, idx) =>
-            <TableRow key={`idx`}>
-              <TableRowColumn>{userQuestion.question.name}</TableRowColumn>
-              <TableRowColumn>{userQuestion.question.category.name}</TableRowColumn>
-              <TableRowColumn>{userQuestion.question.difficulty.level}</TableRowColumn>
-              <TableRowColumn>{userQuestion.status}</TableRowColumn>
-            </TableRow>
-          )}
-          </TableBody>
-        </Table>
+        <Card>
+          <CardHeader
+            title={user.name || ''}
+            subtitle={user.email}
+          />
+            <Table >
+              <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                <TableRow>
+                  <TableHeaderColumn>Question Name</TableHeaderColumn>
+                  <TableHeaderColumn>Category</TableHeaderColumn>
+                  <TableHeaderColumn>Difficulty</TableHeaderColumn>
+                  <TableHeaderColumn>Status</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+              { questions.map((userQuestion, idx) =>
+                <TableRow key={`${idx}`}>
+                  <TableRowColumn>{userQuestion.question.name}</TableRowColumn>
+                  <TableRowColumn>{userQuestion.question.category.name}</TableRowColumn>
+                  <TableRowColumn>{userQuestion.question.difficulty.level}</TableRowColumn>
+                  <TableRowColumn>{userQuestion.status}</TableRowColumn>
+                </TableRow>
+              )}
+              </TableBody>
+            </Table>
+          </Card>
       </div>
     )
   }

@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { fetchUserQuestions } from 'APP/app/reducers/userQuestions'
 import SvgIcon from 'material-ui/SvgIcon'
-
 import Paper from 'material-ui/Paper'
 import brace from 'brace'
 import AceEditor from 'react-ace'
@@ -43,6 +43,10 @@ class Whiteboard extends Component {
   //   script.async = true
   //   document.body.appendChild(script)
   // }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth) this.props.fetchUserQuestions(nextProps.auth.id)
+  }
 
   componentDidUpdate() {
     if (!this.state.spoken) this.setState({ spoken: true })
@@ -178,7 +182,7 @@ const RightArrow = () => (
   </SvgIcon>
 )
 
-const mapStateToProps = ({ question }) => ({ question })
-const mapDispatchToProps = null
+const mapStateToProps = ({ question, auth }) => ({ question, auth })
+const mapDispatchToProps = ({ fetchUserQuestions })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard)

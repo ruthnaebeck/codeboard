@@ -9,6 +9,7 @@ import Save from 'material-ui/svg-icons/content/save'
 import Play from 'material-ui/svg-icons/av/play-arrow'
 import Hints from 'material-ui/svg-icons/action/help'
 import Repeat from 'material-ui/svg-icons/action/record-voice-over'
+import { saveQuestion } from '../reducers/userQuestions'
 
 const save = <Save />
 const play = <Play />
@@ -20,9 +21,10 @@ class BottomNavBar extends Component {
     super(props)
     this.state = {
       selectedIndex: 0,
+      prompt: '',
+      questionStatus: 'pending'
       spoken: false,
       currentHintIdx: 0,
-      prompt: ''
     }
   }
   repeatQuestion = (voice, words) => {
@@ -59,10 +61,25 @@ class BottomNavBar extends Component {
           return
         }
       }
-      this.setState({ prompt: 'Congrats, your function passed all of the tests' }, this.reset)
+      this.setState({
+        prompt: 'Congrats, your function passed all of the tests',
+        questionStatus: 'complete'
+      }, this.reset)
     } catch (err) {
       this.setState({ prompt: 'Please write a valid function' }, this.reset)
     }
+  }
+
+  handleSave = () => {
+    const uId = this.props.auth.id
+    const qId = this.props.question.id
+    const question = {
+      user_id: uId,
+      question_id: qId,
+      user_answer: this.props.inputText,
+      status: this.state.questionStatus
+    }
+    this.props.saveQuestion(uId, qId, question)
   }
 
   render() {
@@ -73,7 +90,9 @@ class BottomNavBar extends Component {
     const hint = new SpeechSynthesisUtterance(currentHint)
     const prompt = new SpeechSynthesisUtterance(this.state.prompt)
     voice.speak(prompt)
-    return (
+    const user = this.props.auth
+    if (user) {
+      return (
       <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
@@ -95,15 +114,41 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Save Code"
             icon={save}
-            onTouchTap={() => this.select(3)}
+            onClick={this.handleSave}
+            onTouchTap={() => this.select(3) }
+            />
+        </BottomNavigation>
+      </Paper>
+      )
+    } else {
+      return (
+      <Paper zDepth={1}>
+        <BottomNavigation selectedIndex={this.state.selectedIndex}>
+          <BottomNavigationItem
+            label="Repeat Question"
+            icon={repeat}
+            onTouchTap={() => this.repeatQuestion(voice, words)}
+          />
+          <BottomNavigationItem
+            label="Hints"
+            icon={hints}
+            onTouchTap={() => this.giveHint(voice, hint)}
+          />
+          <BottomNavigationItem
+            label="Run Code"
+            icon={play}
+            onClick={this.handlePlay}
+            onTouchTap={() => this.select(2)}
           />
         </BottomNavigation>
       </Paper>
-    )
+      )
+    }
   }
 }
 
-const mapStateToProps = ({ question }) => ({ question })
-const mapDispatchToProps = null
+const mapStateToProps = ({ question, auth, userQuestions }) =>
+  ({ question, auth, userQuestions })
+const mapDispatchToProps = ({ saveQuestion })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomNavBar)
