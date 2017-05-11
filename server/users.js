@@ -54,7 +54,7 @@ module.exports = require('express').Router()
         entry ? entry.update(req.body) : UserQuestion.create(req.body)
       )
       .then(entry =>
-        UserQuestion.findAll({where: {
+        UserQuestion.findOne({where: {
           user_id: req.params.uId
         },
           include: [
