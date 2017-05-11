@@ -42,7 +42,8 @@ const mapDispatch = dispatch => ({
   },
   onAccountEnter: (nextRouterState) => {
     const userId = nextRouterState.params.id
-    dispatch(fetchUserQuestions(userId))},
+    dispatch(fetchUserQuestions(userId))
+  },
   onQuestionEnter: (nextRouterState) => {
     const id = nextRouterState.params.id
     dispatch(fetchQuestion(id))
