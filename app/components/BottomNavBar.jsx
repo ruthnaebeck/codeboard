@@ -23,8 +23,29 @@ class BottomNavBar extends Component {
       selectedIndex: 0,
       prompt: '',
       questionStatus: 'pending'
+      spoken: false,
+      currentHintIdx: 0,
     }
   }
+  repeatQuestion = (voice, words) => {
+    this.select(0)
+    if (!this.state.spoken) {
+      this.speak(voice, words)
+      this.setState({
+        spoken: true
+      })
+    }
+  }
+
+  giveHint = (voice, hint) => {
+    this.select(1)
+    this.speak(voice, hint)
+    this.setState({
+      currentHintIdx: this.state.currentHintIdx + 1
+    })
+  }
+
+  speak = (voice, words) => voice.speak(words)
 
   select = (index) => this.setState({selectedIndex: index})
   reset = () => this.setState({ prompt: '' })
@@ -63,8 +84,12 @@ class BottomNavBar extends Component {
 
   render() {
     const voice = window.speechSynthesis
-    const words = new SpeechSynthesisUtterance(this.state.prompt)
-    voice.speak(words)
+    const currentHintIdx = this.state.currentHintIdx
+    const words = new SpeechSynthesisUtterance(this.props.question.text)
+    const currentHint = !this.props.question.hints ? '' : (this.props.question.hints[currentHintIdx] ? this.props.question.hints[currentHintIdx].text : 'You are out of hints')
+    const hint = new SpeechSynthesisUtterance(currentHint)
+    const prompt = new SpeechSynthesisUtterance(this.state.prompt)
+    voice.speak(prompt)
     const user = this.props.auth
     if (user) {
       return (
@@ -73,12 +98,12 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Repeat Question"
             icon={repeat}
-            onTouchTap={() => this.select(0)}
+            onTouchTap={() => this.repeatQuestion(voice, words)}
           />
           <BottomNavigationItem
             label="Hints"
             icon={hints}
-            onTouchTap={() => this.select(1)}
+            onTouchTap={() => this.giveHint(voice, hint) }
           />
           <BottomNavigationItem
             label="Run Code"
@@ -102,12 +127,12 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Repeat Question"
             icon={repeat}
-            onTouchTap={() => this.select(0)}
+            onTouchTap={() => this.repeatQuestion(voice, words)}
           />
           <BottomNavigationItem
             label="Hints"
             icon={hints}
-            onTouchTap={() => this.select(1)}
+            onTouchTap={() => this.giveHint(voice, hint)}
           />
           <BottomNavigationItem
             label="Run Code"

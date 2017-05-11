@@ -39,7 +39,7 @@ export class Home extends React.Component {
               />
               <h4>By Category:</h4>
               <Divider />
-              {this.props.categories.map(category =>
+              {this.props.categories.map((category, index) =>
                 <ListItem
                   key={category.id}
                   primaryText={category.name}
