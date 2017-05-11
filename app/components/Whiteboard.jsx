@@ -23,7 +23,8 @@ class Whiteboard extends Component {
       inputText: '',
       colWB: 'col-sm-6',
       colEdit: 'col-sm-6',
-      spoken: false
+      spoken: false,
+      userQuestions: []
     }
   }
 
@@ -45,7 +46,16 @@ class Whiteboard extends Component {
   // }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth) this.props.fetchUserQuestions(nextProps.auth.id)
+    if (nextProps.auth) {
+      const userQuestions = (data) => {
+        const userQuestion =
+          data.filter(question =>
+            question.question_id === this.props.question.id
+          )
+        this.setState({ inputText: userQuestion[0].user_answer })
+      }
+      this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
+    }
   }
 
   componentDidUpdate() {

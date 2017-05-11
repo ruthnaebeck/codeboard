@@ -33,9 +33,12 @@ export default function reducer(questions = [], action) {
 
 /* ------------- DISPATCHERS ---------------- */
 
-export const fetchUserQuestions = (id) => dispatch => {
+export const fetchUserQuestions = (id, userQuestions) => dispatch => {
   axios.get(`/api/users/${id}`)
-  .then(res => dispatch(get(res.data)))
+  .then(res => {
+    dispatch(get(res.data))
+    if (userQuestions) userQuestions(res.data)
+  })
   .catch(err => console.error('Error fetchUserQuestions', err))
 }
 
