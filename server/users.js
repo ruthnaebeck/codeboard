@@ -53,12 +53,8 @@ module.exports = require('express').Router()
         }
       })
       .then(entry => {
-        if (entry) {
-          return entry.update(req.body)
-          .then(entry => res.json(entry))
-        } else {
-          return UserQuestion.create(req.body)
-          .then(entry => res.json(entry))
-        }
+        if (entry) return entry.update(req.body)
+        else return UserQuestion.create(req.body)
       })
+      .then(entry => res.json(entry))
       .catch(next))

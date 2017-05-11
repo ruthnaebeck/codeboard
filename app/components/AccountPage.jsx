@@ -13,13 +13,13 @@ import { Link } from 'react-router'
 
 class AccountPage extends React.Component {
   render() {
-    const user = this.props.auth
+    const user = this.props.auth || {}
     const questions = this.props.userQuestions
     return (
       <div>
       <Card>
         <CardHeader
-          title={user.name}
+          title={user.name || ''}
           subtitle={user.email}
         />
       </Card>
@@ -34,7 +34,7 @@ class AccountPage extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
           { questions.map((userQuestion, idx) =>
-            <TableRow key={`idx`}>
+            <TableRow key={`${idx}`}>
               <TableRowColumn>{userQuestion.question.name}</TableRowColumn>
               <TableRowColumn>{userQuestion.question.category.name}</TableRowColumn>
               <TableRowColumn>{userQuestion.question.difficulty.level}</TableRowColumn>
