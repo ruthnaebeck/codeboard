@@ -17,9 +17,15 @@ export default function reducer(questions = [], action) {
   case GET:
     return action.questions
   case SAVE:
-    return questions.map(question => (
-      action.question.question_id === question.question_id
-        ? action.question : question))
+    const questionId = action.question.question_id
+    const exists = questions.some(question => question.question_id === questionId)
+    if (exists) {
+      return questions.map(question => (
+        questionId === question.question_id
+          ? action.question : question))
+    } else {
+      return [...questions, action.question]
+    }
   default:
     return questions
   }
@@ -27,9 +33,12 @@ export default function reducer(questions = [], action) {
 
 /* ------------- DISPATCHERS ---------------- */
 
-export const fetchUserQuestions = (id) => dispatch => {
+export const fetchUserQuestions = (id, userQuestions) => dispatch => {
   axios.get(`/api/users/${id}`)
-  .then(res => dispatch(get(res.data)))
+  .then(res => {
+    dispatch(get(res.data))
+    if (userQuestions) userQuestions(res.data)
+  })
   .catch(err => console.error('Error fetchUserQuestions', err))
 }
 

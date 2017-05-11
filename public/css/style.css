@@ -97,3 +97,7 @@ paper-button[toggles][active] {
 .ace-editor {
   position: absolute;
 }
+
+.snackbar {
+    text-align: center;
+}
