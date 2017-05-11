@@ -22,7 +22,7 @@ class BottomNavBar extends Component {
     this.state = {
       selectedIndex: 0,
       prompt: '',
-      questionStatus: 'pending'
+      questionStatus: 'pending',
       spoken: false,
       currentHintIdx: 0,
     }
