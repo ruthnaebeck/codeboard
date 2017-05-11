@@ -55,7 +55,8 @@ module.exports = require('express').Router()
       )
       .then(entry =>
         UserQuestion.findOne({where: {
-          user_id: req.params.uId
+          user_id: req.params.uId,
+          question_id: req.params.qId
         },
           include: [
             { model: Question, include: [Category, Difficulty] }
