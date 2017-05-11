@@ -23,8 +23,7 @@ class Whiteboard extends Component {
       inputText: '',
       colWB: 'col-sm-6',
       colEdit: 'col-sm-6',
-      spoken: false,
-      userQuestions: []
+      spoken: false
     }
   }
 
