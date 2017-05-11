@@ -8,7 +8,10 @@ module.exports = require('express').Router()
       where: {
         id: req.params.id
       },
-      include: [Hint]
+      include: [Hint],
+      order: [
+        [ Hint, 'id', 'ASC' ]
+      ]
     })
     .then(question => res.json(question))
     .catch(next)
