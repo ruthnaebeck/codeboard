@@ -34,7 +34,11 @@ class AccountPage extends React.Component {
               <TableBody displayRowCheckbox={false}>
               { questions.map((userQuestion, idx) =>
                 <TableRow key={`${idx}`}>
-                  <TableRowColumn>{userQuestion.question.name}</TableRowColumn>
+                  <TableRowColumn>
+                    <Link to={`/question/${userQuestion.question_id}`}>
+                      {userQuestion.question.name}
+                    </Link>
+                  </TableRowColumn>
                   <TableRowColumn>{userQuestion.question.category.name}</TableRowColumn>
                   <TableRowColumn>{userQuestion.question.difficulty.level}</TableRowColumn>
                   <TableRowColumn>{userQuestion.status}</TableRowColumn>
