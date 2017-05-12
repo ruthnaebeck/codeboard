@@ -1,9 +1,13 @@
-/* global chai describe it expect funcs */
+/* global chai describe it expect mocha */
 
 // for (const key in funcs) {
+// mocha.setup('bdd')
+// mocha.checkLeaks()
+// mocha.run()
+
 const func = () => true
 
-describe('ch1-q1: ', function() {
+describe('ch1-q1-isUnique: ', function() {
   [
     'abcdefghia',
     'jklpoiuqwerzxcvmnsadf',

@@ -5,18 +5,15 @@
   <link href="/mocha.css" rel="stylesheet">
   <link href="/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
-  <script src="/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="/myscript-text-web/myscript-text-web.html">
 </head>
 
 <body>
-  <div id=main class="container-fluid"></div>
+  <div id="mocha"></div>
   <script async defer src=/bundle.js></script>
 
    <!--Make a blob / iframe or write a route that serves the page statically - Communicate code running from one iframe to another - window.postMessage? - Could have iframe do everything.  Hints could be based on failing tests.-->
   <script src="/chai.js"></script>
   <script src="/mocha.js"></script>
-  <!--<div id="mocha"></div>-->
   <script>mocha.setup('bdd')</script>
   <script src="/questions-specs/1.01-isUnique.spec.js"></script>
   <script>

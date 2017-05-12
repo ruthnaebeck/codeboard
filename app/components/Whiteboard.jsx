@@ -37,13 +37,6 @@ class Whiteboard extends Component {
     })
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const script = document.createElement('script')
-  //   script.src = `/questions-specs/${nextProps.question.tests}`
-  //   script.async = true
-  //   document.body.appendChild(script)
-  // }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth) {
       const userQuestions = (data) => {
@@ -55,13 +48,13 @@ class Whiteboard extends Component {
       }
       this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
     }
-    const tests = nextProps.question.tests
-    if (tests) {
-      const script = document.createElement('script')
-      script.src = `/questions-specs/${tests}`
-      script.async = true
-      document.body.appendChild(script)
-    }
+    // const tests = nextProps.question.tests
+    // if (tests) {
+    //   const script = document.createElement('script')
+    //   script.src = `/questions-specs/${tests}`
+    //   script.async = true
+    //   document.body.appendChild(script)
+    // }
   }
 
   componentDidUpdate() {
@@ -187,10 +180,14 @@ class Whiteboard extends Component {
                 frameBorder="0"
               />
             </Paper>
-            <div id='mocha'>
-            </div>
+          </div>
+          <div id="tests">
+            <Paper className="wbPaper" zDepth={3}>
+            <h4>Tests</h4>
+            </Paper>
           </div>
         </div>
+        <div id="mocha"/>
         <BottomNavBar wbState={this.state} />
       </div>
     )
