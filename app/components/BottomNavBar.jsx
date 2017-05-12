@@ -82,7 +82,7 @@ class BottomNavBar extends Component {
     const question = {
       user_id: uId,
       question_id: qId,
-      user_answer: this.props.inputText,
+      user_answer: this.props.wbState.inputText,
       status: this.state.questionStatus
     }
     this.props.saveQuestion(uId, qId, question)
