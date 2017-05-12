@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance Event */
+/* global SpeechSynthesisUtterance Event mocha */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -55,26 +55,30 @@ class BottomNavBar extends Component {
 
   select = (index) => this.setState({selectedIndex: index})
   reset = () => this.setState({ prompt: '' })
+  runTests = (func) => mocha.run(func)
 
   handlePlay = () => {
     const code = this.props.wbState.inputText
     const test = this.props.question.tests
     try {
       const func = eval(`(${code})`)
-      for (let i=0; i<test.length; i++) {
-        if (typeof func(test[i].output) === 'object') {
-          this.setState({ prompt: `This site cannot currently verify objects.` }, this.reset)
-          return
-        }
-        if (func(...test[i].input) !== test[i].output) {
-          this.setState({ prompt: `Your function failed ${test[i].description}` }, this.reset)
-          return
-        }
-      }
-      this.setState({
-        prompt: 'Congrats, your function passed all of the tests',
-        questionStatus: 'complete'
-      }, this.reset)
+      console.log('func', func)
+      this.runTests(func)
+      // mocha.run()
+      // for (let i=0; i<test.length; i++) {
+      //   if (typeof func(test[i].output) === 'object') {
+      //     this.setState({ prompt: `This site cannot currently verify objects.` }, this.reset)
+      //     return
+      //   }
+      //   if (func(...test[i].input) !== test[i].output) {
+      //     this.setState({ prompt: `Your function failed ${test[i].description}` }, this.reset)
+      //     return
+      //   }
+      // }
+      // this.setState({
+      //   prompt: 'Congrats, your function passed all of the tests',
+      //   questionStatus: 'complete'
+      // }, this.reset)
     } catch (err) {
       this.setState({ prompt: 'Please write a valid function' }, this.reset)
     }

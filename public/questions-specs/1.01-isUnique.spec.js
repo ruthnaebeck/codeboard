@@ -1,9 +1,5 @@
-/* global chai describe it expect mocha */
-
-// for (const key in funcs) {
-// mocha.setup('bdd')
-// mocha.checkLeaks()
-// mocha.run()
+/* global chai describe it expect mocha func */
+mocha.checkLeaks()
 
 const func = () => true
 
@@ -31,4 +27,3 @@ describe('ch1-q1-isUnique: ', function() {
     })
   })
 })
-// }
