@@ -74,8 +74,8 @@ class Whiteboard extends Component {
         }, this.resize)
       } else {
         this.setState({
-          colEdit: 'col-sm-12 col-md-6 colEdit',
-          colWB: 'col-sm-12 col-md-6 colWB'
+          colEdit: 'col-sm-6 colEdit',
+          colWB: 'col-sm-6 colWB'
         }, this.resize)
       }
     } else {
