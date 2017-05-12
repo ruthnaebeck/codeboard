@@ -61,7 +61,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     isUnique: {
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
-      tests: [{input: 'abcdefghi', output: true}, {input: 'jklpoiuqwerzxcvmnsadf', output: true}, {input: '1234567890', output: true}, {input: 'AaBbCcDdeFg1234567890(*&^%$#@!)', output: true}, {input: 'abcadef', output: false}, {input: 'aaaaaaaaaa', output: false}, {input: 'abcdefghijklmnopqrstuvwxyza', output: false}, {input: '1234567890asdklf1', output: false}, {input: '!@#$%^&*()(*#($&#(*$&#*($&#()))))', output: false}],
+      tests: [{input: 'abcdefghi', output: true, description: 'that had all unique characters'}, {input: 'jklpoiuqwerzxcvmnsadf', output: true, description: 'that had all unique characters'}, {input: '1234567890', output: true, description: 'that had all unique characters'}, {input: 'AaBbCcDdeFg1234567890(*&^%$#@!)', output: true, description: 'that had all unique characters'}, {input: 'abcadef', output: false, description: 'that had repeated characters'}, {input: 'aaaaaaaaaa', output: false, description: 'that had repeated characters'}, {input: 'abcdefghijklmnopqrstuvwxyza', output: false, description: 'that had repeated characters'}, {input: '1234567890asdklf1', output: false, description: 'that had repeated characters'}, {input: '!@#$%^&*()(*#($&#(*$&#*($&#()))))', output: false, description: 'that had repeated characters'}],
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
       solution: '1.01-isUnique.js'

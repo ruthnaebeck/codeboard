@@ -60,7 +60,7 @@ class BottomNavBar extends Component {
       const func = eval(`(${code})`)
       for (let i=0; i<test.length; i++) {
         if (func(test[i].input) !== test[i].output) {
-          this.setState({ prompt: `Your function failed with the input ${test[i].input}` }, this.reset)
+          this.setState({ prompt: `Your function failed with an input ${test[i].description}` }, this.reset)
           return
         }
       }
