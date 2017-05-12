@@ -29,7 +29,8 @@ class BottomNavBar extends Component {
       questionStatus: 'pending',
       spoken: false,
       currentHintIdx: 0,
-      snackbar: false
+      snackbar: false,
+      solutionText: 'Show Solutions'
     }
   }
   repeatQuestion = (voice, words) => {
@@ -91,9 +92,18 @@ class BottomNavBar extends Component {
   handleClose = () => this.setState({ snackbar: false })
 
   showSolutions = () => {
-    document.getElementById('edit').className = 'col-sm-6 colEdit'
-    document.getElementById('wb').className = 'col-hide colWB'
-    document.getElementById('sol').className = 'col-sm-6 colSol'
+    const solutionText = this.state.solutionText
+    if (solutionText === 'Show Solutions') {
+      this.setState({ solutionText: 'Hide Solutions' })
+      document.getElementById('edit').className = 'col-sm-6 colEdit'
+      document.getElementById('wb').className = 'col-hide colWB'
+      document.getElementById('sol').className = 'col-sm-6 colSol'
+    } else {
+      this.setState({ solutionText: 'Show Solutions' })
+      document.getElementById('edit').className = 'col-sm-6 colEdit'
+      document.getElementById('wb').className = 'col-sm-6 colWB'
+      document.getElementById('sol').className = 'col-hide colSol'
+    }
   }
 
   render() {
@@ -133,7 +143,7 @@ class BottomNavBar extends Component {
                 onTouchTap={() => this.select(3) }
                 />
               <BottomNavigationItem
-                label="Show Solutions"
+                label={this.state.solutionText}
                 icon={solutions}
                 onClick={this.showSolutions}
                 onTouchTap={() => this.select(4) }
@@ -170,7 +180,7 @@ class BottomNavBar extends Component {
             onTouchTap={() => this.select(2)}
           />
           <BottomNavigationItem
-            label="Show Solutions"
+            label={this.state.solutionText}
             icon={solutions}
             onClick={this.showSolutions}
             onTouchTap={() => this.select(3) }
