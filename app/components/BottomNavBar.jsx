@@ -91,7 +91,7 @@ class BottomNavBar extends Component {
 
   handleClose = () => this.setState({ snackbar: false })
 
-  showSolutions = () => {
+  handleSolutions = () => {
     const solutionText = this.state.solutionText
     if (solutionText === 'Show Solutions') {
       this.setState({ solutionText: 'Hide Solutions' })
@@ -153,7 +153,7 @@ class BottomNavBar extends Component {
               <BottomNavigationItem
                 label={this.state.solutionText}
                 icon={solutions}
-                onClick={this.showSolutions}
+                onClick={this.handleSolutions}
                 onTouchTap={() => this.select(4) }
                 />
             </BottomNavigation>
@@ -190,7 +190,7 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label={this.state.solutionText}
             icon={solutions}
-            onClick={this.showSolutions}
+            onClick={this.handleSolutions}
             onTouchTap={() => this.select(3) }
           />
         </BottomNavigation>

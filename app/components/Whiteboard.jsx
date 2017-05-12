@@ -126,7 +126,7 @@ class Whiteboard extends Component {
       <div>
         <div className="row">
           <div id="edit" className={this.state.colEdit}>
-            <Paper className="ace" zDepth={3}>
+            <Paper className="wbPaper" zDepth={3}>
               <span
                 className="span-arrow"
                 onClick={() => this.handleEdit('left')}>
@@ -152,7 +152,7 @@ class Whiteboard extends Component {
             </Paper>
           </div>
           <div id="wb" className={this.state.colWB}>
-            <Paper className="ace" zDepth={3}>
+            <Paper className="wbPaper" zDepth={3}>
               <span
                 className="span-arrow"
                 onClick={this.handleWB}>
@@ -171,8 +171,8 @@ class Whiteboard extends Component {
             </Paper>
           </div>
           <div id="sol" className={`col-hide colSol`}>
-            <Paper className="ace" zDepth={3}>
-              <h3>Solutions</h3>
+            <Paper className="solPaper" zDepth={3}>
+              <center><h3>Solutions</h3></center>
             </Paper>
           </div>
         </div>
