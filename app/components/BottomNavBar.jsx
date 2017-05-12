@@ -90,6 +90,12 @@ class BottomNavBar extends Component {
 
   handleClose = () => this.setState({ snackbar: false })
 
+  showSolutions = () => {
+    document.getElementById('edit').className = 'col-sm-6 colEdit'
+    document.getElementById('wb').className = 'col-hide colWB'
+    document.getElementById('sol').className = 'col-sm-6 colSol'
+  }
+
   render() {
     const voice = window.speechSynthesis
     const currentHintIdx = this.state.currentHintIdx
@@ -129,6 +135,7 @@ class BottomNavBar extends Component {
               <BottomNavigationItem
                 label="Show Solutions"
                 icon={solutions}
+                onClick={this.showSolutions}
                 onTouchTap={() => this.select(4) }
                 />
             </BottomNavigation>
@@ -165,6 +172,7 @@ class BottomNavBar extends Component {
           <BottomNavigationItem
             label="Show Solutions"
             icon={solutions}
+            onClick={this.showSolutions}
             onTouchTap={() => this.select(3) }
           />
         </BottomNavigation>

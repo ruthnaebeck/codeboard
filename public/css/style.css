@@ -86,6 +86,10 @@ paper-button[toggles][active] {
     padding-left: 3px;
 }
 
+.colSol {
+    padding-left: 3px;
+}
+
 .col-hide {
   display: none;
 }

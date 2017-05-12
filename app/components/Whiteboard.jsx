@@ -21,8 +21,8 @@ class Whiteboard extends Component {
     super(props)
     this.state = {
       inputText: '',
-      colWB: 'col-sm-6',
-      colEdit: 'col-sm-6',
+      colWB: 'col-sm-6 colWB',
+      colEdit: 'col-sm-6 colEdit',
       spoken: false
     }
   }
@@ -64,17 +64,18 @@ class Whiteboard extends Component {
   resize = () => window.dispatchEvent(new Event('resize'))
 
   handleEdit = (arrow) => {
+    document.getElementById('sol').className = 'col-hide colSol'
     const colEdit = this.state.colEdit
     if (arrow === 'left') {
-      if (colEdit === 'col-sm-6') {
+      if (colEdit === 'col-sm-6 colEdit') {
         this.setState({
           colEdit: 'col-hide',
           colWB: 'col-sm-12'
         }, this.resize)
       } else {
         this.setState({
-          colEdit: 'col-sm-6',
-          colWB: 'col-sm-6'
+          colEdit: 'col-sm-6 colEdit',
+          colWB: 'col-sm-6 colWB'
         }, this.resize)
       }
     } else {
@@ -88,15 +89,15 @@ class Whiteboard extends Component {
   handleWB = (arrow) => {
     const colWB = this.state.colWB
     if (arrow === 'right') {
-      if (colWB === 'col-sm-6') {
+      if (colWB === 'col-sm-6 colWB') {
         this.setState({
           colWB: 'col-hide',
           colEdit: 'col-sm-12'
         }, this.resize)
       } else {
         this.setState({
-          colEdit: 'col-sm-6',
-          colWB: 'col-sm-6'
+          colEdit: 'col-sm-6 colEdit',
+          colWB: 'col-sm-6 colWB'
         }, this.resize)
       }
     } else {
@@ -124,7 +125,7 @@ class Whiteboard extends Component {
     return (
       <div>
         <div className="row">
-          <div className={`${this.state.colEdit} colEdit`}>
+          <div id="edit" className={this.state.colEdit}>
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
@@ -153,7 +154,7 @@ class Whiteboard extends Component {
               />
             </Paper>
           </div>
-          <div className={`${this.state.colWB} colWB`}>
+          <div id="wb" className={this.state.colWB}>
             <Paper className="ace" zDepth={3}>
               <span
                 className="span-arrow"
@@ -170,6 +171,11 @@ class Whiteboard extends Component {
                 hmackey="bc9ba480-0640-44bc-b9e5-8480e9954577"
                 language="en_US"
                 recognitioncandidates="1"></myscript-text-web>
+            </Paper>
+          </div>
+          <div id="sol" className={`col-hide colSol`}>
+            <Paper className="ace" zDepth={3}>
+              <h3>Solutions</h3>
             </Paper>
           </div>
         </div>
