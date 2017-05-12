@@ -133,9 +133,6 @@ class Whiteboard extends Component {
                 <LeftArrow />
               </span>
               <span
-                className="span-arrow">
-              </span>
-              <span
                 className="span-arrow"
                 onClick={this.handleEdit}>
                 <RightArrow />

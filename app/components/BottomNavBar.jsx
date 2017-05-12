@@ -98,11 +98,19 @@ class BottomNavBar extends Component {
       document.getElementById('edit').className = 'col-sm-6 colEdit'
       document.getElementById('wb').className = 'col-hide colWB'
       document.getElementById('sol').className = 'col-sm-6 colSol'
+      // const arrows = document.getElementsByClassName('span-arrow')
+      // for (let i = 0; i < arrows.length; i++) {
+      //   arrows[i].className = 'span-arrow col-hide'
+      // }
     } else {
       this.setState({ solutionText: 'Show Solutions' })
       document.getElementById('edit').className = 'col-sm-6 colEdit'
       document.getElementById('wb').className = 'col-sm-6 colWB'
       document.getElementById('sol').className = 'col-hide colSol'
+      // const arrows = document.getElementsByClassName('span-arrow')
+      // for (let i = 0; i < arrows.length; i++) {
+      //   arrows[i].className = 'span-arrow'
+      // }
     }
   }
 
