@@ -36,34 +36,34 @@ export class Home extends React.Component {
     const tilesData = [
       {
         img: '/images/screenshot.png',
-        title: 'Select question by category or difficulty',
+        title: '1. Select question by category or difficulty',
         button: <LooksOne color='white'/>
       },
       {
         img: '/images/screenshot.png',
-        title: 'App speaks the question prompt',
+        title: '2. App speaks the question prompt',
         button: <LooksTwo color='white'/>
       },
       {
         img: '/images/screenshot.png',
-        title: 'Code with whiteboard and text editor',
+        title: '3. Code with whiteboard and text editor',
         button: <Looks3 color='white'/>
       },
       {
         img: '/images/screenshot.png',
-        title: 'Ask for hints and test your code',
+        title: '4. Ask for hints and test your code',
         button: <Looks4 color='white'/>
       },
       {
         img: '/images/screenshot.png',
-        title: 'Sign in to save your work',
+        title: '5. Sign in to save your work',
         button: <Looks5 color='white'/>
       }
     ]
     return (
       <Card>
         <CardMedia
-          overlay={<CardTitle title="Welcome to Code Board!" subtitle="" />}>
+          overlay={<CardTitle title="Prepare for the technical portion of your developer interview" subtitle="" />}>
           <div className="splash row"
             style={{ backgroundImage: 'url(/images/woman_coding.jpg)' }}>
             <div className="col-sm-12 started">
@@ -82,7 +82,7 @@ export class Home extends React.Component {
               title="Questions"
               iconElementLeft={<span/>}
               />
-              <h4>By Category:</h4>
+              <h3>Category</h3>
               <Divider />
               {this.props.categories.map((category, index) =>
                 <ListItem
@@ -95,7 +95,7 @@ export class Home extends React.Component {
                       <ListItem
                       containerElement={<Link to="/popup"/>}
                       key={question.id}
-                      primaryText={question.name}
+                      secondaryText={`${question.name} -- ${question.difficulty.level}`}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}
                       />
                     )
@@ -105,7 +105,7 @@ export class Home extends React.Component {
               )}
               <br/>
               <br/>
-              <h4>By Difficulty:</h4>
+              <h3>Difficulty</h3>
               <Divider />
               {this.props.difficulties.map((difficulty, index) =>
                 <ListItem
@@ -118,7 +118,7 @@ export class Home extends React.Component {
                       <ListItem
                       containerElement={<Link to="/popup"/>}
                       key={question.id}
-                      primaryText={question.name}
+                      secondaryText={question.name}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}
                       />
                     )
@@ -127,28 +127,25 @@ export class Home extends React.Component {
                 </ListItem>
               )}
               </Drawer>
-              <Drawer width={ '25%' } openSecondary={true} open={this.state.openRight} >
+              <Drawer width={ '33%' } openSecondary={true} open={this.state.openRight} >
               <AppBar
                 title="How To Use"
                 showMenuIconButton={ false }
               />
               <div>
-                <div style={{margin: '20px'}}>
-                  <h4 style={{textAlign: 'left'}}>Code Board helps developers prepare for the technical portion of interviews</h4>
-                </div>
                 <GridList
-                  cellHeight={150}
+                  cellHeight={250}
                   cols={1}
-                  padding={10}
-                  style={{margin: 20}}
+                  padding={25}
+                  style={{margin: 25}}
                 >
                 {tilesData.map((tile) => (
                   <GridTile
-                    actionIcon={<IconButton>{tile.button}</IconButton>}
+                    icon={<IconButton>{tile.button}</IconButton>}
                     key={tile.title}
                     title={tile.title}
                     titlePosition='top'
-                    titleStyle={{fontSize: '97%', textAlign: 'left'}}
+                    titleStyle={{fontSize: '1.25em', textAlign: 'left', wordWrap: 'break-word'}}
                     actionPosition='left'
                     style={{borderStyle: 'solid', borderWidth: '2px'}}
                     titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
