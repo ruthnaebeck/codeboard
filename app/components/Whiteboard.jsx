@@ -171,8 +171,14 @@ class Whiteboard extends Component {
             </Paper>
           </div>
           <div id="sol" className={`col-hide colSol`}>
-            <Paper className="solPaper" zDepth={3}>
-              <center><h3>Solutions</h3></center>
+            <Paper className="wbPaper" zDepth={3}>
+            <h4>Solutions</h4>
+              <iframe
+                src={`/questions-specs/${this.props.question.solution}`}
+                width="95%"
+                height="90%"
+                frameBorder="0"
+              />
             </Paper>
           </div>
         </div>
