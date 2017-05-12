@@ -1,6 +1,6 @@
 // O(N) TIME --- O(N) SPACE
 
-export function removeDupes1(list) {
+function removeDupes1(list) {
   if (!list || !list.next) return list
 
   const set = new Set()
@@ -22,7 +22,7 @@ export function removeDupes1(list) {
 
 // O(N^2) TIME --- O(1) SPACE
 
-export function removeDupes2(list) {
+function removeDupes2(list) {
   if (!list || !list.next) return list
   let head = list
 

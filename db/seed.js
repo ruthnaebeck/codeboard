@@ -61,17 +61,38 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     isUnique: {
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
-      tests: [{input: 'abcdefghi', output: true, description: 'that had all unique characters'}, {input: 'jklpoiuqwerzxcvmnsadf', output: true, description: 'that had all unique characters'}, {input: '1234567890', output: true, description: 'that had all unique characters'}, {input: 'AaBbCcDdeFg1234567890(*&^%$#@!)', output: true, description: 'that had all unique characters'}, {input: 'abcadef', output: false, description: 'that had repeated characters'}, {input: 'aaaaaaaaaa', output: false, description: 'that had repeated characters'}, {input: 'abcdefghijklmnopqrstuvwxyza', output: false, description: 'that had repeated characters'}, {input: '1234567890asdklf1', output: false, description: 'that had repeated characters'}, {input: '!@#$%^&*()(*#($&#(*$&#*($&#()))))', output: false, description: 'that had repeated characters'}],
+      tests: [{input: ['abcdefghi'], output: true, description: 'with an input that had all unique characters'}, {input: ['jklpoiuqwerzxcvmnsadf'], output: true, description: 'with an input that had all unique characters'}, {input: ['1234567890'], output: true, description: 'with an input that had all unique characters'}, {input: ['AaBbCcDdeFg1234567890(*&^%$#@!)'], output: true, description: 'with an input that had all unique characters'}, {input: ['abcadef'], output: false, description: 'with an input that had repeated characters'}, {input: ['aaaaaaaaaa'], output: false, description: 'with an input that had repeated characters'}, {input: ['abcdefghijklmnopqrstuvwxyza'], output: false, description: 'with an input that had repeated characters'}, {input: ['1234567890asdklf1'], output: false, description: 'with an input that had repeated characters'}, {input: ['!@#$%^&*()(*#($&#(*$&#*($&#()))))'], output: false, description: 'with an input that had repeated characters'}],
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
       solution: '1.01-isUnique.js'
     },
-    removeDupes: {
-      name: 'Remove Duplicates',
-      text: 'Write code to remove duplicates from an unsorted linked list.',
-      category_id: categories.linkedLists.id,
+    // removeDupes: {
+    //   name: 'Remove Duplicates',
+    //   text: 'Write code to remove duplicates from an unsorted linked list.',
+    //   tests: [{input: null, output: null, description: 'with an input of null.'},
+    //         {input: undefined, output: undefined, description: 'with an input of undefined.'},
+    //         {input: { value: 5, next: null }, output: { value: 5, next: null }, description: 'with a linked list that contains a single value.'},
+    //         {input: 1, output: 1, description: 'of '}],
+    //   category_id: categories.linkedLists.id,
+    //   difficulty_id: difficulties.medium.id,
+    //   solution: '2.01-removeDupes.js'
+    // },
+    checkPermutations: {
+      name: 'Check Permutations',
+      text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
+      category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.medium.id,
-      solution: '2.01-removeDupes.js'
+      solution: '1.02-checkPermutations.js',
+      tests: [
+      {input: ['abcdefghi', 'ihgfedcba'], output: true, description: 'with two strings that are permutations of each other.'},
+      {input: ['1a1', 'a11'], output: true, description: 'with two strings that are permutations of each other.'},
+      {input: ['1234567812345678', '8877665544332211'], output: true, description: 'with two strings that are permutations of each other.'},
+      {input: ['icarraci', 'carcarii'], output: true, description: 'with two strings that are permutations of each other.'},
+      {input: ['abcdefghiz', 'ihgfedcbaa'], output: false, description: 'with two strings that are not permutations of each other.'},
+      {input: ['1a1', '11'], output: false, description: 'with two strings that are not permutations of each other.'},
+      {input: ['1122334455667788', '9911223344556677'], output: false, description: 'with two strings that are not permutations of each other.'},
+      {input: ['45678', '1239'], output: false, description: 'with two strings that are not permutations of each other.'},
+      ],
     },
     threeStacksInOne: {
       name: 'Three Stacks in One',
@@ -109,7 +130,7 @@ const userQuestions = seed(userQuestion, ({ users, questions }) =>
   ({
     testQuestion1: {
       status: 'complete',
-      question_id: questions.removeDupes.id,
+      question_id: questions.routesBetweenNodes.id,
       user_id: users.test.id,
       user_answer: ''
     }
