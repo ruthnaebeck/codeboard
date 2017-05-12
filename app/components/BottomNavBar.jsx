@@ -208,7 +208,12 @@ class BottomNavBar extends Component {
           >
             <List>
             {helpTopics.map(topic =>
-              <ListItem key={topic.topic} primaryText={topic.topic} leftIcon={topic.icon} />
+              <ListItem
+                key={topic.topic}
+                primaryText={topic.topic}
+                leftIcon={topic.icon}
+                disabled={true}
+                />
             )}
             </List>
           </Dialog>
@@ -258,7 +263,11 @@ class BottomNavBar extends Component {
         >
           <List>
           {helpTopics.map(topic =>
-            <ListItem key={topic.topic} primaryText={topic.topic} leftIcon={topic.icon} />
+            <ListItem
+              key={topic.topic}
+              primaryText={topic.topic}
+              leftIcon={topic.icon}
+              disabled={true} />
           )}
           </List>
         </Dialog>
