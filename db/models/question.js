@@ -6,7 +6,7 @@ module.exports = db => db.define('questions', {
   name: STRING,
   text: TEXT,
   solution: TEXT,
-  tests: ARRAY(JSON)
+  tests: STRING
 })
 
 module.exports.associations = (Question, { Category, Difficulty, Hint, User }) => {

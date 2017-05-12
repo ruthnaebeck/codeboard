@@ -69,7 +69,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 1,
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
-      tests: [{input: ['abcdefghi'], output: true, description: 'with an input that had all unique characters'}, {input: ['jklpoiuqwerzxcvmnsadf'], output: true, description: 'with an input that had all unique characters'}, {input: ['1234567890'], output: true, description: 'with an input that had all unique characters'}, {input: ['AaBbCcDdeFg1234567890(*&^%$#@!)'], output: true, description: 'with an input that had all unique characters'}, {input: ['abcadef'], output: false, description: 'with an input that had repeated characters'}, {input: ['aaaaaaaaaa'], output: false, description: 'with an input that had repeated characters'}, {input: ['abcdefghijklmnopqrstuvwxyza'], output: false, description: 'with an input that had repeated characters'}, {input: ['1234567890asdklf1'], output: false, description: 'with an input that had repeated characters'}, {input: ['!@#$%^&*()(*#($&#(*$&#*($&#()))))'], output: false, description: 'with an input that had repeated characters'}],
+      tests: '1.01-isUnique.spec.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
       solution: '1.01-isUnique.js'
@@ -81,16 +81,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.medium.id,
       solution: '1.02-checkPermutations.js',
-      tests: [
-      {input: ['abcdefghi', 'ihgfedcba'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['1a1', 'a11'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['1234567812345678', '8877665544332211'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['icarraci', 'carcarii'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['abcdefghiz', 'ihgfedcbaa'], output: false, description: 'with two strings that are not permutations of each other.'},
-      {input: ['1a1', '11'], output: false, description: 'with two strings that are not permutations of each other.'},
-      {input: ['1122334455667788', '9911223344556677'], output: false, description: 'with two strings that are not permutations of each other.'},
-      {input: ['45678', '1239'], output: false, description: 'with two strings that are not permutations of each other.'},
-      ],
+      tests: 'test'
     },
     // threeStacksInOne: {
     //   name: 'Three Stacks in One',
