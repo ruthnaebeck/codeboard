@@ -66,17 +66,6 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       difficulty_id: difficulties.easy.id,
       solution: '1.01-isUnique.js'
     },
-    // removeDupes: {
-    //   name: 'Remove Duplicates',
-    //   text: 'Write code to remove duplicates from an unsorted linked list.',
-    //   tests: [{input: null, output: null, description: 'with an input of null.'},
-    //         {input: undefined, output: undefined, description: 'with an input of undefined.'},
-    //         {input: { value: 5, next: null }, output: { value: 5, next: null }, description: 'with a linked list that contains a single value.'},
-    //         {input: 1, output: 1, description: 'of '}],
-    //   category_id: categories.linkedLists.id,
-    //   difficulty_id: difficulties.medium.id,
-    //   solution: '2.01-removeDupes.js'
-    // },
     checkPermutations: {
       name: 'Check Permutations',
       text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
@@ -94,43 +83,52 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       {input: ['45678', '1239'], output: false, description: 'with two strings that are not permutations of each other.'},
       ],
     },
-    threeStacksInOne: {
-      name: 'Three Stacks in One',
-      text: 'Describe how you could use a single array to implement three stacks.',
-      category_id: categories.stacksQueues.id,
-      difficulty_id: difficulties.medium.id,
-      solution: '3.01-threeStacksInOne.js'
-    },
-    routesBetweenNodes: {
-      name: 'Routes Between Nodes',
-      text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
-      category_id: categories.treesGraphs.id,
-      difficulty_id: difficulties.hard.id,
-      solution: '4.01-routesBetweenNodes.js'
-    }
+    // threeStacksInOne: {
+    //   name: 'Three Stacks in One',
+    //   text: 'Describe how you could use a single array to implement three stacks.',
+    //   category_id: categories.stacksQueues.id,
+    //   difficulty_id: difficulties.medium.id,
+    //   solution: '3.01-threeStacksInOne.js'
+    // },
+    // routesBetweenNodes: {
+    //   name: 'Routes Between Nodes',
+    //   text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
+    //   category_id: categories.treesGraphs.id,
+    //   difficulty_id: difficulties.hard.id,
+    //   solution: '4.01-routesBetweenNodes.js'
+    // },
+    // removeDupes: {
+    //   name: 'Remove Duplicates',
+    //   text: 'Write code to remove duplicates from an unsorted linked list.',
+    //   tests: [{input: null, output: null, description: 'with an input of null.'},
+    //         {input: undefined, output: undefined, description: 'with an input of undefined.'},
+    //         {input: { value: 5, next: null }, output: { value: 5, next: null }, description: 'with a linked list that contains a single value.'},
+    //         {input: 1, output: 1, description: 'of '}],
+    //   category_id: categories.linkedLists.id,
+    //   difficulty_id: difficulties.medium.id,
+    //   solution: '2.01-removeDupes.js'
+    // },
   }))
 
 const hints = seed(Hint, ({ questions }) =>
   ({
     isUnique1: {
+      id: 1,
       text: 'Try a hash table.',
       question_id: questions.isUnique.id
     },
     isUnique2: {
+      id: 2,
       text: 'Could a bit vector be useful?',
       question_id: questions.isUnique.id
     },
-    isUnique3: {
-      text: 'Can you solve it in O(n log n) time?  What might a solution like that look like.',
-      question_id: questions.isUnique.id
-    }
   }))
 
 const userQuestions = seed(userQuestion, ({ users, questions }) =>
   ({
     testQuestion1: {
-      status: 'complete',
-      question_id: questions.routesBetweenNodes.id,
+      status: 'pending',
+      question_id: questions.isUnique.id,
       user_id: users.test.id,
       user_answer: ''
     }
