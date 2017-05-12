@@ -7,7 +7,8 @@ module.exports = require('express').Router()
     Category.findAll({
       include: [Question],
       order: [
-        ['id', 'ASC']
+        ['id', 'ASC'],
+        [ Question, 'id', 'ASC' ]
       ]
     })
     .then(questions => {
