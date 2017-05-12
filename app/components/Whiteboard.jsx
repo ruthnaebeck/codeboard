@@ -173,7 +173,7 @@ class Whiteboard extends Component {
             </Paper>
           </div>
         </div>
-        <BottomNavBar inputText={this.state.inputText} />
+        <BottomNavBar wbState={this.state} />
       </div>
     )
   }

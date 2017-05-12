@@ -12,11 +12,13 @@ import Save from 'material-ui/svg-icons/content/save'
 import Play from 'material-ui/svg-icons/av/play-arrow'
 import Hints from 'material-ui/svg-icons/action/help'
 import Repeat from 'material-ui/svg-icons/action/record-voice-over'
+import Solutions from 'material-ui/svg-icons/action/lock-open'
 
 const save = <Save />
 const play = <Play />
 const hints = <Hints />
 const repeat = <Repeat />
+const solutions = <Solutions />
 
 class BottomNavBar extends Component {
   constructor(props) {
@@ -54,7 +56,7 @@ class BottomNavBar extends Component {
   reset = () => this.setState({ prompt: '' })
 
   handlePlay = () => {
-    const code = this.props.inputText
+    const code = this.props.wbState.inputText
     const test = this.props.question.tests
     try {
       const func = eval(`(${code})`)
@@ -85,6 +87,8 @@ class BottomNavBar extends Component {
     this.props.saveQuestion(uId, qId, question)
     this.setState({ snackbar: true })
   }
+
+  handleClose = () => this.setState({ snackbar: false })
 
   render() {
     const voice = window.speechSynthesis
@@ -122,6 +126,11 @@ class BottomNavBar extends Component {
                 onClick={this.handleSave}
                 onTouchTap={() => this.select(3) }
                 />
+              <BottomNavigationItem
+                label="Show Solutions"
+                icon={solutions}
+                onTouchTap={() => this.select(4) }
+                />
             </BottomNavigation>
           </Paper>
           <Snackbar
@@ -129,6 +138,7 @@ class BottomNavBar extends Component {
             open={this.state.snackbar}
             message="Code Saved"
             autoHideDuration={2000}
+            onRequestClose={this.handleClose}
           />
       </div>
       )
@@ -151,6 +161,11 @@ class BottomNavBar extends Component {
             icon={play}
             onClick={this.handlePlay}
             onTouchTap={() => this.select(2)}
+          />
+          <BottomNavigationItem
+            label="Show Solutions"
+            icon={solutions}
+            onTouchTap={() => this.select(3) }
           />
         </BottomNavigation>
       </Paper>
