@@ -62,8 +62,12 @@ class BottomNavBar extends Component {
     try {
       const func = eval(`(${code})`)
       for (let i=0; i<test.length; i++) {
-        if (func(test[i].input) !== test[i].output) {
-          this.setState({ prompt: `Your function failed with an input ${test[i].description}` }, this.reset)
+        if (typeof func(test[i].output) === 'object') {
+          this.setState({ prompt: `This site cannot currently verify objects.` }, this.reset)
+          return
+        }
+        if (func(...test[i].input) !== test[i].output) {
+          this.setState({ prompt: `Your function failed ${test[i].description}` }, this.reset)
           return
         }
       }

@@ -9,7 +9,8 @@ module.exports = require('express').Router()
       include: [{
         model: Question, include: [ Difficulty ]}],
       order: [
-        ['id', 'ASC']
+        ['id', 'ASC'],
+        [ Question, 'id', 'ASC' ]
       ]
     })
     .then(questions => {

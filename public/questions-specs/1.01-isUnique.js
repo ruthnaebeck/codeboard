@@ -1,5 +1,5 @@
 // USING REGEX
-const isUnique1 = str => !/(.).*\1/.test(str)
+(str) => !/(.).*\1/.test(str)
 
 // |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
 
