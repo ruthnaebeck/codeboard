@@ -1,9 +1,8 @@
-'use strict';
-
+// Helper Function
 const errorCheck = (graph, start) => {
-  if (!Array.isArray(graph)) throw Error('invalid graph');
-  if (!graph[start]) throw Error('invalid start node');
-};
+  if (!Array.isArray(graph)) throw Error('invalid graph')
+  if (!graph[start]) throw Error('invalid start node')
+}
 
 // |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
 
@@ -14,25 +13,25 @@ const errorCheck = (graph, start) => {
 // ITERATIVE BREADTH FIRST SEARCH
 
 export function graphSearchBFS(graph, start, target) {
-  errorCheck(graph, start);
+  errorCheck(graph, start)
 
-  if (start === target) return true;
+  if (start === target) return true
 
   const visited = new Set(),
-        queue = [start];
+    queue = [start]
 
   while (queue.length) {
-    const currentNode = queue.shift();
+    const currentNode = queue.shift()
     for (const neighbour of graph[currentNode]) {
       if (!visited.has(neighbour)) {
-        if (neighbour === target) return true;
-        visited.add(neighbour);
-        queue.push(neighbour);
+        if (neighbour === target) return true
+        visited.add(neighbour)
+        queue.push(neighbour)
       }
     }
   }
 
-  return false;
+  return false
 }
 
 // |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
@@ -41,20 +40,20 @@ export function graphSearchBFS(graph, start, target) {
 // RECURSIVE DEPTH FIRST SEARCH
 
 export function graphSearchDFS(graph, start, target) {
-  errorCheck(graph, start);
-  return searchDFS(graph, start, target, new Set());
+  errorCheck(graph, start)
+  return searchDFS(graph, start, target, new Set())
 }
 
 function searchDFS(graph, start, target, visited) {
-  if (start === target) return true;
+  if (start === target) return true
 
-  visited.add(start);
+  visited.add(start)
 
   for (const neighbour of graph[start]) {
     if (!visited.has(neighbour)) {
-      if (searchDFS(graph, neighbour, target, visited)) return true;
+      if (searchDFS(graph, neighbour, target, visited)) return true
     }
   }
 
-  return false;
+  return false
 }
