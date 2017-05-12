@@ -6,19 +6,22 @@ import { saveQuestion } from '../reducers/userQuestions'
 
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
 import Paper from 'material-ui/Paper'
+import Dialog from 'material-ui/Dialog'
 import Snackbar from 'material-ui/Snackbar'
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on'
 import Save from 'material-ui/svg-icons/content/save'
 import Play from 'material-ui/svg-icons/av/play-arrow'
-import Hints from 'material-ui/svg-icons/action/help'
+import Help from 'material-ui/svg-icons/action/help'
 import Repeat from 'material-ui/svg-icons/action/record-voice-over'
 import Solutions from 'material-ui/svg-icons/action/lock-open'
+import Hint from 'material-ui/svg-icons/action/lightbulb-outline'
 
 const save = <Save />
 const play = <Play />
-const hints = <Hints />
+const help = <Help />
 const repeat = <Repeat />
 const solutions = <Solutions />
+const hints = <Hint />
 
 class BottomNavBar extends Component {
   constructor(props) {
@@ -30,7 +33,8 @@ class BottomNavBar extends Component {
       spoken: false,
       currentHintIdx: 0,
       snackbar: false,
-      solutionText: 'Show Solutions'
+      solutionText: 'Show Solutions',
+      helpDialog: false
     }
   }
   repeatQuestion = (voice, words) => {
@@ -90,6 +94,7 @@ class BottomNavBar extends Component {
   }
 
   handleClose = () => this.setState({ snackbar: false })
+  handleHelp = () => this.setState({ helpDialog: true })
 
   handleSolutions = () => {
     const solutionText = this.state.solutionText
@@ -156,6 +161,12 @@ class BottomNavBar extends Component {
                 onClick={this.handleSolutions}
                 onTouchTap={() => this.select(4) }
                 />
+              <BottomNavigationItem
+                label='Help'
+                icon={help}
+                onClick={this.handleHelp}
+                onTouchTap={() => this.select(5) }
+                />
             </BottomNavigation>
           </Paper>
           <Snackbar
@@ -165,6 +176,14 @@ class BottomNavBar extends Component {
             autoHideDuration={2000}
             onRequestClose={this.handleClose}
           />
+          <Dialog
+            title="Scrollable Dialog"
+            modal={false}
+            open={this.state.helpDialog}
+            autoScrollBodyContent={true}
+          >
+          Help
+          </Dialog>
       </div>
       )
     } else {
@@ -192,6 +211,12 @@ class BottomNavBar extends Component {
             icon={solutions}
             onClick={this.handleSolutions}
             onTouchTap={() => this.select(3) }
+          />
+          <BottomNavigationItem
+            label='Help'
+            icon={help}
+            onClick={this.handleHelp}
+            onTouchTap={() => this.select(4) }
           />
         </BottomNavigation>
       </Paper>
