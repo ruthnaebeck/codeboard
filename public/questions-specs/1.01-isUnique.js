@@ -1,5 +1,3 @@
-'use strict'
-
 // USING REGEX
 const isUnique1 = str => !/(.).*\1/.test(str)
 
@@ -31,5 +29,3 @@ function isUnique3(str) {
 
   return true
 }
-
-const funcs = {1: isUnique1, 2: isUnique2, 3: isUnique3}

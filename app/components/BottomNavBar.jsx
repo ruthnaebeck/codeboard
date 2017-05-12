@@ -12,11 +12,13 @@ import Save from 'material-ui/svg-icons/content/save'
 import Play from 'material-ui/svg-icons/av/play-arrow'
 import Hints from 'material-ui/svg-icons/action/help'
 import Repeat from 'material-ui/svg-icons/action/record-voice-over'
+import Solutions from 'material-ui/svg-icons/action/lock-open'
 
 const save = <Save />
 const play = <Play />
 const hints = <Hints />
 const repeat = <Repeat />
+const solutions = <Solutions />
 
 class BottomNavBar extends Component {
   constructor(props) {
@@ -27,7 +29,8 @@ class BottomNavBar extends Component {
       questionStatus: 'pending',
       spoken: false,
       currentHintIdx: 0,
-      snackbar: false
+      snackbar: false,
+      solutionText: 'Show Solutions'
     }
   }
   repeatQuestion = (voice, words) => {
@@ -54,7 +57,7 @@ class BottomNavBar extends Component {
   reset = () => this.setState({ prompt: '' })
 
   handlePlay = () => {
-    const code = this.props.inputText
+    const code = this.props.wbState.inputText
     const test = this.props.question.tests
     try {
       const func = eval(`(${code})`)
@@ -79,11 +82,36 @@ class BottomNavBar extends Component {
     const question = {
       user_id: uId,
       question_id: qId,
-      user_answer: this.props.inputText,
+      user_answer: this.props.wbState.inputText,
       status: this.state.questionStatus
     }
     this.props.saveQuestion(uId, qId, question)
     this.setState({ snackbar: true })
+  }
+
+  handleClose = () => this.setState({ snackbar: false })
+
+  handleSolutions = () => {
+    const solutionText = this.state.solutionText
+    if (solutionText === 'Show Solutions') {
+      this.setState({ solutionText: 'Hide Solutions' })
+      document.getElementById('edit').className = 'col-sm-6 colEdit'
+      document.getElementById('wb').className = 'col-hide colWB'
+      document.getElementById('sol').className = 'col-sm-6 colSol'
+      // const arrows = document.getElementsByClassName('span-arrow')
+      // for (let i = 0; i < arrows.length; i++) {
+      //   arrows[i].className = 'span-arrow col-hide'
+      // }
+    } else {
+      this.setState({ solutionText: 'Show Solutions' })
+      document.getElementById('edit').className = 'col-sm-6 colEdit'
+      document.getElementById('wb').className = 'col-sm-6 colWB'
+      document.getElementById('sol').className = 'col-hide colSol'
+      // const arrows = document.getElementsByClassName('span-arrow')
+      // for (let i = 0; i < arrows.length; i++) {
+      //   arrows[i].className = 'span-arrow'
+      // }
+    }
   }
 
   render() {
@@ -122,6 +150,12 @@ class BottomNavBar extends Component {
                 onClick={this.handleSave}
                 onTouchTap={() => this.select(3) }
                 />
+              <BottomNavigationItem
+                label={this.state.solutionText}
+                icon={solutions}
+                onClick={this.handleSolutions}
+                onTouchTap={() => this.select(4) }
+                />
             </BottomNavigation>
           </Paper>
           <Snackbar
@@ -129,6 +163,7 @@ class BottomNavBar extends Component {
             open={this.state.snackbar}
             message="Code Saved"
             autoHideDuration={2000}
+            onRequestClose={this.handleClose}
           />
       </div>
       )
@@ -151,6 +186,12 @@ class BottomNavBar extends Component {
             icon={play}
             onClick={this.handlePlay}
             onTouchTap={() => this.select(2)}
+          />
+          <BottomNavigationItem
+            label={this.state.solutionText}
+            icon={solutions}
+            onClick={this.handleSolutions}
+            onTouchTap={() => this.select(3) }
           />
         </BottomNavigation>
       </Paper>
