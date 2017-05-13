@@ -1,9 +1,9 @@
-/* global chai describe it expect mocha func */
+/* global chai describe it expect mocha isUnique */
 mocha.checkLeaks()
 
-const func = () => true
+// const func = () => true
 
-describe('ch1-q1-isUnique: ', function() {
+describe('Strings & Arrays - isUnique: ', function() {
   [
     'abcdefghia',
     'jklpoiuqwerzxcvmnsadf',
@@ -11,7 +11,7 @@ describe('ch1-q1-isUnique: ', function() {
     'AaBbCcDdeFg1234567890(*&^%$#@!)'
   ].forEach(arg => {
     it(`returns true for unique string: '${arg}'`, function() {
-      chai.assert.deepEqual(func(arg), true)
+      chai.assert.deepEqual(isUnique(arg), true)
     })
   });
 
@@ -23,7 +23,7 @@ describe('ch1-q1-isUnique: ', function() {
     '!@#$%^&*()(*#($&#(*$&#*($&#()))))'
   ].forEach(arg => {
     it(`returns false for string with dupes: '${arg}'`, function() {
-      chai.assert.deepEqual(func(arg), false)
+      chai.assert.deepEqual(isUnique(arg), false)
     })
   })
 })

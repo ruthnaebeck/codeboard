@@ -53,6 +53,7 @@ class Whiteboard extends Component {
       const script = document.createElement('script')
       script.src = `/questions-specs/${tests}`
       script.async = true
+      script.id = 'testSpecs'
       document.body.appendChild(script)
     }
   }

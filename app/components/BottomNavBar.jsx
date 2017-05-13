@@ -1,8 +1,9 @@
-/* global SpeechSynthesisUtterance Event mocha */
+/* global SpeechSynthesisUtterance Event mocha isUnique */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { saveQuestion } from '../reducers/userQuestions'
+import { Promise } from 'bluebird'
 
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
 import Paper from 'material-ui/Paper'
@@ -52,18 +53,54 @@ class BottomNavBar extends Component {
   }
 
   speak = (voice, words) => voice.speak(words)
-
   select = (index) => this.setState({selectedIndex: index})
   reset = () => this.setState({ prompt: '' })
-  runTests = (func) => mocha.run(func)
+  runTests = () => mocha.run()
+  resetTests = () => {
+    mocha.suite.suites = []
+    // let testSpecs = document.getElementById('testSpecs')
+    // if (testSpecs) testSpecs.remove()
+    // const tests = this.props.question.tests
+    // const script = document.createElement('script')
+    // script.src = `/questions-specs/${tests}`
+    // script.async = true
+    // script.id = 'testSpecs'
+    // document.body.appendChild(script)
+  }
 
   handlePlay = () => {
+    // Delete previous mocha stats / reports if they exist
+    const mochaDiv = document.getElementById('mocha')
+    const mochaStats = document.getElementById('mocha-stats')
+    const mochaReport = document.getElementById('mocha-report')
+    if (mochaStats) mochaDiv.removeChild(mochaStats)
+    if (mochaReport) mochaDiv.removeChild(mochaReport)
+    // Create or Update the user's code on the DOM
+    var codeScript = document.getElementById('runTests')
     const code = this.props.wbState.inputText
-    const test = this.props.question.tests
-    try {
-      const func = eval(`(${code})`)
-      console.log('func', func)
-      this.runTests(func)
+    if (codeScript) {
+      codeScript.firstChild.nodeValue = code
+      console.log('codeScript found')
+      console.log(codeScript)
+    } else {
+      codeScript = document.createElement('script')
+      codeScript.id = 'runTests'
+      codeScript.appendChild(document.createTextNode(code))
+      document.body.appendChild(codeScript)
+      console.log('codeScript appended')
+      console.log(codeScript)
+    }
+    // Run the mocha / chai tests, then reset
+    var runTests = Promise.promisify(this.runTests)
+    runTests()
+    .then(() => this.resetTests())
+    .catch(err => console.log('runTests Error', err))
+
+      // ***** OLD *****
+      // try {
+      // const func = eval(`(${code})`)
+      // console.log('func', func)
+      // this.runTests(func)
       // mocha.run()
       // for (let i=0; i<test.length; i++) {
       //   if (typeof func(test[i].output) === 'object') {
@@ -79,9 +116,9 @@ class BottomNavBar extends Component {
       //   prompt: 'Congrats, your function passed all of the tests',
       //   questionStatus: 'complete'
       // }, this.reset)
-    } catch (err) {
-      this.setState({ prompt: 'Please write a valid function' }, this.reset)
-    }
+    // } catch (err) {
+    //   this.setState({ prompt: 'Please write a valid function' }, this.reset)
+    // }
   }
 
   handleSave = () => {
