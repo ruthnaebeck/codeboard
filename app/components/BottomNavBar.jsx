@@ -55,17 +55,25 @@ class BottomNavBar extends Component {
   speak = (voice, words) => voice.speak(words)
   select = (index) => this.setState({selectedIndex: index})
   reset = () => this.setState({ prompt: '' })
-  runTests = () => mocha.run()
+
+  runTests = () => {
+    return new Promise(function(resolve, reject) {
+      resolve(mocha.run())
+    })
+    // mocha.run()
+  }
+
   resetTests = () => {
+    console.log('tests reset')
     mocha.suite.suites = []
-    // let testSpecs = document.getElementById('testSpecs')
-    // if (testSpecs) testSpecs.remove()
-    // const tests = this.props.question.tests
-    // const script = document.createElement('script')
-    // script.src = `/questions-specs/${tests}`
-    // script.async = true
-    // script.id = 'testSpecs'
-    // document.body.appendChild(script)
+    let testSpecs = document.getElementById('testSpecs')
+    if (testSpecs) testSpecs.remove()
+    const tests = this.props.question.tests
+    testSpecs = document.createElement('script')
+    testSpecs.src = `/questions-specs/${tests}`
+    testSpecs.async = true
+    testSpecs.id = 'testSpecs'
+    document.body.appendChild(testSpecs)
   }
 
   handlePlay = () => {
@@ -91,10 +99,21 @@ class BottomNavBar extends Component {
       console.log(codeScript)
     }
     // Run the mocha / chai tests, then reset
-    var runTests = Promise.promisify(this.runTests)
-    runTests()
-    .then(() => this.resetTests())
-    .catch(err => console.log('runTests Error', err))
+    this.runTests()
+    .then(() => console.log(mocha.suite.suites))
+    // .then(suites => {
+    //   mocha.suite.suites = []
+    //   console.log('suites', mocha.suite.suites)
+    // })
+    setTimeout(this.resetTests, 2000)
+    // .then(() => this.resetTests())
+    // var runTests = Promise.promisify(this.runTests)
+    // runTests()
+    // .then(function(results) {
+    //   console.log('results', results)
+    //   mocha.suite.suites = []
+    // })
+    // .catch(err => console.log('runTests Error', err))
 
       // ***** OLD *****
       // try {
