@@ -28,6 +28,9 @@ class AccountPage extends React.Component {
       statusOrder: null
     }
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ questions: nextProps.userQuestions })
+  }
   nameSort(questions) {
     let newNameOrder, sortedByName
     switch (this.state.nameOrder) {
@@ -47,7 +50,7 @@ class AccountPage extends React.Component {
   }
   categorySort(questions) {
     let newCategoryOrder, sortedByCategory
-    switch (this.state.nameOrder) {
+    switch (this.state.categoryOrder) {
     case upArrow:
       newCategoryOrder = downArrow
       sortedByCategory = questions.reverse()
@@ -63,9 +66,6 @@ class AccountPage extends React.Component {
     this.setState({ questions: sortedByCategory, categoryOrder: newCategoryOrder, nameOrder: null, difficultyOrder: null, statusOrder: null })
   }
   difficultySort(questions) {
-    const easy = questions.filter(question => question.question.difficulty.level === 'Easy'),
-    medium = questions.filter(question => question.question.difficulty.level === 'Medium'),
-    hard = questions.filter(question => question.question.difficulty.level === 'Hard')
     let newDifficultyOrder, sortedByDifficulty
     switch (this.state.difficultyOrder) {
     case upArrow:
@@ -78,7 +78,7 @@ class AccountPage extends React.Component {
       break
     default:
       newDifficultyOrder = upArrow
-      sortedByDifficulty = easy.concat(medium).concat(hard)
+      sortedByDifficulty = questions.sort((a, b) => a.question.difficulty_id > b.question.difficulty_id)
     }
     this.setState({ questions: sortedByDifficulty, difficultyOrder: newDifficultyOrder, nameOrder: null, statusOrder: null, categoryOrder: null })
   }
@@ -102,10 +102,7 @@ class AccountPage extends React.Component {
 
   render() {
     const user = this.props.auth || {}
-    let questions
-    if (this.state.questions.length > 0) questions = this.state.questions
-    else if (this.props.userQuestions) questions = this.props.userQuestions
-    else questions = []
+    const questions = this.state.questions || []
     return (
       <div>
         <Card>
