@@ -78,10 +78,10 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 2,
       name: 'Check Permutations',
       text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
+      tests: '1.02-checkPermutations.spec.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.medium.id,
-      solution: '1.02-checkPermutations.js',
-      tests: 'test'
+      solution: '1.02-checkPermutations.js'
     },
     // threeStacksInOne: {
     //   name: 'Three Stacks in One',

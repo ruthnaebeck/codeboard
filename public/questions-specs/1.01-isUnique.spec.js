@@ -1,8 +1,6 @@
 /* global chai describe it expect mocha isUnique */
 mocha.checkLeaks()
 
-// const func = () => true
-
 describe('Strings & Arrays - isUnique: ', function() {
   [
     'abcdefghi',

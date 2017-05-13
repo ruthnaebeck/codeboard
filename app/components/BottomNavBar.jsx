@@ -56,12 +56,9 @@ class BottomNavBar extends Component {
   select = (index) => this.setState({selectedIndex: index})
   reset = () => this.setState({ prompt: '' })
 
-  runTests = () => {
-    return new Promise(function(resolve, reject) {
-      resolve(mocha.run())
-    })
-    // mocha.run()
-  }
+  runTests = () => new Promise(function(resolve, reject) {
+    resolve(mocha.run())
+  })
 
   resetTests = () => {
     console.log('tests reset')
@@ -78,42 +75,28 @@ class BottomNavBar extends Component {
 
   handlePlay = () => {
     // Delete previous mocha stats / reports if they exist
-    const mochaDiv = document.getElementById('mocha')
-    const mochaStats = document.getElementById('mocha-stats')
-    const mochaReport = document.getElementById('mocha-report')
-    if (mochaStats) mochaDiv.removeChild(mochaStats)
-    if (mochaReport) mochaDiv.removeChild(mochaReport)
-    // Create or Update the user's code on the DOM
-    var codeScript = document.getElementById('runTests')
-    const code = this.props.wbState.inputText
-    if (codeScript) {
-      // codeScript.firstChild.nodeValue = code
-      codeScript.remove()
-      console.log('codeScript found')
-      console.log(codeScript)
+    try {
+      const mochaDiv = document.getElementById('mocha')
+      const mochaStats = document.getElementById('mocha-stats')
+      const mochaReport = document.getElementById('mocha-report')
+      if (mochaStats) mochaDiv.removeChild(mochaStats)
+      if (mochaReport) mochaDiv.removeChild(mochaReport)
+      // Create or Update the user's code on the DOM
+      var codeScript = document.getElementById('runTests')
+      const code = this.props.wbState.inputText
+      if (codeScript) codeScript.remove()
+      codeScript = document.createElement('script')
+      codeScript.id = 'runTests'
+      codeScript.appendChild(document.createTextNode(code))
+      document.body.appendChild(codeScript)
+      // Run the mocha / chai tests, then reset
+      this.runTests()
+      .then(() => console.log(mocha.suite.suites))
+      .catch(err => console.log('runTests Error', err))
+      setTimeout(this.resetTests, 1000)
+    } catch (err) {
+      this.setState({ prompt: 'Please write a valid function' }, this.reset)
     }
-    codeScript = document.createElement('script')
-    codeScript.id = 'runTests'
-    codeScript.appendChild(document.createTextNode(code))
-    document.body.appendChild(codeScript)
-    console.log('codeScript appended')
-    console.log(codeScript)
-    // Run the mocha / chai tests, then reset
-    this.runTests()
-    .then(() => console.log(mocha.suite.suites))
-    // .then(suites => {
-    //   mocha.suite.suites = []
-    //   console.log('suites', mocha.suite.suites)
-    // })
-    setTimeout(this.resetTests, 2000)
-    // .then(() => this.resetTests())
-    // var runTests = Promise.promisify(this.runTests)
-    // runTests()
-    // .then(function(results) {
-    //   console.log('results', results)
-    //   mocha.suite.suites = []
-    // })
-    // .catch(err => console.log('runTests Error', err))
 
       // ***** OLD *****
       // try {
