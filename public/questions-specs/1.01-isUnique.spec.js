@@ -5,7 +5,7 @@ mocha.checkLeaks()
 
 describe('Strings & Arrays - isUnique: ', function() {
   [
-    'abcdefghia',
+    'abcdefghi',
     'jklpoiuqwerzxcvmnsadf',
     '1234567890',
     'AaBbCcDdeFg1234567890(*&^%$#@!)'

@@ -87,17 +87,17 @@ class BottomNavBar extends Component {
     var codeScript = document.getElementById('runTests')
     const code = this.props.wbState.inputText
     if (codeScript) {
-      codeScript.firstChild.nodeValue = code
+      // codeScript.firstChild.nodeValue = code
+      codeScript.remove()
       console.log('codeScript found')
       console.log(codeScript)
-    } else {
-      codeScript = document.createElement('script')
-      codeScript.id = 'runTests'
-      codeScript.appendChild(document.createTextNode(code))
-      document.body.appendChild(codeScript)
-      console.log('codeScript appended')
-      console.log(codeScript)
     }
+    codeScript = document.createElement('script')
+    codeScript.id = 'runTests'
+    codeScript.appendChild(document.createTextNode(code))
+    document.body.appendChild(codeScript)
+    console.log('codeScript appended')
+    console.log(codeScript)
     // Run the mocha / chai tests, then reset
     this.runTests()
     .then(() => console.log(mocha.suite.suites))
