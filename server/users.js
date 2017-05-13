@@ -30,11 +30,16 @@ module.exports = require('express').Router()
   .get('/:id',
     mustBeLoggedIn,
     (req, res, next) =>
-      UserQuestion.findAll({where: {
-        user_id: req.params.id
-      },
+      UserQuestion.findAll({
+        where: {
+          user_id: req.params.id
+        },
         include: [
-          { model: Question, include: [Category, Difficulty] }
+          { model: Question,
+            include: [Category, Difficulty] }
+        ],
+        order: [
+        [ Question, 'name', 'ASC' ]
         ]
       })
       .then(userQuestions => {

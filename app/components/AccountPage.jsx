@@ -22,29 +22,82 @@ class AccountPage extends React.Component {
     super(props)
     this.state = {
       questions: [],
-      nameOrder: 'asc',
-      categoryOrder: '',
-      difficultyOrder: '',
-      statusOrder: ''
+      nameOrder: upArrow,
+      categoryOrder: null,
+      difficultyOrder: null,
+      statusOrder: null
     }
   }
   nameSort(questions) {
-    const sortedByName = this.state.nameOrder === 'asc' ? questions.reverse() : questions.sort((a, b) => a.question.name < b.question.name ? -1 : 1)
-    this.setState({ questions: sortedByName, nameOrder: '^' })
+    let newNameOrder, sortedByName
+    switch (this.state.nameOrder) {
+    case upArrow:
+      newNameOrder = downArrow
+      sortedByName = questions.reverse()
+      break
+    case downArrow:
+      newNameOrder = upArrow
+      sortedByName = questions.reverse()
+      break
+    default:
+      newNameOrder = upArrow
+      sortedByName = questions.sort((a, b) => a.question.name < b.question.name ? -1 : 1)
+    }
+    this.setState({ questions: sortedByName, nameOrder: newNameOrder, categoryOrder: null, difficultyOrder: null, statusOrder: null })
   }
   categorySort(questions) {
-    const sortedByCategory = questions.sort((a, b) => a.question.category.name < b.question.category.name ? -1 : 1)
-    this.setState({ questions: sortedByCategory })
+    let newCategoryOrder, sortedByCategory
+    switch (this.state.nameOrder) {
+    case upArrow:
+      newCategoryOrder = downArrow
+      sortedByCategory = questions.reverse()
+      break
+    case downArrow:
+      newCategoryOrder = upArrow
+      sortedByCategory = questions.reverse()
+      break
+    default:
+      newCategoryOrder = upArrow
+      sortedByCategory = questions.sort((a, b) => a.question.category.name < b.question.category.name ? -1 : 1)
+    }
+    this.setState({ questions: sortedByCategory, categoryOrder: newCategoryOrder, nameOrder: null, difficultyOrder: null, statusOrder: null })
   }
   difficultySort(questions) {
     const easy = questions.filter(question => question.question.difficulty.level === 'Easy'),
     medium = questions.filter(question => question.question.difficulty.level === 'Medium'),
     hard = questions.filter(question => question.question.difficulty.level === 'Hard')
-    this.setState({ questions: easy.concat(medium).concat(hard) })
+    let newDifficultyOrder, sortedByDifficulty
+    switch (this.state.difficultyOrder) {
+    case upArrow:
+      newDifficultyOrder = downArrow
+      sortedByDifficulty = questions.reverse()
+      break
+    case downArrow:
+      newDifficultyOrder = upArrow
+      sortedByDifficulty = questions.reverse()
+      break
+    default:
+      newDifficultyOrder = upArrow
+      sortedByDifficulty = easy.concat(medium).concat(hard)
+    }
+    this.setState({ questions: sortedByDifficulty, difficultyOrder: newDifficultyOrder, nameOrder: null, statusOrder: null, categoryOrder: null })
   }
   statusSort(questions) {
-    const sortedByStatus = questions.sort((a, b) => a.status > b.status ? -1 : 1)
-    this.setState({ questions: sortedByStatus })
+    let newStatusOrder, sortedByStatus
+    switch (this.state.statusOrder) {
+    case upArrow:
+      newStatusOrder = downArrow
+      sortedByStatus = questions.reverse()
+      break
+    case downArrow:
+      newStatusOrder = upArrow
+      sortedByStatus = questions.reverse()
+      break
+    default:
+      newStatusOrder = downArrow
+      sortedByStatus = questions.sort((a, b) => a.status < b.status ? 1 : -1)
+    }
+    this.setState({ questions: sortedByStatus, statusOrder: newStatusOrder, difficultyOrder: null, nameOrder: null, categoryOrder: null })
   }
 
   render() {
@@ -63,10 +116,18 @@ class AccountPage extends React.Component {
             <Table >
               <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                 <TableRow>
-                  <TableHeaderColumn><FlatButton icon={upArrow} onTouchTap={() => this.nameSort(questions)}>Question Name</FlatButton></TableHeaderColumn>
-                  <TableHeaderColumn><FlatButton onTouchTap={() => this.categorySort(questions)}>Category</FlatButton></TableHeaderColumn>
-                  <TableHeaderColumn><FlatButton onTouchTap={() => this.difficultySort(questions)}>Difficulty</FlatButton></TableHeaderColumn>
-                  <TableHeaderColumn><FlatButton onTouchTap={() => this.statusSort(questions)}>Status</FlatButton></TableHeaderColumn>
+                  <TableHeaderColumn>
+                    <FlatButton icon={this.state.nameOrder} onTouchTap={() => this.nameSort(questions)}>Question Name</FlatButton>
+                  </TableHeaderColumn>
+                  <TableHeaderColumn style={{ paddingLeft: '5px' }}>
+                    <FlatButton icon={this.state.categoryOrder} onTouchTap={() => this.categorySort(questions)}>Category</FlatButton>
+                  </TableHeaderColumn>
+                  <TableHeaderColumn style={{ paddingLeft: '5px' }}>
+                    <FlatButton icon={this.state.difficultyOrder} onTouchTap={() => this.difficultySort(questions)}>Difficulty</FlatButton>
+                  </TableHeaderColumn>
+                  <TableHeaderColumn style={{ paddingLeft: '0px' }}>
+                    <FlatButton icon={this.state.statusOrder} onTouchTap={() => this.statusSort(questions)}>Status</FlatButton>
+                  </TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
