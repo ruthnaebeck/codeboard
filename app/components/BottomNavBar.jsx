@@ -56,9 +56,7 @@ class BottomNavBar extends Component {
   select = (index) => this.setState({selectedIndex: index})
   reset = () => this.setState({ prompt: '' })
 
-  runTests = () => new Promise(function(resolve, reject) {
-    resolve(mocha.run())
-  })
+  runTests = () => mocha.run()
 
   checkTests = () => {
     const mochaTests = mocha.suite.suites[0].tests
@@ -104,8 +102,6 @@ class BottomNavBar extends Component {
       document.body.appendChild(codeScript)
       // Run the mocha / chai tests
       this.runTests()
-      .then(() => mocha.suite.suites)
-      .catch(err => console.log('runTests Error', err))
       // Check the tests
       setTimeout(this.checkTests, 300)
       // Reset the tests
