@@ -8,7 +8,6 @@ describe('Strings & Arrays - isUnique: ', function() {
     '1234567890',
     'AaBbCcDdeFg1234567890(*&^%$#@!)'
   ].forEach(arg => {
-    // Your function failed
     it('to return true for a unique string', function() {
       chai.assert.deepEqual(isUnique(arg), true)
     })
@@ -21,7 +20,6 @@ describe('Strings & Arrays - isUnique: ', function() {
     '1234567890asdklf1',
     '!@#$%^&*()(*#($&#(*$&#*($&#()))))'
   ].forEach(arg => {
-    // Your function failed
     it('to return false for a string with duplicates', function() {
       chai.assert.deepEqual(isUnique(arg), false)
     })

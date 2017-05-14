@@ -1,4 +1,4 @@
-/* global chai describe it expect mocha func */
+/* global chai describe it expect mocha checkPermutations */
 mocha.checkLeaks()
 
 describe('Strings & Arrays - Check Permutations', function() {
@@ -8,8 +8,9 @@ describe('Strings & Arrays - Check Permutations', function() {
     ['1234567812345678', '8877665544332211'],
     ['icarraci', 'carcarii']
   ].forEach(args => {
-    it(`returns true for strings that are permutations: '${args[0]}' & '${args[1]}'`, function() {
-      chai.expect(func(args[0], args[1])).to.be.true
+    // Your function failed
+    it('to return true for strings that are permutations', function() {
+      chai.expect(checkPermutations(args[0], args[1])).to.be.true
     })
   });
 
@@ -19,8 +20,8 @@ describe('Strings & Arrays - Check Permutations', function() {
     ['1122334455667788', '9911223344556677'],
     ['45678', '1239']
   ].forEach(args => {
-    it(`returns false for strings that are not permutations: '${args[0]}' & '${args[1]}'`, function() {
-      chai.expect(func(args[0], args[1])).to.be.false
+    it('to return false for strings that are not permutations', function() {
+      chai.expect(checkPermutations(args[0], args[1])).to.be.false
     })
   })
 })

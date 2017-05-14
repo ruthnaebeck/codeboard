@@ -47,6 +47,8 @@ class Whiteboard extends Component {
         if (userQuestion.length) this.setState({ inputText: userQuestion[0].user_answer })
       }
       this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
+    } else {
+      this.setState({ inputText: nextProps.question.start_function })
     }
     const tests = nextProps.question.tests
     if (tests) {

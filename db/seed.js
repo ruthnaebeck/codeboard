@@ -69,15 +69,17 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 1,
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
+      start_function: 'function isUnique() {}',
       tests: '1.01-isUnique.spec.js',
+      solution: '1.01-isUnique.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
-      solution: '1.01-isUnique.js'
     },
     checkPermutations: {
       id: 2,
       name: 'Check Permutations',
       text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
+      start_function: 'function checkPermutations() {}',
       tests: '1.02-checkPermutations.spec.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.medium.id,
