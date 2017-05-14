@@ -105,16 +105,16 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.linkedLists.id,
       difficulty_id: difficulties.medium.id
     },
-    // threeStacksInOne: {
-    //   id: 301,
-    //   name: 'Three Stacks in One',
-    //   text: 'Describe how you could use a single array to implement three stacks.',
-    //   start_function: 'function threeStacksInOne() {}',
-    //   tests: '3.01-threeStacksInOne.spec.js',
-    //   solution: '3.01-threeStacksInOne.js',
-    //   category_id: categories.stacksQueues.id,
-    //   difficulty_id: difficulties.medium.id
-    // },
+    threeStacksInOne: {
+      id: 301,
+      name: 'Three Stacks in One',
+      text: 'Write a class that uses a single array to implement three stacks. The class should have push, pop, and peek methods.',
+      start_function: 'var TripleStack = class{\n  constructor() {}\n}',
+      tests: '3.01-threeStacksInOne.spec.js',
+      solution: '3.01-threeStacksInOne.js',
+      category_id: categories.stacksQueues.id,
+      difficulty_id: difficulties.medium.id
+    },
     // routesBetweenNodes: {
     //   name: 'Routes Between Nodes',
     //   text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
