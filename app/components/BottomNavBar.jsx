@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { saveQuestion } from '../reducers/userQuestions'
-import { Promise } from 'bluebird'
 
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
 import Paper from 'material-ui/Paper'
@@ -62,7 +61,9 @@ class BottomNavBar extends Component {
     const mochaTests = mocha.suite.suites[0].tests
     for (let i = 0; i < mochaTests.length; i++) {
       if (mochaTests[i].state === 'failed') {
-        this.setState({ prompt: `Your function failed ${mochaTests[i].title}` }, this.reset)
+        this.setState({
+          prompt: `Your function failed ${mochaTests[i].title}`
+        }, this.reset)
         return
       }
     }

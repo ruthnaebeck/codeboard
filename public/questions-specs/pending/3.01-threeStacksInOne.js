@@ -1,5 +1,6 @@
 // STACK SIZE IS DYNAMIC
-export class TripleStack {
+
+class TripleStack {
   constructor() {
     this._stack = []
     this._stackLengths = [0, 0, 0]
@@ -44,10 +45,9 @@ export class TripleStack {
   }
 }
 
-// |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
 
-// BASED OFF FIRST SOLUTION IN BOOK
-// STACKS HAVE A FIXED SIZE
+// IF STACKS HAVE A FIXED SIZE
+
 class FixedMultiStack {
   constructor(numOfStacks = 3, stackSize = 1) {
     this._numOfStacks = numOfStacks
