@@ -9,9 +9,10 @@ describe('Strings & Arrays - Check Permutations', function() {
     ['icarraci', 'carcarii']
   ].forEach(args => {
     // Your function failed
-    it('to return true for strings that are permutations', function() {
-      chai.expect(checkPermutations(args[0], args[1])).to.be.true
-    })
+    it('Your function failed to return true for strings that are permutations',
+      function() {
+        chai.expect(checkPermutations(args[0], args[1])).to.be.true
+      })
   });
 
   [
@@ -20,8 +21,9 @@ describe('Strings & Arrays - Check Permutations', function() {
     ['1122334455667788', '9911223344556677'],
     ['45678', '1239']
   ].forEach(args => {
-    it('to return false for strings that are not permutations', function() {
-      chai.expect(checkPermutations(args[0], args[1])).to.be.false
-    })
+    it('Your function failed to return false for strings that are not permutations',
+      function() {
+        chai.expect(checkPermutations(args[0], args[1])).to.be.false
+      })
   })
 })

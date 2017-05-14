@@ -1,10 +1,10 @@
 /* global chai describe it helperLLtoArr helperArrToLL removeDupes */
 
 describe('Linked Lists - Remove Duplicates', function() {
-  it('to consider the value null', function() {
+  it('Your function failed to consider the argument null', function() {
     chai.expect(removeDupes(null)).to.be.null
   })
-  it('to consider the value undefined', function() {
+  it('Your function failed to consider the argument undefined', function() {
     chai.expect(removeDupes(undefined)).to.be.undefined
   });
 
@@ -18,11 +18,12 @@ describe('Linked Lists - Remove Duplicates', function() {
       expected: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     }
   ].forEach(context => {
-    it('to return a linked list, originally with no duplicates', function() {
-      const list = helperArrToLL(context.list)
-      removeDupes(list)
-      chai.expect(helperLLtoArr(list)).to.eql(context.expected)
-    })
+    it('Your function failed to return a linked list, originally with no duplicates',
+      function() {
+        const list = helperArrToLL(context.list)
+        removeDupes(list)
+        chai.expect(helperLLtoArr(list)).to.eql(context.expected)
+      })
   });
 
   [
@@ -43,10 +44,11 @@ describe('Linked Lists - Remove Duplicates', function() {
       expected: [8, 9, 6, 4, 2, 3, 1]
     }
   ].forEach(context => {
-    it('to remove duplicates from a linked list that originally had duplicates', function() {
-      const list = helperArrToLL(context.list)
-      removeDupes(list)
-      chai.expect(helperLLtoArr(list)).to.eql(context.expected)
-    })
+    it('Your function failed to remove duplicates from a linked list that originally had duplicates',
+      function() {
+        const list = helperArrToLL(context.list)
+        removeDupes(list)
+        chai.expect(helperLLtoArr(list)).to.eql(context.expected)
+      })
   })
 })

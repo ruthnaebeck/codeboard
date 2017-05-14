@@ -62,7 +62,7 @@ class BottomNavBar extends Component {
     for (let i = 0; i < mochaTests.length; i++) {
       if (mochaTests[i].state === 'failed') {
         this.setState({
-          prompt: `Your function failed ${mochaTests[i].title}`
+          prompt: mochaTests[i].title
         }, this.reset)
         return
       }
