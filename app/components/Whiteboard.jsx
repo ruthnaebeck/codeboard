@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance test Event */
+/* global SpeechSynthesisUtterance Event */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -45,6 +45,7 @@ class Whiteboard extends Component {
             question.question_id === this.props.question.id
           )
         if (userQuestion.length) this.setState({ inputText: userQuestion[0].user_answer })
+        else this.setState({ inputText: nextProps.question.start_function })
       }
       this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
     } else {

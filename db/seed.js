@@ -81,9 +81,19 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
       start_function: 'function checkPermutations() {}',
       tests: '1.02-checkPermutations.spec.js',
+      solution: '1.02-checkPermutations.js',
       category_id: categories.stringsArrays.id,
-      difficulty_id: difficulties.medium.id,
-      solution: '1.02-checkPermutations.js'
+      difficulty_id: difficulties.medium.id
+    },
+    removeDupes: {
+      id: 3,
+      name: 'Remove Duplicates',
+      text: 'Given an unsorted linked list, write code to remove the duplicates.',
+      start_function: 'function removeDupes() {}',
+      tests: '2.01-removeDupes.spec.js',
+      solution: '2.01-removeDupes.js',
+      category_id: categories.linkedLists.id,
+      difficulty_id: difficulties.medium.id
     },
     // threeStacksInOne: {
     //   name: 'Three Stacks in One',
@@ -98,17 +108,6 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     //   category_id: categories.treesGraphs.id,
     //   difficulty_id: difficulties.hard.id,
     //   solution: '4.01-routesBetweenNodes.js'
-    // },
-    // removeDupes: {
-    //   name: 'Remove Duplicates',
-    //   text: 'Write code to remove duplicates from an unsorted linked list.',
-    //   tests: [{input: null, output: null, description: 'with an input of null.'},
-    //         {input: undefined, output: undefined, description: 'with an input of undefined.'},
-    //         {input: { value: 5, next: null }, output: { value: 5, next: null }, description: 'with a linked list that contains a single value.'},
-    //         {input: 1, output: 1, description: 'of '}],
-    //   category_id: categories.linkedLists.id,
-    //   difficulty_id: difficulties.medium.id,
-    //   solution: '2.01-removeDupes.js'
     // },
   }))
 
