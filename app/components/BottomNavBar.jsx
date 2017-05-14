@@ -60,8 +60,21 @@ class BottomNavBar extends Component {
     resolve(mocha.run())
   })
 
+  checkTests = () => {
+    const mochaTests = mocha.suite.suites[0].tests
+    for (let i = 0; i < mochaTests.length; i++) {
+      if (mochaTests[i].state === 'failed') {
+        this.setState({ prompt: `Your function failed ${mochaTests[i].title}` }, this.reset)
+        return
+      }
+    }
+    this.setState({
+      prompt: 'Congrats, you passed all of the tests',
+      questionStatus: 'complete'
+    }, this.reset)
+  }
+
   resetTests = () => {
-    console.log('tests reset')
     mocha.suite.suites = []
     let testSpecs = document.getElementById('testSpecs')
     if (testSpecs) testSpecs.remove()
@@ -74,8 +87,8 @@ class BottomNavBar extends Component {
   }
 
   handlePlay = () => {
-    // Delete previous mocha stats / reports if they exist
     try {
+      // Delete previous mocha stats / reports if they exist
       const mochaDiv = document.getElementById('mocha')
       const mochaStats = document.getElementById('mocha-stats')
       const mochaReport = document.getElementById('mocha-report')
@@ -89,38 +102,17 @@ class BottomNavBar extends Component {
       codeScript.id = 'runTests'
       codeScript.appendChild(document.createTextNode(code))
       document.body.appendChild(codeScript)
-      // Run the mocha / chai tests, then reset
+      // Run the mocha / chai tests
       this.runTests()
-      .then(() => console.log(mocha.suite.suites))
+      .then(() => mocha.suite.suites)
       .catch(err => console.log('runTests Error', err))
+      // Check the tests
+      setTimeout(this.checkTests, 300)
+      // Reset the tests
       setTimeout(this.resetTests, 1000)
     } catch (err) {
       this.setState({ prompt: 'Please write a valid function' }, this.reset)
     }
-
-      // ***** OLD *****
-      // try {
-      // const func = eval(`(${code})`)
-      // console.log('func', func)
-      // this.runTests(func)
-      // mocha.run()
-      // for (let i=0; i<test.length; i++) {
-      //   if (typeof func(test[i].output) === 'object') {
-      //     this.setState({ prompt: `This site cannot currently verify objects.` }, this.reset)
-      //     return
-      //   }
-      //   if (func(...test[i].input) !== test[i].output) {
-      //     this.setState({ prompt: `Your function failed ${test[i].description}` }, this.reset)
-      //     return
-      //   }
-      // }
-      // this.setState({
-      //   prompt: 'Congrats, your function passed all of the tests',
-      //   questionStatus: 'complete'
-      // }, this.reset)
-    // } catch (err) {
-    //   this.setState({ prompt: 'Please write a valid function' }, this.reset)
-    // }
   }
 
   handleSave = () => {
