@@ -58,19 +58,25 @@ class BottomNavBar extends Component {
   runTests = () => mocha.run()
 
   checkTests = () => {
-    const mochaTests = mocha.suite.suites[0].tests
-    for (let i = 0; i < mochaTests.length; i++) {
-      if (mochaTests[i].state === 'failed') {
-        this.setState({
-          prompt: mochaTests[i].title
-        }, this.reset)
-        return
+    try {
+      const mochaTests = mocha.suite.suites[0].tests
+      for (let i = 0; i < mochaTests.length; i++) {
+        if (mochaTests[i].state === 'failed') {
+          this.setState({
+            prompt: mochaTests[i].title
+          }, this.reset)
+          return
+        }
       }
+      this.setState({
+        prompt: 'Congrats, you passed all of the tests',
+        questionStatus: 'complete'
+      }, this.reset)
+    } catch (err) {
+      this.setState({
+        prompt: 'Please run the code again.'
+      }, this.reset)
     }
-    this.setState({
-      prompt: 'Congrats, you passed all of the tests',
-      questionStatus: 'complete'
-    }, this.reset)
   }
 
   resetTests = () => {

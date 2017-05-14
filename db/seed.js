@@ -156,6 +156,16 @@ const hints = seed(Hint, ({ questions }) =>
       text: 'Try using two pointers where the second one searches ahead of the first one.',
       question_id: questions.removeDupes.id
     },
+    kthToLast1: {
+      id: 2021,
+      text: "Since you don't know the linked list's size, how can you compute it?",
+      question_id: questions.kthToLast.id
+    },
+    kthToLast2: {
+      id: 2022,
+      text: 'What if you had two pointers pointing to adjacent nodes?',
+      question_id: questions.kthToLast.id
+    },
   }))
 
 const userQuestions = seed(userQuestion, ({ users, questions }) =>

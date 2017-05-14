@@ -21,6 +21,7 @@ class Whiteboard extends Component {
     super(props)
     this.state = {
       inputText: '',
+      wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
       spoken: false
@@ -33,7 +34,7 @@ class Whiteboard extends Component {
     textInput.addEventListener('myscript-text-web-result', function(e) {
       // Can you do this outside the listener? -- LOW PRIORITY
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
-      wbThis.setState({ inputText: inputTextPath })
+      wbThis.setState({ wbText: inputTextPath })
     })
   }
 
