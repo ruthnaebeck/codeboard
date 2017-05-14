@@ -37,7 +37,7 @@ describe('Linked Lists - Kth to Last', function() {
       k: 16
     }
   ].forEach(context => {
-    it('to get the kth to last element in the list', function() {
+    it('to get the K to last element in the list', function() {
       let list = helperArrToLL(context.list)
       let expected = context.list[context.list.length - 1 - context.k]
       chai.expect(kthToLast(list, context.k)).to.eql(expected)
