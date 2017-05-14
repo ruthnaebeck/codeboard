@@ -166,6 +166,16 @@ const hints = seed(Hint, ({ questions }) =>
       text: 'What if you had two pointers pointing to adjacent nodes?',
       question_id: questions.kthToLast.id
     },
+    threeStacksInOne1: {
+      id: 3011,
+      text: 'A stack is a data structure in which the most recently added elements are removed first.',
+      question_id: questions.threeStacksInOne.id
+    },
+    threeStacksInOne2: {
+      id: 3012,
+      text: 'You could simulate three stacks in an array by allocating the first third of the array to the first stack, the second third to the second stack, and the final third to the third stack.',
+      question_id: questions.threeStacksInOne.id
+    },
   }))
 
 const userQuestions = seed(userQuestion, ({ users, questions }) =>
