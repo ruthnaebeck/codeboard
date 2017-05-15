@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
-import { Card, CardMedia, CardTitle } from 'material-ui/Card'
+import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card'
 import Drawer from 'material-ui/Drawer'
+import Paper from 'material-ui/Paper'
 import {List, ListItem} from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
@@ -12,6 +13,14 @@ import Subheader from 'material-ui/Subheader'
 import { Link } from 'react-router'
 
 import { setId } from '../reducers/question'
+
+const paperStyle = {
+  height: 200,
+  width: 300,
+  margin: 20,
+  textAlign: 'center',
+  display: 'inline-block'
+}
 
 export class Home extends React.Component {
   constructor(props) {
@@ -154,6 +163,20 @@ export class Home extends React.Component {
             </div>
           </div>
         </CardMedia>
+        <CardTitle title="HELLO" />
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-4 col-centered">
+                <Paper style={paperStyle} zDepth={1}></Paper>
+              </div>
+              <div className="col-sm-4 col-centered">
+                <Paper style={paperStyle} zDepth={1}></Paper>
+              </div>
+              <div className="col-sm-4 col-centered">
+                <Paper style={paperStyle} zDepth={1}></Paper>
+              </div>
+            </div>
+          </div>
       </Card>
     )
   }

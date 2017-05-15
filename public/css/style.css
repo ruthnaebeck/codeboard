@@ -73,6 +73,11 @@ paper-button[toggles][active] {
   width: 100%;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
 .wbPaper {
     height: calc(100vh - 140px);
     width: 100%;
