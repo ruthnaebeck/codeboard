@@ -3,16 +3,21 @@ import axios from 'axios'
 /* ------------- ACTIONS ---------------- */
 
 const AUTHENTICATED = 'AUTHENTICATED'
+const UPDATED_ACCOUNT = 'UPDATED_ACCOUNT'
 
 /* ------------- ACTION CREATER ---------------- */
 
 export const authenticated = user => ({ type: AUTHENTICATED, user })
+
+export const updatedAccount = user => ({type: UPDATED_ACCOUNT, user})
 
 /* ------------- REDUCERS ---------------- */
 
 export default function reducer(state=null, action) {
   switch (action.type) {
   case AUTHENTICATED:
+    return action.user
+  case UPDATED_ACCOUNT:
     return action.user
   default:
     return state
@@ -33,6 +38,12 @@ export const login = (username, password, success, fail) =>
       fail()
     })
   }
+
+export const updateAccount = (id, name, email) =>
+  dispatch =>
+    axios.put(`/api/users/${id}`, {name, email})
+    .then(res => dispatch(updatedAccount(res.data)))
+      .catch(console.error)
 
 export const logout = () =>
   dispatch =>

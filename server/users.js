@@ -71,3 +71,9 @@ module.exports = require('express').Router()
         res.json(userQuestions)
       }))
       .catch(next))
+    .put('/:id', mustBeLoggedIn,
+      (req, res, next) =>
+      User.findById(req.params.id)
+      .then(user => (user.update({ name: req.body.name, email: req.body.email })))
+      .then(user => res.json(user))
+      .catch(next))
