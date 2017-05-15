@@ -1,4 +1,4 @@
-/* global whiteboard */
+/* global whiteboard draws */
 window.whiteboard = new window.EventEmitter();
 
 (function() {
@@ -105,8 +105,10 @@ window.whiteboard = new window.EventEmitter();
     else ctx.lineWidth = 5
     ctx.moveTo(start.x, start.y)
     ctx.lineTo(end.x, end.y)
+    draws.push({ start: start, end: end, color: strokeColor })
     ctx.closePath()
     ctx.stroke()
+    // console.log(draws)
 
     // This part saves the history
     // var draws = []

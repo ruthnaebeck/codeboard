@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance Event mocha isUnique */
+/* global SpeechSynthesisUtterance Event mocha draws */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -141,6 +141,7 @@ class BottomNavBar extends Component {
       user_id: uId,
       question_id: qId,
       user_answer: this.props.wbState.inputText,
+      user_drawing: draws,
       status: this.state.questionStatus
     }
     this.props.saveQuestion(uId, qId, question)
