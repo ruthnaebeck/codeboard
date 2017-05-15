@@ -1,18 +1,8 @@
-// Helper Function
-const errorCheck = (graph, start) => {
-  if (!Array.isArray(graph)) throw Error('invalid graph')
-  if (!graph[start]) throw Error('invalid start node')
-}
-
-// |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
-
-// E = Edges
-// V = Vertices
-
-// O(E) TIME --- O(V) SPACE
 // ITERATIVE BREADTH FIRST SEARCH
+// O(E) TIME --- O(V) SPACE
+// E = Edges --- V = Vertices
 
-export function graphSearchBFS(graph, start, target) {
+function routesBetweenNodes(graph, start, target) {
   errorCheck(graph, start)
 
   if (start === target) return true
@@ -34,12 +24,18 @@ export function graphSearchBFS(graph, start, target) {
   return false
 }
 
-// |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
 
-// O(E) TIME --- O(V) SPACE
+// Helper Function
+function errorCheck(graph, start) {
+  if (!Array.isArray(graph)) throw Error('invalid graph')
+  if (!graph[start]) throw Error('invalid start node')
+}
+
+
 // RECURSIVE DEPTH FIRST SEARCH
+// O(E) TIME --- O(V) SPACE
 
-export function graphSearchDFS(graph, start, target) {
+function routesBetweenNodes(graph, start, target) {
   errorCheck(graph, start)
   return searchDFS(graph, start, target, new Set())
 }

@@ -125,13 +125,16 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.stacksQueues.id,
       difficulty_id: difficulties.medium.id
     },
-    // routesBetweenNodes: {
-    //   name: 'Routes Between Nodes',
-    //   text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
-    //   category_id: categories.treesGraphs.id,
-    //   difficulty_id: difficulties.hard.id,
-    //   solution: '4.01-routesBetweenNodes.js'
-    // },
+    routesBetweenNodes: {
+      id: 401,
+      name: 'Routes Between Nodes',
+      text: 'Given a directed graph, design an algorithm to determine if there is a route between two nodes by returning true or false.',
+      start_function: 'function routesBetweenNodes(graph, start, target) {}',
+      tests: '4.01-routesBetweenNodes.spec.js',
+      solution: '4.01-routesBetweenNodes.js',
+      category_id: categories.treesGraphs.id,
+      difficulty_id: difficulties.hard.id
+    },
   }))
 
 const hints = seed(Hint, ({ questions }) =>
@@ -195,6 +198,16 @@ const hints = seed(Hint, ({ questions }) =>
       id: 3042,
       text: 'You can remove the oldest item from a stack by repeatedly removing the newest item, inserting those items into a temporary stack, until you are left with one element.',
       question_id: questions.queueViaStacks.id
+    },
+    routesBetweenNodes1: {
+      id: 4011,
+      text: 'Try a breadth first search.',
+      question_id: questions.routesBetweenNodes.id
+    },
+    routesBetweenNodes2: {
+      id: 4012,
+      text: 'The breadth first search should be iterative.',
+      question_id: questions.routesBetweenNodes.id
     },
   }))
 
