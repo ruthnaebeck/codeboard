@@ -115,6 +115,16 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.stacksQueues.id,
       difficulty_id: difficulties.medium.id
     },
+    queueViaStacks: {
+      id: 304,
+      name: 'Queue via Stacks',
+      text: 'Write a class that implements a queue using two stacks. The class should have enqueue and dequeue methods.',
+      start_function: 'var queueViaStacks = class{\n  constructor() {}\n}',
+      tests: '3.04-queueViaStacks.spec.js',
+      solution: '3.04-queueViaStacks.js',
+      category_id: categories.stacksQueues.id,
+      difficulty_id: difficulties.medium.id
+    },
     // routesBetweenNodes: {
     //   name: 'Routes Between Nodes',
     //   text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
@@ -175,6 +185,16 @@ const hints = seed(Hint, ({ questions }) =>
       id: 3012,
       text: 'You could simulate three stacks in an array by allocating the first third of the array to the first stack, the second third to the second stack, and the final third to the third stack.',
       question_id: questions.threeStacksInOne.id
+    },
+    queueViaStacks1: {
+      id: 3041,
+      text: 'The major difference between a queue and a stack is the order of elements. A queue removes the oldest item and a stack removes the newest item.',
+      question_id: questions.queueViaStacks.id
+    },
+    queueViaStacks2: {
+      id: 3042,
+      text: 'You can remove the oldest item from a stack by repeatedly removing the newest item, inserting those items into a temporary stack, until you are left with one element.',
+      question_id: questions.queueViaStacks.id
     },
   }))
 
