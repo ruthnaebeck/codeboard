@@ -30,30 +30,30 @@ export class Home extends React.Component {
   render() {
     const tilesData = [
       {
-        img: '/images/screenshot.png',
+        img: '/images/how-to-1.png',
         title: '1. Select question by category or difficulty'
       },
       {
-        img: '/images/screenshot.png',
+        img: '/images/how-to-2.png',
         title: '2. App speaks the question prompt'
       },
       {
-        img: '/images/screenshot.png',
+        img: '/images/how-to-3.png',
         title: '3. Code with whiteboard and text editor'
       },
       {
-        img: '/images/screenshot.png',
+        img: '/images/how-to-4.png',
         title: '4. Ask for hints and test your code'
       },
       {
-        img: '/images/screenshot.png',
+        img: '/images/how-to-5.png',
         title: '5. Sign in to save your work'
       }
     ]
     return (
       <Card>
         <CardMedia
-          overlay={<CardTitle title="Practice for the technical portion of your developer interview" subtitle="" />}>
+          overlay={<CardTitle title="Practice for your technical interview" subtitle="This app simulates the experience of a technical interview by providing only audio feedback. With practice, this app will help sharpen your acuity and develop the skills to ace your interview. " />}>
           <div className="splash row"
             style={{ backgroundImage: 'url(/images/woman_coding.jpg)' }}>
             <div className="col-sm-12 started">
