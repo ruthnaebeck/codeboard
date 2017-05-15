@@ -69,10 +69,6 @@ paper-button[toggles][active] {
     width: 1000px;
 }
 
-.container-fluid {
-  width: 100%;
-}
-
 .wbPaper {
     height: calc(100vh - 140px);
     width: 100%;
@@ -82,7 +78,7 @@ paper-button[toggles][active] {
     position: relative;
 }
 
-/*.colEdit {
+.colEdit {
     padding-right: 3px
 }
 
@@ -92,7 +88,7 @@ paper-button[toggles][active] {
 
 .colSol {
     padding-left: 3px;
-}*/
+}
 
 #code {
     text-align: left
@@ -112,4 +108,33 @@ paper-button[toggles][active] {
 
 .snackbar {
     text-align: center;
+}
+
+/* Canvas Styling */
+
+#paint {
+  position: relative;
+  top: 0; left: 0;
+  height: calc(100vh - 170px);
+  width: 100%;
+}
+
+#color-selector {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 200px;
+    background: black;
+}
+
+.marker {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    /*float: left;*/
+}
+
+.marker.selected {
+    border: 2px solid black;
 }

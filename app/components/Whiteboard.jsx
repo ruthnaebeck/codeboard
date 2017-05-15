@@ -12,10 +12,7 @@ import 'brace/theme/github'
 
 import BottomNavBar from './BottomNavBar'
 import Popup from './Popup'
-
-const _ = require('lodash')
-const fp = require('lodash/fp')
-const object = require('lodash/fp/object')
+import Canvas from './Canvas'
 
 class Whiteboard extends Component {
   constructor(props) {
@@ -29,13 +26,14 @@ class Whiteboard extends Component {
   }
 
   componentDidMount() {
-    const textInput = document.getElementById('textInput')
-    const wbThis = this
-    textInput.addEventListener('myscript-text-web-result', function(e) {
-      // Can you do this outside the listener? -- LOW PRIORITY
-      const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
-      wbThis.setState({ wbText: inputTextPath })
-    })
+    const scriptEe = document.createElement('script')
+    scriptEe.src = '/canvas_helpers/event-emitter.js'
+    scriptEe.async = true
+    document.body.appendChild(scriptEe)
+    const scriptc = document.createElement('script')
+    scriptc.src = '/canvas_helpers/canvas.js'
+    scriptc.async = true
+    document.body.appendChild(scriptc)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -156,11 +154,7 @@ class Whiteboard extends Component {
                 onClick={() => this.handleWB('right')}>
                 <RightArrow />
               </span>
-              <myscript-text-web id="textInput"
-                applicationkey="b3eb3c07-12df-4809-8bc5-18715cf3b24e"
-                hmackey="bc9ba480-0640-44bc-b9e5-8480e9954577"
-                language="en_US"
-                recognitioncandidates="1"></myscript-text-web>
+              <Canvas />
             </Paper>
           </div>
           <div id="sol" className={`col-hide colSol`}>
