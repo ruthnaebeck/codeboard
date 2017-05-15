@@ -108,6 +108,13 @@ window.whiteboard = new window.EventEmitter();
     ctx.closePath()
     ctx.stroke()
 
+    // This part saves the history
+    // var draws = []
+    // draws.push({ start: start, end: end, color: color })
+
+    // This piece draws the history:
+    // draws.forEach(drawObj => whiteboard.draw(drawObj.start, drawObj.end, drawObj.color))
+
         // If shouldBroadcast is truthy, we will emit a draw event to listeners
         // with the start, end and color data.
     if (shouldBroadcast) {
