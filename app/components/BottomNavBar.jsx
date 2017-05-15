@@ -193,7 +193,7 @@ class BottomNavBar extends Component {
       return (
         <div>
           <Paper zDepth={1}>
-            <BottomNavigation selectedIndex={this.state.selectedIndex}>
+            <BottomNavigation selectedIndex={this.state.selectedIndex} >
               <BottomNavigationItem
                 label="Repeat Question"
                 icon={repeat}
@@ -246,7 +246,12 @@ class BottomNavBar extends Component {
           >
             <List>
             {helpTopics.map(topic =>
-              <ListItem key={topic.topic} primaryText={topic.topic} leftIcon={topic.icon} />
+              <ListItem
+                key={topic.topic}
+                primaryText={topic.topic}
+                leftIcon={topic.icon}
+                disabled={true}
+                />
             )}
             </List>
           </Dialog>
@@ -256,7 +261,7 @@ class BottomNavBar extends Component {
       return (
       <div>
         <Paper zDepth={1}>
-          <BottomNavigation selectedIndex={this.state.selectedIndex}>
+          <BottomNavigation selectedIndex={this.state.selectedIndex} >
             <BottomNavigationItem
               label="Repeat Question"
               icon={repeat}
@@ -296,7 +301,11 @@ class BottomNavBar extends Component {
         >
           <List>
           {helpTopics.map(topic =>
-            <ListItem key={topic.topic} primaryText={topic.topic} leftIcon={topic.icon} />
+            <ListItem
+              key={topic.topic}
+              primaryText={topic.topic}
+              leftIcon={topic.icon}
+              disabled={true} />
           )}
           </List>
         </Dialog>

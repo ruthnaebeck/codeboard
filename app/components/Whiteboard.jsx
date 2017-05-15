@@ -128,7 +128,6 @@ class Whiteboard extends Component {
     const words = new SpeechSynthesisUtterance(this.props.question.text)
     this.speak(voice, words)
     return (
-      <div>
         <div className="row">
           <div id="edit" className={this.state.colEdit}>
             <Paper className="wbPaper" zDepth={3}>
@@ -186,10 +185,11 @@ class Whiteboard extends Component {
               />
             </Paper>
           </div>
+          <div className='col-sm-12'>
+            <BottomNavBar wbState={this.state} />
+          </div>
+          <div id="mocha"/>
         </div>
-        <BottomNavBar wbState={this.state} />
-        <div id="mocha"/>
-      </div>
     )
   }
 }
