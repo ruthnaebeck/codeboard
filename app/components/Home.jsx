@@ -83,7 +83,7 @@ export class Home extends React.Component {
                   nestedItems={
                     category.questions.map(question =>
                       <ListItem
-                      containerElement={<Link to="/popup"/>}
+                      containerElement={<Link to={`/question/${question.id}`}/>}
                       key={question.id}
                       secondaryText={`${question.name} -- ${question.difficulty.level}`}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}
@@ -106,7 +106,7 @@ export class Home extends React.Component {
                   nestedItems={
                     difficulty.questions.map(question =>
                       <ListItem
-                      containerElement={<Link to="/popup"/>}
+                      containerElement={<Link to={`/question/${question.id}`}/>}
                       key={question.id}
                       secondaryText={question.name}
                       onTouchTap={(evt) => this.handleNav(evt, question.id)}

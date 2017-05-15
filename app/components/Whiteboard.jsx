@@ -11,6 +11,7 @@ import 'brace/mode/text'
 import 'brace/theme/github'
 
 import BottomNavBar from './BottomNavBar'
+import Popup from './Popup'
 
 const _ = require('lodash')
 const fp = require('lodash/fp')
@@ -24,7 +25,6 @@ class Whiteboard extends Component {
       wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
-      spoken: false
     }
   }
 
@@ -60,10 +60,6 @@ class Whiteboard extends Component {
       script.id = 'testSpecs'
       document.body.appendChild(script)
     }
-  }
-
-  componentDidUpdate() {
-    if (!this.state.spoken) this.setState({ spoken: true })
   }
 
   resize = () => window.dispatchEvent(new Event('resize'))
@@ -113,21 +109,14 @@ class Whiteboard extends Component {
     }
   }
 
-  speak = (voice, words) => {
-    if (!this.state.spoken) {
-      voice.speak(words)
-    }
-  }
-
   handleChange = (code) => {
     this.setState({ inputText: code })
   }
 
   render() {
-    const voice = window.speechSynthesis
-    const words = new SpeechSynthesisUtterance(this.props.question.text)
-    this.speak(voice, words)
     return (
+      <div>
+        <Popup />
         <div className="row">
           <div id="edit" className={this.state.colEdit}>
             <Paper className="wbPaper" zDepth={3}>
@@ -190,6 +179,7 @@ class Whiteboard extends Component {
           </div>
           <div id="mocha"/>
         </div>
+      </div>
     )
   }
 }

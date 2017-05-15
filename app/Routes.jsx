@@ -9,7 +9,6 @@ import App from './components/App'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Whiteboard from './components/Whiteboard'
-import Popup from './components/Popup'
 import AccountPage from './components/AccountPage'
 
 // Dispatchers
@@ -24,7 +23,6 @@ const Routes = ({onAppEnter, onQuestionEnter, onAccountEnter}) => (
     <Route path="/" component={App} onEnter={onAppEnter}>
       <IndexRoute component={Home}/>
       <Route path="/question/:id" component={Whiteboard} onEnter={onQuestionEnter} />
-      <Route path="/popup" component={Popup} />
       <Route path="/users/:id" component={AccountPage} onEnter={onAccountEnter}/>
     </Route>
     <Route path='*' component={NotFound} />
