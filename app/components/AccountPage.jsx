@@ -14,6 +14,7 @@ import TextField from 'material-ui/TextField'
 import UpArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
 import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
 import Pencil from 'material-ui/svg-icons/content/create'
+import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import { Link, browserHistory } from 'react-router'
 
@@ -21,7 +22,6 @@ import { updateAccount } from 'APP/app/reducers/auth'
 
 const upArrow = <UpArrow />
 const downArrow = <DownArrow />
-const edit = <Pencil />
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -162,13 +162,23 @@ class AccountPage extends React.Component {
           </form>
         </Dialog>
         <Card>
-          <CardHeader
-            title={user.name || ''}
-            subtitle={user.email}
-          />
-          <CardActions>
-            <FlatButton icon={edit} onTouchTap={this.editAccount} />
-          </CardActions>
+          <div>
+            <div style={{display: 'inline-block'}}>
+              <CardHeader
+                style={{paddingRight: '2px'}}
+                title={user.name || ''}
+                subtitle={user.email}
+                textStyle={{paddingRight: '2px'}}
+              />
+            </div>
+            <div style={{display: 'inline-block'}}>
+              <CardActions style={{paddingLeft: '0px', width: '20px'}} >
+                <IconButton style={{width: '24px', padding: '0px'}} tooltip="Edit User Info" iconStyle={{paddingTop: '6px'}} onTouchTap={this.editAccount} >
+                  <Pencil />
+                </IconButton>
+              </CardActions>
+            </div>
+          </div>
             <Table >
               <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                 <TableRow>
