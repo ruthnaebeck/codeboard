@@ -135,6 +135,10 @@ paper-button[toggles][active] {
     /*float: left;*/
 }
 
+.white {
+    border: 1px solid grey;
+}
+
 .marker.selected {
     border: 2px solid black;
 }

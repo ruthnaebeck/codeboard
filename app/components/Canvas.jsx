@@ -18,7 +18,7 @@ class Canvas extends Component {
             <div className="marker" id="red"></div>
             <div className="marker" id="blue"></div>
             <div className="marker" id="green"></div>
-            <div className="marker" id="white"></div>
+            <div className="marker white" id="white"></div>
         </div>
       </div>
     )

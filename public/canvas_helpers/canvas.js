@@ -76,8 +76,8 @@ window.whiteboard = new window.EventEmitter();
 
   canvas.addEventListener('mousedown', function(e) {
     drawing = true
-    currentMousePosition.x = e.pageX - this.offsetLeft
-    currentMousePosition.y = e.pageY - this.offsetTop
+    currentMousePosition.x = e.offsetX
+    currentMousePosition.y = e.offsetY
   })
 
   canvas.addEventListener('mouseup', function() {
@@ -90,8 +90,8 @@ window.whiteboard = new window.EventEmitter();
     lastMousePosition.x = currentMousePosition.x
     lastMousePosition.y = currentMousePosition.y
 
-    currentMousePosition.x = e.pageX - this.offsetLeft
-    currentMousePosition.y = e.pageY - this.offsetTop
+    currentMousePosition.x = e.offsetX
+    currentMousePosition.y = e.offsetY
 
     whiteboard.draw(lastMousePosition, currentMousePosition, color, true)
   })
@@ -101,6 +101,8 @@ window.whiteboard = new window.EventEmitter();
         // that is colored with the given color.
     ctx.beginPath()
     ctx.strokeStyle = strokeColor || 'black'
+    if (strokeColor === 'white') ctx.lineWidth = 15
+    else ctx.lineWidth = 5
     ctx.moveTo(start.x, start.y)
     ctx.lineTo(end.x, end.y)
     ctx.closePath()
