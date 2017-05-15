@@ -1,10 +1,11 @@
 // USING REGEX
-(str) => !/(.).*\1/.test(str)
 
-// |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
+isUnique = (str) => !/(.).*\1/.test(str)
+
 
 // O(N^2) TIME -- O(1) SPACE
-function isUnique2(str) {
+
+function isUnique(str) {
   const strLength = str.length
 
   for (let i = 0; i < strLength; i++) {
@@ -16,10 +17,10 @@ function isUnique2(str) {
   return true
 }
 
-// |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
 
 // O(N) TIME -- O(N) SPACE
-function isUnique3(str) {
+
+function isUnique(str) {
   const letterSet = new Set()
 
   for (const letter of str) {

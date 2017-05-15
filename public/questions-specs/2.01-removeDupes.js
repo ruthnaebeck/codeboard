@@ -1,6 +1,6 @@
 // O(N) TIME --- O(N) SPACE
 
-function removeDupes1(list) {
+function removeDupes(list) {
   if (!list || !list.next) return list
 
   const set = new Set()
@@ -18,11 +18,10 @@ function removeDupes1(list) {
   }
 }
 
-// |---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---|
 
 // O(N^2) TIME --- O(1) SPACE
 
-function removeDupes2(list) {
+function removeDupes(list) {
   if (!list || !list.next) return list
   let head = list
 

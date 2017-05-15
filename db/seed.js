@@ -66,80 +66,148 @@ const difficulties = seed(Difficulty, {
 const questions = seed(Question, ({ categories, difficulties }) =>
   ({
     isUnique: {
-      id: 1,
+      id: 101,
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
-      tests: [{input: ['abcdefghi'], output: true, description: 'with an input that had all unique characters'}, {input: ['jklpoiuqwerzxcvmnsadf'], output: true, description: 'with an input that had all unique characters'}, {input: ['1234567890'], output: true, description: 'with an input that had all unique characters'}, {input: ['AaBbCcDdeFg1234567890(*&^%$#@!)'], output: true, description: 'with an input that had all unique characters'}, {input: ['abcadef'], output: false, description: 'with an input that had repeated characters'}, {input: ['aaaaaaaaaa'], output: false, description: 'with an input that had repeated characters'}, {input: ['abcdefghijklmnopqrstuvwxyza'], output: false, description: 'with an input that had repeated characters'}, {input: ['1234567890asdklf1'], output: false, description: 'with an input that had repeated characters'}, {input: ['!@#$%^&*()(*#($&#(*$&#*($&#()))))'], output: false, description: 'with an input that had repeated characters'}],
+      start_function: 'function isUnique() {}',
+      tests: '1.01-isUnique.spec.js',
+      solution: '1.01-isUnique.js',
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id,
-      solution: '1.01-isUnique.js'
     },
     checkPermutations: {
-      id: 2,
+      id: 102,
       name: 'Check Permutations',
       text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
-      category_id: categories.stringsArrays.id,
-      difficulty_id: difficulties.medium.id,
+      start_function: 'function checkPermutations() {}',
+      tests: '1.02-checkPermutations.spec.js',
       solution: '1.02-checkPermutations.js',
-      tests: [
-      {input: ['abcdefghi', 'ihgfedcba'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['1a1', 'a11'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['1234567812345678', '8877665544332211'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['icarraci', 'carcarii'], output: true, description: 'with two strings that are permutations of each other.'},
-      {input: ['abcdefghiz', 'ihgfedcbaa'], output: false, description: 'with two strings that are not permutations of each other.'},
-      {input: ['1a1', '11'], output: false, description: 'with two strings that are not permutations of each other.'},
-      {input: ['1122334455667788', '9911223344556677'], output: false, description: 'with two strings that are not permutations of each other.'},
-      {input: ['45678', '1239'], output: false, description: 'with two strings that are not permutations of each other.'},
-      ],
+      category_id: categories.stringsArrays.id,
+      difficulty_id: difficulties.easy.id
     },
-    // threeStacksInOne: {
-    //   name: 'Three Stacks in One',
-    //   text: 'Describe how you could use a single array to implement three stacks.',
-    //   category_id: categories.stacksQueues.id,
-    //   difficulty_id: difficulties.medium.id,
-    //   solution: '3.01-threeStacksInOne.js'
-    // },
-    // routesBetweenNodes: {
-    //   name: 'Routes Between Nodes',
-    //   text: 'Given a directed graph, design an algorithm to find out whether there is a route between two nodes.',
-    //   category_id: categories.treesGraphs.id,
-    //   difficulty_id: difficulties.hard.id,
-    //   solution: '4.01-routesBetweenNodes.js'
-    // },
-    // removeDupes: {
-    //   name: 'Remove Duplicates',
-    //   text: 'Write code to remove duplicates from an unsorted linked list.',
-    //   tests: [{input: null, output: null, description: 'with an input of null.'},
-    //         {input: undefined, output: undefined, description: 'with an input of undefined.'},
-    //         {input: { value: 5, next: null }, output: { value: 5, next: null }, description: 'with a linked list that contains a single value.'},
-    //         {input: 1, output: 1, description: 'of '}],
-    //   category_id: categories.linkedLists.id,
-    //   difficulty_id: difficulties.medium.id,
-    //   solution: '2.01-removeDupes.js'
-    // },
+    removeDupes: {
+      id: 201,
+      name: 'Remove Duplicates',
+      text: 'Given an unsorted linked list, write code to remove the duplicates.',
+      start_function: 'function removeDupes() {}',
+      tests: '2.01-removeDupes.spec.js',
+      solution: '2.01-removeDupes.js',
+      category_id: categories.linkedLists.id,
+      difficulty_id: difficulties.medium.id
+    },
+    kthToLast: {
+      id: 202,
+      name: 'Kth To Last',
+      text: 'Implement an algorithm to return the K to last element of a singly linked list.',
+      start_function: 'function kthToLast(list, k) {}',
+      tests: '2.02-KthToLast.spec.js',
+      solution: '2.02-KthToLast.js',
+      category_id: categories.linkedLists.id,
+      difficulty_id: difficulties.medium.id
+    },
+    threeStacksInOne: {
+      id: 301,
+      name: 'Three Stacks in One',
+      text: 'Write a class that uses a single array to implement three stacks. The class should have push, pop, and peek methods.',
+      start_function: 'var TripleStack = class{\n  constructor() {}\n}',
+      tests: '3.01-threeStacksInOne.spec.js',
+      solution: '3.01-threeStacksInOne.js',
+      category_id: categories.stacksQueues.id,
+      difficulty_id: difficulties.medium.id
+    },
+    queueViaStacks: {
+      id: 304,
+      name: 'Queue via Stacks',
+      text: 'Write a class that implements a queue using two stacks. The class should have enqueue and dequeue methods.',
+      start_function: 'var queueViaStacks = class{\n  constructor() {}\n}',
+      tests: '3.04-queueViaStacks.spec.js',
+      solution: '3.04-queueViaStacks.js',
+      category_id: categories.stacksQueues.id,
+      difficulty_id: difficulties.medium.id
+    },
+    routesBetweenNodes: {
+      id: 401,
+      name: 'Routes Between Nodes',
+      text: 'Given a directed graph, design an algorithm to determine if there is a route between two nodes by returning true or false.',
+      start_function: 'function routesBetweenNodes(graph, start, target) {}',
+      tests: '4.01-routesBetweenNodes.spec.js',
+      solution: '4.01-routesBetweenNodes.js',
+      category_id: categories.treesGraphs.id,
+      difficulty_id: difficulties.hard.id
+    },
   }))
 
 const hints = seed(Hint, ({ questions }) =>
   ({
     isUnique1: {
-      id: 1,
+      id: 1011,
       text: 'Try a hash table.',
       question_id: questions.isUnique.id
     },
     isUnique2: {
-      id: 2,
+      id: 1012,
       text: 'Could a bit vector be useful?',
       question_id: questions.isUnique.id
     },
     checkPermutations1: {
-      id: 3,
+      id: 1021,
       text: 'Two strings that are permutations of each other should have the same characters but in different orders.',
       question_id: questions.checkPermutations.id
     },
     checkPermutations2: {
-      id: 4,
+      id: 1022,
       text: 'Could a hash table be useful?',
       question_id: questions.checkPermutations.id
+    },
+    removeDupes1: {
+      id: 2011,
+      text: 'Have you tried a hash table? You should be able to do this in a single pass of the linked list.',
+      question_id: questions.removeDupes.id
+    },
+    removeDupes2: {
+      id: 2012,
+      text: 'Try using two pointers where the second one searches ahead of the first one.',
+      question_id: questions.removeDupes.id
+    },
+    kthToLast1: {
+      id: 2021,
+      text: "Since you don't know the linked list's size, how can you compute it?",
+      question_id: questions.kthToLast.id
+    },
+    kthToLast2: {
+      id: 2022,
+      text: 'What if you had two pointers pointing to adjacent nodes?',
+      question_id: questions.kthToLast.id
+    },
+    threeStacksInOne1: {
+      id: 3011,
+      text: 'A stack is a data structure in which the most recently added elements are removed first.',
+      question_id: questions.threeStacksInOne.id
+    },
+    threeStacksInOne2: {
+      id: 3012,
+      text: 'You could simulate three stacks in an array by allocating the first third of the array to the first stack, the second third to the second stack, and the final third to the third stack.',
+      question_id: questions.threeStacksInOne.id
+    },
+    queueViaStacks1: {
+      id: 3041,
+      text: 'The major difference between a queue and a stack is the order of elements. A queue removes the oldest item and a stack removes the newest item.',
+      question_id: questions.queueViaStacks.id
+    },
+    queueViaStacks2: {
+      id: 3042,
+      text: 'You can remove the oldest item from a stack by repeatedly removing the newest item, inserting those items into a temporary stack, until you are left with one element.',
+      question_id: questions.queueViaStacks.id
+    },
+    routesBetweenNodes1: {
+      id: 4011,
+      text: 'Try a breadth first search.',
+      question_id: questions.routesBetweenNodes.id
+    },
+    routesBetweenNodes2: {
+      id: 4012,
+      text: 'The breadth first search should be iterative.',
+      question_id: questions.routesBetweenNodes.id
     },
   }))
 

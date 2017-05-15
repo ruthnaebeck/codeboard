@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance test Event */
+/* global SpeechSynthesisUtterance Event */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -21,6 +21,7 @@ class Whiteboard extends Component {
     super(props)
     this.state = {
       inputText: '',
+      wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
       spoken: false
@@ -33,16 +34,9 @@ class Whiteboard extends Component {
     textInput.addEventListener('myscript-text-web-result', function(e) {
       // Can you do this outside the listener? -- LOW PRIORITY
       const inputTextPath = _.get(e, 'detail.result.textSegmentResult.candidates[0].label', '')
-      wbThis.setState({ inputText: inputTextPath })
+      wbThis.setState({ wbText: inputTextPath })
     })
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   const script = document.createElement('script')
-  //   script.src = `/questions-specs/${nextProps.question.tests}`
-  //   script.async = true
-  //   document.body.appendChild(script)
-  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth) {
@@ -52,8 +46,19 @@ class Whiteboard extends Component {
             question.question_id === this.props.question.id
           )
         if (userQuestion.length) this.setState({ inputText: userQuestion[0].user_answer })
+        else this.setState({ inputText: nextProps.question.start_function })
       }
       this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
+    } else {
+      this.setState({ inputText: nextProps.question.start_function })
+    }
+    const tests = nextProps.question.tests
+    if (tests) {
+      const script = document.createElement('script')
+      script.src = `/questions-specs/${tests}`
+      script.async = true
+      script.id = 'testSpecs'
+      document.body.appendChild(script)
     }
   }
 
@@ -183,6 +188,7 @@ class Whiteboard extends Component {
           </div>
         </div>
         <BottomNavBar wbState={this.state} />
+        <div id="mocha"/>
       </div>
     )
   }
