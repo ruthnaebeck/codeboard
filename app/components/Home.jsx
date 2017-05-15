@@ -15,9 +15,9 @@ import { Link } from 'react-router'
 import { setId } from '../reducers/question'
 
 const paperStyle = {
-  height: 200,
-  width: 300,
-  margin: 20,
+  height: '30vh',
+  width: '25vw',
+  margin: '3%',
   textAlign: 'center',
   display: 'inline-block'
 }
@@ -163,19 +163,11 @@ export class Home extends React.Component {
             </div>
           </div>
         </CardMedia>
-        <CardTitle title="HELLO" />
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-4 col-centered">
-                <Paper style={paperStyle} zDepth={1}></Paper>
-              </div>
-              <div className="col-sm-4 col-centered">
-                <Paper style={paperStyle} zDepth={1}></Paper>
-              </div>
-              <div className="col-sm-4 col-centered">
-                <Paper style={paperStyle} zDepth={1}></Paper>
-              </div>
-            </div>
+        <CardTitle title='Why You Should Use Code Board' />
+          <div style={{textAlign: 'center'}} >
+            <Paper style={paperStyle} zDepth={2} />
+            <Paper style={paperStyle} zDepth={2} />
+            <Paper style={paperStyle} zDepth={2} />
           </div>
       </Card>
     )
