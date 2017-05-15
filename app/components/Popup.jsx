@@ -1,3 +1,4 @@
+/* global SpeechSynthesisUtterance Event */
 import React from 'react'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
@@ -9,10 +10,21 @@ import { set } from '../reducers/drawer'
 class Popup extends React.Component {
   state = {
     open: true,
+    speak: false
   }
 
   handleReady = () => {
-    this.setState({open: false})
+    this.setState(
+      {
+        open: false,
+        speak: true
+      })
+  }
+
+  speak = (voice, words) => {
+    if (this.state.speak) {
+      voice.speak(words)
+    }
   }
 
   render() {
@@ -24,15 +36,15 @@ class Popup extends React.Component {
           onTouchTap={this.props.set}
         />
       </Link>,
-      <Link to={`/question/${this.props.question}`}>
-        <FlatButton
+      <FlatButton
           label="I'm Ready"
           primary={true}
           onTouchTap={this.handleReady}
-        />
-      </Link>,
+      />
     ]
-
+    const voice = window.speechSynthesis
+    const words = new SpeechSynthesisUtterance(this.props.question.text)
+    this.speak(voice, words)
     return (
       <div>
         <Dialog
