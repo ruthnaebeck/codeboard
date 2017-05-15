@@ -69,6 +69,10 @@ paper-button[toggles][active] {
     width: 1000px;
 }
 
+.container-fluid {
+  width: 100%;
+}
+
 .wbPaper {
     height: calc(100vh - 140px);
     width: 100%;
@@ -78,7 +82,7 @@ paper-button[toggles][active] {
     position: relative;
 }
 
-.colEdit {
+/*.colEdit {
     padding-right: 3px
 }
 
@@ -88,7 +92,7 @@ paper-button[toggles][active] {
 
 .colSol {
     padding-left: 3px;
-}
+}*/
 
 #code {
     text-align: left
