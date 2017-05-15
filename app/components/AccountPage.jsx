@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Card, CardHeader } from 'material-ui/Card'
+import { Card, CardHeader, CardActions } from 'material-ui/Card'
 import {
   Table,
   TableBody,
@@ -9,10 +9,16 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table'
+import Dialog from 'material-ui/Dialog'
+import TextField from 'material-ui/TextField'
 import UpArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
 import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
+import Pencil from 'material-ui/svg-icons/content/create'
+import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
+
+import { updateAccount } from 'APP/app/reducers/auth'
 
 const upArrow = <UpArrow />
 const downArrow = <DownArrow />
@@ -25,12 +31,25 @@ class AccountPage extends React.Component {
       nameOrder: upArrow,
       categoryOrder: null,
       difficultyOrder: null,
-      statusOrder: null
+      statusOrder: null,
+      open: false
     }
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ questions: nextProps.userQuestions })
   }
+
+  handleClose = () => this.setState({ open: false })
+
+  handleSubmit = (e, id) => {
+    e.preventDefault()
+    const name = e.target.name.value, email = e.target.email.value
+    this.props.updateAccount(id, name, email)
+    this.setState({ open: false })
+  }
+
+  editAccount = () => this.setState({ open: true })
+
   nameSort(questions) {
     let newNameOrder, sortedByName
     switch (this.state.nameOrder) {
@@ -103,13 +122,63 @@ class AccountPage extends React.Component {
   render() {
     const user = this.props.auth || {}
     const questions = this.state.questions || []
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onTouchTap={this.handleClose}
+        keyboardFocused={true}
+      />,
+      <FlatButton
+        label="Update Account"
+        type="submit"
+        form="edit"
+        primary={true}
+      />
+    ]
     return (
       <div>
+        <Dialog
+          title='Edit User Info'
+          actions={actions}
+          open={this.state.open}
+        >
+          <form id='edit' onSubmit={(e) => this.handleSubmit(e, user.id)}>
+            <TextField
+              name='name'
+              defaultValue={user.name}
+              floatingLabelText='Name'
+              floatingLabelFixed={true}
+            /><br />
+            <br />
+            <TextField
+              name='email'
+              type='email'
+              defaultValue={user.email}
+              floatingLabelText='Email'
+              floatingLabelFixed={true}
+            /><br />
+            <br />
+          </form>
+        </Dialog>
         <Card>
-          <CardHeader
-            title={user.name || ''}
-            subtitle={user.email}
-          />
+          <div>
+            <div style={{display: 'inline-block'}}>
+              <CardHeader
+                style={{paddingRight: '2px'}}
+                title={user.name || ''}
+                subtitle={user.email}
+                textStyle={{paddingRight: '2px'}}
+              />
+            </div>
+            <div style={{display: 'inline-block'}}>
+              <CardActions style={{paddingLeft: '0px', width: '20px'}} >
+                <IconButton style={{width: '24px', padding: '0px'}} tooltip="Edit User Info" iconStyle={{paddingTop: '6px'}} onTouchTap={this.editAccount} >
+                  <Pencil />
+                </IconButton>
+              </CardActions>
+            </div>
+          </div>
             <Table >
               <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                 <TableRow>
@@ -149,6 +218,5 @@ class AccountPage extends React.Component {
 }
 
 const mapStateToProps = ({ auth, userQuestions }) => ({ auth, userQuestions })
-const mapDispatchToProps = null
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)
+export default connect(mapStateToProps, {updateAccount})(AccountPage)
