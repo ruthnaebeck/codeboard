@@ -113,3 +113,36 @@ paper-button[toggles][active] {
 .snackbar {
     text-align: center;
 }
+
+/* Canvas Styling */
+
+#paint {
+  position: relative;
+  top: 0; left: 0;
+  height: calc(100vh - 170px);
+  width: 100%;
+}
+
+#color-selector {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 200px;
+    background: black;
+}
+
+.marker {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    /*float: left;*/
+}
+
+.white {
+    border: 1px solid grey;
+}
+
+.marker.selected {
+    border: 2px solid black;
+}
