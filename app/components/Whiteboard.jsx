@@ -74,8 +74,8 @@ class Whiteboard extends Component {
         }, this.resize)
       } else {
         this.setState({
-          colEdit: 'col-sm-12 col-md-6 colEdit',
-          colWB: 'col-sm-12 col-md-6 colWB'
+          colEdit: 'col-sm-6 colEdit',
+          colWB: 'col-sm-6 colWB'
         }, this.resize)
       }
     } else {
@@ -96,8 +96,8 @@ class Whiteboard extends Component {
         }, this.resize)
       } else {
         this.setState({
-          colEdit: 'col-sm-12 col-md-6 colEdit',
-          colWB: 'col-sm-12 col-md-6 colWB'
+          colEdit: 'col-sm-6 colEdit',
+          colWB: 'col-sm-6 colWB'
         }, this.resize)
       }
     } else {
@@ -123,7 +123,6 @@ class Whiteboard extends Component {
     const words = new SpeechSynthesisUtterance(this.props.question.text)
     this.speak(voice, words)
     return (
-      <div className="container-fluid">
         <div className="row">
           <div id="edit" className={this.state.colEdit}>
             <Paper className="wbPaper" zDepth={3}>
@@ -181,9 +180,10 @@ class Whiteboard extends Component {
               />
             </Paper>
           </div>
+          <div className='col-sm-12'>
+            <BottomNavBar wbState={this.state} />
+          </div>
         </div>
-        <BottomNavBar wbState={this.state} />
-      </div>
     )
   }
 }

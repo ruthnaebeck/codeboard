@@ -155,7 +155,7 @@ class BottomNavBar extends Component {
       return (
         <div>
           <Paper zDepth={1}>
-            <BottomNavigation selectedIndex={this.state.selectedIndex}>
+            <BottomNavigation selectedIndex={this.state.selectedIndex} >
               <BottomNavigationItem
                 label="Repeat Question"
                 icon={repeat}
@@ -223,7 +223,7 @@ class BottomNavBar extends Component {
       return (
       <div>
         <Paper zDepth={1}>
-          <BottomNavigation selectedIndex={this.state.selectedIndex}>
+          <BottomNavigation selectedIndex={this.state.selectedIndex} >
             <BottomNavigationItem
               label="Repeat Question"
               icon={repeat}
