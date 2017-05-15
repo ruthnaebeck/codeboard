@@ -1,7 +1,6 @@
-import { expect } from 'chai';
-import * as funcs from './4.01-routesBetweenNodes';
+/* global chai describe it beforeEach routesBetweenNodes */
 
-const adjList = [
+var adjList = [
   [1],
   [0, 4, 5],
   [3, 4, 5],
@@ -10,38 +9,31 @@ const adjList = [
   [1, 2, 6],
   [3, 5],
   [7]
-];
+]
 
-for (let key in funcs) {
- const func = funcs[key];
+describe('Trees & Graphs - Routes Between Nodes', function() {
+  it('Your function should throw an error if given an invalid graph', function() {
+    chai.expect(() => routesBetweenNodes(null)).to.throw(Error)
+    chai.expect(() => routesBetweenNodes(undefined)).to.throw(Error)
+  })
 
-  describe('ch4-q01: ' + key, function() {
+  it('Your function should throw an error with an invalid start node', function() {
+    chai.expect(() => routesBetweenNodes(adjList, 99)).to.throw(Error)
+  })
 
-    it('throws error with invalid graph', function() {
-      expect(() => func(null)).to.throw('invalid graph');
-      expect(() => func(undefined)).to.throw('invalid graph');
-    });
+  it('Your function should return the correct true or false for a single node graph', function() {
+    const list = [ [] ]
+    chai.expect(routesBetweenNodes(list, 0, 0)).to.be.true
+    chai.expect(routesBetweenNodes(list, 0, 3)).to.be.false
+  })
 
-    it('throws error with invalid start node', function() {
-      expect(() => func(adjList, 99)).to.throw('invalid start node');
-    });
+  it('Your function should return the correct true or false for a larger graph', function() {
+    chai.expect(routesBetweenNodes(adjList, 0, 4)).to.be.true
+    chai.expect(routesBetweenNodes(adjList, 0, 3)).to.be.true
+    chai.expect(routesBetweenNodes(adjList, 3, 6)).to.be.true
 
-    it('returns correct true/false for single node graph', function() {
-      const list = [ [] ];
-      expect(func(list, 0, 0)).to.be.true;
-      expect(func(list, 0, 3)).to.be.false;
-    });
-
-    it('returns correct true/false for larger graph', function() {
-      expect(func(adjList, 0, 4)).to.be.true;
-      expect(func(adjList, 0, 3)).to.be.true;
-      expect(func(adjList, 3, 6)).to.be.true;
-
-      expect(func(adjList, 7, 3)).to.be.false;
-      expect(func(adjList, 6, 7)).to.be.false;
-      expect(func(adjList, 1, 11)).to.be.false;
-    });
-
-  });
-
-}
+    chai.expect(routesBetweenNodes(adjList, 7, 3)).to.be.false
+    chai.expect(routesBetweenNodes(adjList, 6, 7)).to.be.false
+    chai.expect(routesBetweenNodes(adjList, 1, 11)).to.be.false
+  })
+})

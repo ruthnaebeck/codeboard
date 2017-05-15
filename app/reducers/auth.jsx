@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { browserHistory } from 'react-router'
 
 /* ------------- ACTIONS ---------------- */
 
@@ -37,6 +38,9 @@ export const login = (username, password, success, fail) =>
 export const logout = () =>
   dispatch =>
     axios.post('/api/auth/logout')
+      .then(() => {
+        if (browserHistory.getCurrentLocation().pathname.slice(0, 6) === '/users') browserHistory.replace('/')
+      })
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 

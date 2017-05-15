@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance Event */
+/* global SpeechSynthesisUtterance Event mocha isUnique */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -68,29 +68,67 @@ class BottomNavBar extends Component {
   }
 
   speak = (voice, words) => voice.speak(words)
-
   select = (index) => this.setState({selectedIndex: index})
   reset = () => this.setState({ prompt: '' })
 
-  handlePlay = () => {
-    const code = this.props.wbState.inputText
-    const test = this.props.question.tests
+  runTests = () => mocha.run()
+
+  checkTests = () => {
     try {
-      const func = eval(`(${code})`)
-      for (let i=0; i<test.length; i++) {
-        if (typeof func(test[i].output) === 'object') {
-          this.setState({ prompt: `This site cannot currently verify objects.` }, this.reset)
-          return
-        }
-        if (func(...test[i].input) !== test[i].output) {
-          this.setState({ prompt: `Your function failed ${test[i].description}` }, this.reset)
+      const mochaTests = mocha.suite.suites[0].tests
+      for (let i = 0; i < mochaTests.length; i++) {
+        if (mochaTests[i].state === 'failed') {
+          this.setState({
+            prompt: mochaTests[i].title
+          }, this.reset)
           return
         }
       }
       this.setState({
-        prompt: 'Congrats, your function passed all of the tests',
+        prompt: 'Congrats, you passed all of the tests',
         questionStatus: 'complete'
       }, this.reset)
+    } catch (err) {
+      this.setState({
+        prompt: 'Please run the code again.'
+      }, this.reset)
+    }
+  }
+
+  resetTests = () => {
+    mocha.suite.suites = []
+    let testSpecs = document.getElementById('testSpecs')
+    if (testSpecs) testSpecs.remove()
+    const tests = this.props.question.tests
+    testSpecs = document.createElement('script')
+    testSpecs.src = `/questions-specs/${tests}`
+    testSpecs.async = true
+    testSpecs.id = 'testSpecs'
+    document.body.appendChild(testSpecs)
+  }
+
+  handlePlay = () => {
+    try {
+      // Delete previous mocha stats / reports if they exist
+      const mochaDiv = document.getElementById('mocha')
+      const mochaStats = document.getElementById('mocha-stats')
+      const mochaReport = document.getElementById('mocha-report')
+      if (mochaStats) mochaDiv.removeChild(mochaStats)
+      if (mochaReport) mochaDiv.removeChild(mochaReport)
+      // Create or Update the user's code on the DOM
+      var codeScript = document.getElementById('runTests')
+      const code = this.props.wbState.inputText
+      if (codeScript) codeScript.remove()
+      codeScript = document.createElement('script')
+      codeScript.id = 'runTests'
+      codeScript.appendChild(document.createTextNode(code))
+      document.body.appendChild(codeScript)
+      // Run the mocha / chai tests
+      this.runTests()
+      // Check the tests
+      setTimeout(this.checkTests, 300)
+      // Reset the tests
+      setTimeout(this.resetTests, 1000)
     } catch (err) {
       this.setState({ prompt: 'Please write a valid function' }, this.reset)
     }
