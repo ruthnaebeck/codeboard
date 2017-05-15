@@ -5,7 +5,6 @@ function helperLLtoArr(list) {
     arr.push(node.value)
     node = node.next
   }
-
   return arr
 }
 
@@ -25,11 +24,10 @@ function helperArrToLL(arr) {
   for (let i = arr.length - 1; i >= 0; --i) {
     list = helperCreateNode(arr[i], list)
   }
-
   return list
 }
 
-function getListLength(list) {
+function helperGetListLength(list) {
   let length = 0
   while (list) {
     list = list.next
@@ -38,14 +36,14 @@ function getListLength(list) {
   return length
 }
 
-function createLinkedList() {
+function helperCreateLinkedList() {
   return {
     head: null,
     tail: null
   }
 }
 
-function pushSingle(list, value) {
+function helperPushSingle(list, value) {
   const node = helperCreateNode(value)
   if (list.head) {
     list.tail.next = node
@@ -56,8 +54,8 @@ function pushSingle(list, value) {
   }
 }
 
-function push(list) {
+function helperPush(list) {
   for (let i = 1; i < arguments.length; ++i) {
-    pushSingle(list, arguments[i])
+    helperPushSingle(list, arguments[i])
   }
 }

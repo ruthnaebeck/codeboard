@@ -8,7 +8,6 @@ describe('Strings & Arrays - Check Permutations', function() {
     ['1234567812345678', '8877665544332211'],
     ['icarraci', 'carcarii']
   ].forEach(args => {
-    // Your function failed
     it('Your function failed to return true for strings that are permutations',
       function() {
         chai.expect(checkPermutations(args[0], args[1])).to.be.true
