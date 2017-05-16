@@ -62,6 +62,10 @@ export class Home extends React.Component {
   }
 
   handleRightToggle = () => this.setState({ openRight: !this.state.openRight })
+  handleLeftToggle = () => {
+    this.props.set()
+    this.setState({ openRight: !this.state.openRight })
+  }
 
   render() {
     return (
