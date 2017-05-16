@@ -28,7 +28,7 @@ class Whiteboard extends Component {
 
   componentDidMount() {
     const scriptc = document.createElement('script')
-    scriptc.src = '/canvas_helpers/canvas.js'
+    scriptc.src = '/js/canvas.js'
     scriptc.async = true
     document.body.appendChild(scriptc)
   }
