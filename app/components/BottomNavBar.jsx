@@ -29,7 +29,7 @@ const arrow = <RightArrow />
 const helpTopics = [
     {topic: 'Click on the arrows at the top of the page to expand or hide the text editor and whiteboard', icon: arrow},
     {topic: 'Click "Repeat Question" to hear the prompt again. You can have the question repeated only once.', icon: repeat},
-    {topic: 'Click "Hints" to hear a hint. There are three hints per question.', icon: hints},
+    {topic: 'Click "Hints" to hear a hint. There are a limited number of hints per question.', icon: hints},
     {topic: 'Click "Run Code" to test your solution.', icon: play},
     {topic: 'If you are logged in, you can click "Save" to save your work.', icon: save},
     {topic: 'Click "Show Solutions" to see a set of possible solutions and their space/time complexity.', icon: solutions}
