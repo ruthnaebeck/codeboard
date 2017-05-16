@@ -18,6 +18,7 @@ import {fetchDifficulties} from './reducers/difficulties'
 import {fetchQuestion} from './reducers/question'
 import {fetchUserQuestions} from './reducers/userQuestions'
 import {fetchUserQuestion} from './reducers/userQuestion'
+import {close} from './reducers/drawer'
 
 const Routes = ({onAppEnter, onQuestionEnter, onAccountEnter}) => (
   <Router history={browserHistory}>
@@ -38,6 +39,7 @@ const mapDispatch = (dispatch) => ({
     dispatch(whoami())
     dispatch(fetchCategories())
     dispatch(fetchDifficulties())
+    dispatch(close())
   },
   onAccountEnter: (nextRouterState) => {
     const userId = nextRouterState.params.id

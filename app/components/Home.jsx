@@ -11,8 +11,10 @@ import {GridList, GridTile} from 'material-ui/GridList'
 import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import { Link } from 'react-router'
+import LeftDrawer from './LeftDrawer'
 
 import { setId } from '../reducers/question'
+import {set} from '../reducers/drawer'
 
 const paperStyle = {
   height: '28vh',
@@ -55,12 +57,11 @@ export class Home extends React.Component {
     super(props)
 
     this.state = {
-      openLeft: this.props.drawer,
       openRight: false
     }
   }
 
-  handleLeftToggle = () => this.setState({ openLeft: !this.state.openLeft, openRight: false })
+  // handleLeftToggle = () => this.setState({ openLeft: !this.state.openLeft, openRight: false })
   handleRightToggle = () => this.setState({ openRight: !this.state.openRight })
   handleNav = (evt, id) => this.props.setId(id)
 
@@ -75,63 +76,14 @@ export class Home extends React.Component {
               <RaisedButton
                 label="Get Started"
                 primary={true}
-                onTouchTap={this.handleLeftToggle}
+                onTouchTap={this.props.set}
                 style={{margin: 8}} />
               <RaisedButton
                 label="How It Works"
                 primary={true}
                 onTouchTap={this.handleRightToggle}
                 style={{margin: 8}} />
-              <Drawer open={this.state.openLeft} docked={false} onRequestChange={(open) => this.setState({openLeft: open})}>
-              <AppBar
-              title="Questions"
-              iconElementLeft={<span/>}
-              />
-              <h3>Category</h3>
-              <Divider />
-              {this.props.categories.map((category, index) =>
-                <ListItem
-                  key={category.id}
-                  primaryText={category.name}
-                  initiallyOpen={false}
-                  primaryTogglesNestedList={true}
-                  nestedItems={
-                    category.questions.map(question =>
-                      <ListItem
-                      containerElement={<Link to={`/question/${question.id}`}/>}
-                      key={question.id}
-                      secondaryText={`${question.name} -- ${question.difficulty.level}`}
-                      onTouchTap={(evt) => this.handleNav(evt, question.id)}
-                      />
-                    )
-                  }
-                  >
-                </ListItem>
-              )}
-              <br/>
-              <br/>
-              <h3>Difficulty</h3>
-              <Divider />
-              {this.props.difficulties.map((difficulty, index) =>
-                <ListItem
-                  key={difficulty.id}
-                  primaryText={difficulty.level}
-                  initiallyOpen={false}
-                  primaryTogglesNestedList={true}
-                  nestedItems={
-                    difficulty.questions.map(question =>
-                      <ListItem
-                      containerElement={<Link to={`/question/${question.id}`}/>}
-                      key={question.id}
-                      secondaryText={question.name}
-                      onTouchTap={(evt) => this.handleNav(evt, question.id)}
-                      />
-                    )
-                  }
-                  >
-                </ListItem>
-              )}
-              </Drawer>
+              <LeftDrawer/>
               <Drawer width={ '33%' } openSecondary={true} docked={false} open={this.state.openRight} onRequestChange={(open) => this.setState({openRight: open})} >
                 <AppBar
                   title="How It Works"
@@ -185,6 +137,6 @@ export class Home extends React.Component {
 
 const mapStateToProps = ({categories, difficulties, drawer}) =>
   ({categories, difficulties, drawer})
-const mapDispatchToProps = { setId }
+const mapDispatchToProps = { setId, set }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
