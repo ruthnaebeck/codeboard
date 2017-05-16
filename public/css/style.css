@@ -82,17 +82,17 @@ paper-button[toggles][active] {
     position: relative;
 }
 
-/*.colEdit {
-    padding-right: 3px
+@media (min-width: 768px) {
+  .colEdit {
+        padding-right: 3px;
+    }
+    .colWB {
+        padding-left: 3px;
+    }
+    .colSol {
+        padding-left: 3px;
+    }
 }
-
-.colWB {
-    padding-left: 3px;
-}
-
-.colSol {
-    padding-left: 3px;
-}*/
 
 #code {
     text-align: left
