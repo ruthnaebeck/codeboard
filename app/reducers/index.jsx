@@ -7,6 +7,7 @@ const rootReducer = combineReducers({
   question: require('./question').default,
   drawer: require('./drawer').default,
   userQuestions: require('./userQuestions').default,
+  timer: require('./timer').default,
   userQuestion: require('./userQuestion').default
 })
 

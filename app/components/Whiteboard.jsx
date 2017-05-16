@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { fetchUserQuestions } from 'APP/app/reducers/userQuestions'
+import { stopTimer } from 'APP/app/reducers/timer'
 import { fetchUserQuestion } from 'APP/app/reducers/userQuestion'
 import SvgIcon from 'material-ui/SvgIcon'
 import Paper from 'material-ui/Paper'
@@ -53,6 +55,9 @@ class Whiteboard extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.stopTimer()
+  }
   drawWB = () => {
     this.state.inputDraw.forEach(draw => {
       window.whiteboard.draw(draw.start, draw.end, draw.color)
@@ -191,6 +196,6 @@ const RightArrow = () => (
 
 const mapStateToProps = ({ question, auth, userQuestion, drawer}) =>
   ({ question, auth, userQuestion, drawer })
-const mapDispatchToProps = ({ fetchUserQuestion })
+const mapDispatchToProps = ({ fetchUserQuestion, stopTimer })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard)

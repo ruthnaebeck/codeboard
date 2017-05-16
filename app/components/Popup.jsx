@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 
 import { set } from '../reducers/drawer'
+import { startTimer } from '../reducers/timer'
 
 class Popup extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class Popup extends React.Component {
         open: false,
         speak: true
       })
+    this.props.startTimer()
   }
 
   speak = (voice, words) => {
@@ -60,6 +62,6 @@ class Popup extends React.Component {
 }
 
 const mapStateToProps = ({ question }) => ({ question })
-const mapDispatchToProps = ({ set })
+const mapDispatchToProps = ({ set, startTimer })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Popup)
