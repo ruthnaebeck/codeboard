@@ -100,6 +100,28 @@ window.whiteboard = new window.EventEmitter();
     whiteboard.draw(lastMousePosition, currentMousePosition, color, true)
   })
 
+  canvas.addEventListener('touchstart', function(e) {
+    drawing = true
+    currentMousePosition.x = e.offsetX
+    currentMousePosition.y = e.offsetY
+  })
+
+  canvas.addEventListener('touchend', function() {
+    drawing = false
+  })
+
+  canvas.addEventListener('touchmove', function(e) {
+    if (!drawing) return
+
+    lastMousePosition.x = currentMousePosition.x
+    lastMousePosition.y = currentMousePosition.y
+
+    currentMousePosition.x = e.offsetX
+    currentMousePosition.y = e.offsetY
+
+    whiteboard.draw(lastMousePosition, currentMousePosition, color, true)
+  })
+
   whiteboard.draw = function(start, end, strokeColor, shouldBroadcast) {
         // Draw the line between the start and end positions
         // that is colored with the given color.
