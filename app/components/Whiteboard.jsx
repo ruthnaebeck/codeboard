@@ -1,9 +1,10 @@
-/* global SpeechSynthesisUtterance Event */
+/* global SpeechSynthesisUtterance Event draws whiteboard */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { fetchUserQuestions } from 'APP/app/reducers/userQuestions'
 import { stopTimer } from 'APP/app/reducers/timer'
+import { fetchUserQuestion } from 'APP/app/reducers/userQuestion'
 import SvgIcon from 'material-ui/SvgIcon'
 import Paper from 'material-ui/Paper'
 import brace from 'brace'
@@ -20,6 +21,7 @@ class Whiteboard extends Component {
     super(props)
     this.state = {
       inputText: '',
+      inputDraw: [],
       wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
@@ -27,28 +29,20 @@ class Whiteboard extends Component {
   }
 
   componentDidMount() {
-    const scriptEe = document.createElement('script')
-    scriptEe.src = '/canvas_helpers/event-emitter.js'
-    scriptEe.async = true
-    document.body.appendChild(scriptEe)
     const scriptc = document.createElement('script')
-    scriptc.src = '/canvas_helpers/canvas.js'
+    scriptc.src = '/js/canvas.js'
     scriptc.async = true
     document.body.appendChild(scriptc)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth) {
-      const userQuestions = (data) => {
-        const userQuestion =
-          data.filter(question =>
-            question.question_id === this.props.question.id
-          )
-        if (userQuestion.length) this.setState({ inputText: userQuestion[0].user_answer })
-        else this.setState({ inputText: nextProps.question.start_function })
-      }
-      this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
-    } else {
+    if (nextProps.userQuestion) {
+      this.setState({
+        inputText: nextProps.userQuestion.user_answer,
+        inputDraw: nextProps.userQuestion.user_drawing
+      })
+      setTimeout(this.drawWB, 500)
+    } else if (!this.state.inputText) {
       this.setState({ inputText: nextProps.question.start_function })
     }
     const tests = nextProps.question.tests
@@ -63,6 +57,11 @@ class Whiteboard extends Component {
 
   componentWillUnmount() {
     this.props.stopTimer()
+  }
+  drawWB = () => {
+    this.state.inputDraw.forEach(draw => {
+      window.whiteboard.draw(draw.start, draw.end, draw.color)
+    })
   }
 
   resize = () => window.dispatchEvent(new Event('resize'))
@@ -195,7 +194,8 @@ const RightArrow = () => (
   </SvgIcon>
 )
 
-const mapStateToProps = ({ question, auth }) => ({ question, auth })
-const mapDispatchToProps = ({ fetchUserQuestions, stopTimer })
+const mapStateToProps = ({ question, auth, userQuestion }) =>
+  ({ question, auth, userQuestion })
+const mapDispatchToProps = ({ fetchUserQuestion, stopTimer })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard)

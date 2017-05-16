@@ -1,4 +1,8 @@
-/* global whiteboard */
+/* global whiteboard draws */
+window.EventEmitter = function() {
+  this.subscribers = {}
+}
+
 window.whiteboard = new window.EventEmitter();
 
 (function() {
@@ -96,6 +100,30 @@ window.whiteboard = new window.EventEmitter();
     whiteboard.draw(lastMousePosition, currentMousePosition, color, true)
   })
 
+  canvas.addEventListener('touchstart', function(e) {
+    e.preventDefault()
+    drawing = true
+    currentMousePosition.x = e.changedTouches[0].pageX
+    currentMousePosition.y = e.changedTouches[0].pageX
+  })
+
+  canvas.addEventListener('touchend', function(e) {
+    e.preventDefault()
+    drawing = false
+  })
+
+  canvas.addEventListener('touchmove', function(e) {
+    if (!drawing) return
+
+    lastMousePosition.x = currentMousePosition.x
+    lastMousePosition.y = currentMousePosition.y
+
+    currentMousePosition.x = e.changedTouches[0].pageX
+    currentMousePosition.y = e.changedTouches[0].pageX
+
+    whiteboard.draw(lastMousePosition, currentMousePosition, color, true)
+  })
+
   whiteboard.draw = function(start, end, strokeColor, shouldBroadcast) {
         // Draw the line between the start and end positions
         // that is colored with the given color.
@@ -105,13 +133,11 @@ window.whiteboard = new window.EventEmitter();
     else ctx.lineWidth = 5
     ctx.moveTo(start.x, start.y)
     ctx.lineTo(end.x, end.y)
+    draws.push({
+      start: {x: start.x, y: start.y},
+      end: {x: end.x, y: end.y},
+      color: strokeColor })
     ctx.closePath()
     ctx.stroke()
-
-        // If shouldBroadcast is truthy, we will emit a draw event to listeners
-        // with the start, end and color data.
-    if (shouldBroadcast) {
-      whiteboard.emit('draw', start, end, strokeColor)
-    }
   }
 })()

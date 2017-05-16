@@ -19,11 +19,26 @@ function seedEverything() {
 }
 
 const users = seed(User, {
-  test: {
-    email: 'test@email.com',
-    name: 'Test User',
+  ruth: {
+    email: 'ruth@codeboard.tech',
+    name: 'Ruth Naebeck',
     password: '1234',
   },
+  cigdem: {
+    email: 'cigdem@codeboard.tech',
+    name: 'Cigdem Aybar',
+    password: '1234',
+  },
+  fanny: {
+    email: 'fanny@codeboard.tech',
+    name: 'Fanny Jiang',
+    password: '1234',
+  },
+  rachel: {
+    email: 'rachel@codeboard.tech',
+    name: 'Rachel Cohen',
+    password: '1234',
+  }
 })
 
 const categories = seed(Category, {
@@ -213,11 +228,12 @@ const hints = seed(Hint, ({ questions }) =>
 
 const userQuestions = seed(userQuestion, ({ users, questions }) =>
   ({
-    testQuestion1: {
+    ruthQuestion1: {
       status: 'pending',
       question_id: questions.isUnique.id,
-      user_id: users.test.id,
-      user_answer: ''
+      user_id: users.ruth.id,
+      user_answer: 'function isUnique() {\n\n}',
+      user_drawing: []
     }
   }))
 

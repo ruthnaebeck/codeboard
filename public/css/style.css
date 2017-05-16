@@ -1,3 +1,9 @@
+.clear-fix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
 .splash {
   height: 88vh;
   margin: auto;
@@ -73,6 +79,11 @@ paper-button[toggles][active] {
   width: 100%;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
 .wbPaper {
     height: calc(100vh - 140px);
     width: 100%;
@@ -82,17 +93,17 @@ paper-button[toggles][active] {
     position: relative;
 }
 
-/*.colEdit {
-    padding-right: 3px
+@media (min-width: 768px) {
+  .colEdit {
+        padding-right: 3px;
+    }
+    .colWB {
+        padding-left: 3px;
+    }
+    .colSol {
+        padding-left: 3px;
+    }
 }
-
-.colWB {
-    padding-left: 3px;
-}
-
-.colSol {
-    padding-left: 3px;
-}*/
 
 #code {
     text-align: left
