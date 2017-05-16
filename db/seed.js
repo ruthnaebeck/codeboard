@@ -100,6 +100,26 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.stringsArrays.id,
       difficulty_id: difficulties.easy.id
     },
+    urlify: {
+      id: 103,
+      name: 'URLify',
+      text: '',
+      start_function: 'function urlify() {}',
+      tests: '1.03-URLify.spec.js',
+      solution: '1.03-URLify.js',
+      category_id: categories.stringsArrays.id,
+      difficulty_id: difficulties.easy.id
+    },
+    palindromePermutation: {
+      id: 104,
+      name: 'Palindrome Permutation',
+      text: '',
+      start_function: 'function palindromePermutation() {}',
+      tests: '1.04-palindromePermutation.spec.js',
+      solution: '1.04-palindromePermutation.js',
+      category_id: categories.stringsArrays.id,
+      difficulty_id: difficulties.easy.id
+    },
     removeDupes: {
       id: 201,
       name: 'Remove Duplicates',
@@ -120,6 +140,26 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.linkedLists.id,
       difficulty_id: difficulties.medium.id
     },
+    deleteMiddleNode: {
+      id: 203,
+      name: 'Delete Middle Node',
+      text: '',
+      start_function: 'function deleteMiddleNode() {}',
+      tests: '2.03-deleteMiddleNode.spec.js',
+      solution: '2.03-deleteMiddleNode.js',
+      category_id: categories.linkedLists.id,
+      difficulty_id: difficulties.medium.id
+    },
+    partition: {
+      id: 204,
+      name: 'Partition',
+      text: '',
+      start_function: 'function partition() {}',
+      tests: '2.04-partition.spec.js',
+      solution: '2.04-partition.js',
+      category_id: categories.linkedLists.id,
+      difficulty_id: difficulties.medium.id
+    },
     threeStacksInOne: {
       id: 301,
       name: 'Three Stacks in One',
@@ -127,6 +167,26 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       start_function: 'var TripleStack = class{\n  constructor() {}\n}',
       tests: '3.01-threeStacksInOne.spec.js',
       solution: '3.01-threeStacksInOne.js',
+      category_id: categories.stacksQueues.id,
+      difficulty_id: difficulties.medium.id
+    },
+    stackMin: {
+      id: 302,
+      name: 'Stack Min',
+      text: '',
+      start_function: 'var stackMin = class{\n  constructor() {}\n}',
+      tests: '3.02-stackMin.spec.js',
+      solution: '3.02-stackMin.js',
+      category_id: categories.stacksQueues.id,
+      difficulty_id: difficulties.medium.id
+    },
+    setOfStacks: {
+      id: 303,
+      name: 'Set of Stacks',
+      text: '',
+      start_function: 'var setOfStacks = class{\n  constructor() {}\n}',
+      tests: '3.03-setOfStacks.spec.js',
+      solution: '3.03-setOfStacks.js',
       category_id: categories.stacksQueues.id,
       difficulty_id: difficulties.medium.id
     },
@@ -147,6 +207,36 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       start_function: 'function routesBetweenNodes(graph, start, target) {}',
       tests: '4.01-routesBetweenNodes.spec.js',
       solution: '4.01-routesBetweenNodes.js',
+      category_id: categories.treesGraphs.id,
+      difficulty_id: difficulties.hard.id
+    },
+    minimalHeightBST: {
+      id: 402,
+      name: 'Minimal Height BST',
+      text: '',
+      start_function: 'function minimalHeightBST(graph, start, target) {}',
+      tests: '4.02-minimalHeightBST.spec.js',
+      solution: '4.02-minimalHeightBST.js',
+      category_id: categories.treesGraphs.id,
+      difficulty_id: difficulties.hard.id
+    },
+    listOfDepthBT: {
+      id: 403,
+      name: 'List of Depth BT',
+      text: '',
+      start_function: 'function listOfDepthBT(graph, start, target) {}',
+      tests: '4.03-listOfDepthBT.spec.js',
+      solution: '4.03-listOfDepthBT.js',
+      category_id: categories.treesGraphs.id,
+      difficulty_id: difficulties.hard.id
+    },
+    validateBalancedBT: {
+      id: 404,
+      name: 'Validate Balanced BT',
+      text: '',
+      start_function: 'function validateBalancedBT(graph, start, target) {}',
+      tests: '4.04-validateBalancedBT.spec.js',
+      solution: '4.04-validateBalancedBT.js',
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id
     },
