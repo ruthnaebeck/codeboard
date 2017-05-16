@@ -123,9 +123,10 @@ export class Home extends React.Component {
             </div>
           </div>
         </CardMedia>
+          <h4>Currently supports Javascript. More languages will be supported soon!</h4>
           <div style={{textAlign: 'center'}} >
-          {whyToUse.map(reason =>
-            <Paper style={paperStyle} zDepth={4} >
+          {whyToUse.map((reason, i) =>
+            <Paper style={paperStyle} zDepth={4} key={i} >
               <div>
                 <h3 style={{color: 'white', fontWeight: 200, padding: '30px', margin: 0}}>{reason}</h3>
               </div>
