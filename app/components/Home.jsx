@@ -15,12 +15,40 @@ import { Link } from 'react-router'
 import { setId } from '../reducers/question'
 
 const paperStyle = {
-  height: '30vh',
-  width: '25vw',
-  margin: '3%',
+  height: '28vh',
+  width: '28vw',
+  margin: '2%',
   textAlign: 'center',
-  display: 'inline-block'
+  display: 'inline-block',
+  backgroundColor: '#00bcd4'
 }
+
+const whyToUse = ['There are many sites to practice coding problems, but they don’t prepare you for one of the most challenging aspects of technical interviews: hearing the question read aloud instead of reading it on a screen.',
+  'Code Board allows you to replicate the experience of listening to the question and hints while you try to code, so you’ll be confident and comfortable in that environment when you go through interviews.',
+  'With both a code editor and a virtual whiteboard, Code Board also helps you practice diagramming the problem. It’s your own personal mock interviewer, available to help you practice anytime, anywhere.']
+
+const tilesData = [
+  {
+    img: '/images/how-to-1.png',
+    title: '1. Select question by category or difficulty'
+  },
+  {
+    img: '/images/how-to-2.png',
+    title: '2. App speaks the question prompt'
+  },
+  {
+    img: '/images/how-to-3.png',
+    title: '3. Code with whiteboard and text editor'
+  },
+  {
+    img: '/images/how-to-4.png',
+    title: '4. Ask for hints and test your code'
+  },
+  {
+    img: '/images/how-to-5.png',
+    title: '5. Sign in to save your work'
+  }
+]
 
 export class Home extends React.Component {
   constructor(props) {
@@ -37,28 +65,6 @@ export class Home extends React.Component {
   handleNav = (evt, id) => this.props.setId(id)
 
   render() {
-    const tilesData = [
-      {
-        img: '/images/how-to-1.png',
-        title: '1. Select question by category or difficulty'
-      },
-      {
-        img: '/images/how-to-2.png',
-        title: '2. App speaks the question prompt'
-      },
-      {
-        img: '/images/how-to-3.png',
-        title: '3. Code with whiteboard and text editor'
-      },
-      {
-        img: '/images/how-to-4.png',
-        title: '4. Ask for hints and test your code'
-      },
-      {
-        img: '/images/how-to-5.png',
-        title: '5. Sign in to save your work'
-      }
-    ]
     return (
       <Card>
         <CardMedia
@@ -163,11 +169,14 @@ export class Home extends React.Component {
             </div>
           </div>
         </CardMedia>
-        <CardTitle title='Why You Should Use Code Board' />
           <div style={{textAlign: 'center'}} >
-            <Paper style={paperStyle} zDepth={2} />
-            <Paper style={paperStyle} zDepth={2} />
-            <Paper style={paperStyle} zDepth={2} />
+          {whyToUse.map(reason =>
+            <Paper style={paperStyle} zDepth={4} >
+              <div>
+                <h3 style={{color: 'white', fontWeight: 200, padding: '30px', margin: 0}}>{reason}</h3>
+              </div>
+            </Paper>
+          )}
           </div>
       </Card>
     )

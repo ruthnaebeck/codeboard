@@ -1,3 +1,9 @@
+.clear-fix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
 .splash {
   height: 88vh;
   margin: auto;
