@@ -20,22 +20,22 @@ function seedEverything() {
 
 const users = seed(User, {
   ruth: {
-    email: 'ruth@codeboard.com',
+    email: 'ruth@codeboard.tech',
     name: 'Ruth Naebeck',
     password: '1234',
   },
   cigdem: {
-    email: 'cigdem@codeboard.com',
+    email: 'cigdem@codeboard.tech',
     name: 'Cigdem Aybar',
     password: '1234',
   },
   fanny: {
-    email: 'fanny@codeboard.com',
+    email: 'fanny@codeboard.tech',
     name: 'Fanny Jiang',
     password: '1234',
   },
   rachel: {
-    email: 'rachel@codeboard.com',
+    email: 'rachel@codeboard.tech',
     name: 'Rachel Cohen',
     password: '1234',
   }
