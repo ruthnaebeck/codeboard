@@ -31,7 +31,7 @@ const helpTopics = [
     {topic: 'Click "Repeat Question" to hear the prompt again. You can have the question repeated only once.', icon: repeat},
     {topic: 'Click "Hints" to hear a hint. There are three hints per question.', icon: hints},
     {topic: 'Click "Run Code" to test your solution.', icon: play},
-    {topic: 'If you are logged in, you can click "Save Code" to save your solution.', icon: save},
+    {topic: 'If you are logged in, you can click "Save" to save your work.', icon: save},
     {topic: 'Click "Show Solutions" to see a set of possible solutions and their space/time complexity.', icon: solutions}
 ]
 
@@ -158,19 +158,11 @@ class BottomNavBar extends Component {
       document.getElementById('edit').className = 'col-sm-6 colEdit'
       document.getElementById('wb').className = 'col-hide colWB'
       document.getElementById('sol').className = 'col-sm-6 colSol'
-      // const arrows = document.getElementsByClassName('span-arrow')
-      // for (let i = 0; i < arrows.length; i++) {
-      //   arrows[i].className = 'span-arrow col-hide'
-      // }
     } else {
       this.setState({ solutionText: 'Show Solutions' })
       document.getElementById('edit').className = 'col-sm-6 colEdit'
       document.getElementById('wb').className = 'col-sm-6 colWB'
       document.getElementById('sol').className = 'col-hide colSol'
-      // const arrows = document.getElementsByClassName('span-arrow')
-      // for (let i = 0; i < arrows.length; i++) {
-      //   arrows[i].className = 'span-arrow'
-      // }
     }
   }
 
@@ -212,7 +204,7 @@ class BottomNavBar extends Component {
                 onTouchTap={() => this.select(2)}
               />
               <BottomNavigationItem
-                label="Save Code"
+                label="Save"
                 icon={save}
                 onClick={this.handleSave}
                 onTouchTap={() => this.select(3) }
