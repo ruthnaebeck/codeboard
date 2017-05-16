@@ -101,12 +101,14 @@ window.whiteboard = new window.EventEmitter();
   })
 
   canvas.addEventListener('touchstart', function(e) {
+    e.preventDefault()
     drawing = true
-    currentMousePosition.x = e.offsetX
-    currentMousePosition.y = e.offsetY
+    currentMousePosition.x = e.changedTouches[0].pageX
+    currentMousePosition.y = e.changedTouches[0].pageX
   })
 
-  canvas.addEventListener('touchend', function() {
+  canvas.addEventListener('touchend', function(e) {
+    e.preventDefault()
     drawing = false
   })
 
@@ -116,8 +118,8 @@ window.whiteboard = new window.EventEmitter();
     lastMousePosition.x = currentMousePosition.x
     lastMousePosition.y = currentMousePosition.y
 
-    currentMousePosition.x = e.offsetX
-    currentMousePosition.y = e.offsetY
+    currentMousePosition.x = e.changedTouches[0].pageX
+    currentMousePosition.y = e.changedTouches[0].pageX
 
     whiteboard.draw(lastMousePosition, currentMousePosition, color, true)
   })
