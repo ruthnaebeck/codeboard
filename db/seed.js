@@ -217,7 +217,7 @@ const userQuestions = seed(userQuestion, ({ users, questions }) =>
       status: 'pending',
       question_id: questions.isUnique.id,
       user_id: users.test.id,
-      user_answer: ''
+      user_answer: 'function isUnique() {\n\n}'
     }
   }))
 

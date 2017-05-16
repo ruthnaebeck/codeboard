@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { fetchUserQuestions } from 'APP/app/reducers/userQuestions'
+import { fetchUserQuestion } from 'APP/app/reducers/userQuestion'
 import SvgIcon from 'material-ui/SvgIcon'
 import Paper from 'material-ui/Paper'
 import brace from 'brace'
@@ -37,17 +37,11 @@ class Whiteboard extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth) {
-      const userQuestions = (data) => {
-        const userQuestion =
-          data.filter(question =>
-            question.question_id === this.props.question.id
-          )
-        if (userQuestion.length) this.setState({ inputText: userQuestion[0].user_answer })
-        else this.setState({ inputText: nextProps.question.start_function })
-      }
-      this.props.fetchUserQuestions(nextProps.auth.id, userQuestions)
-    } else {
+    if (nextProps.userQuestion) {
+      this.setState({
+        inputText: nextProps.userQuestion.user_answer,
+      })
+    } else if (!this.state.inputText) {
       this.setState({ inputText: nextProps.question.start_function })
     }
     const tests = nextProps.question.tests
@@ -190,7 +184,8 @@ const RightArrow = () => (
   </SvgIcon>
 )
 
-const mapStateToProps = ({ question, auth }) => ({ question, auth })
-const mapDispatchToProps = ({ fetchUserQuestions })
+const mapStateToProps = ({ question, auth, userQuestion }) =>
+  ({ question, auth, userQuestion })
+const mapDispatchToProps = ({ fetchUserQuestion })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard)
