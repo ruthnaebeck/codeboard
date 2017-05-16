@@ -194,8 +194,8 @@ const RightArrow = () => (
   </SvgIcon>
 )
 
-const mapStateToProps = ({ question, auth, userQuestion }) =>
-  ({ question, auth, userQuestion })
+const mapStateToProps = ({ question, auth, userQuestion, drawer}) =>
+  ({ question, auth, userQuestion, drawer })
 const mapDispatchToProps = ({ fetchUserQuestion, stopTimer })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard)
