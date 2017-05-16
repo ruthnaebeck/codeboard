@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { fetchUserQuestions } from 'APP/app/reducers/userQuestions'
+import { stopTimer } from 'APP/app/reducers/timer'
 import SvgIcon from 'material-ui/SvgIcon'
 import Paper from 'material-ui/Paper'
 import brace from 'brace'
@@ -58,6 +59,10 @@ class Whiteboard extends Component {
       script.id = 'testSpecs'
       document.body.appendChild(script)
     }
+  }
+
+  componentWillUnmount() {
+    this.props.stopTimer()
   }
 
   resize = () => window.dispatchEvent(new Event('resize'))
@@ -191,6 +196,6 @@ const RightArrow = () => (
 )
 
 const mapStateToProps = ({ question, auth }) => ({ question, auth })
-const mapDispatchToProps = ({ fetchUserQuestions })
+const mapDispatchToProps = ({ fetchUserQuestions, stopTimer })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard)

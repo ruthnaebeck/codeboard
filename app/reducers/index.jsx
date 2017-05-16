@@ -6,7 +6,8 @@ const rootReducer = combineReducers({
   difficulties: require('./difficulties').default,
   question: require('./question').default,
   drawer: require('./drawer').default,
-  userQuestions: require('./userQuestions').default
+  userQuestions: require('./userQuestions').default,
+  timer: require('./timer').default
 })
 
 export default rootReducer

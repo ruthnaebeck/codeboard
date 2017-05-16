@@ -10,6 +10,7 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Whiteboard from './components/Whiteboard'
 import AccountPage from './components/AccountPage'
+import Timer from './components/Timer'
 
 // Dispatchers
 import {whoami} from './reducers/auth'
@@ -22,6 +23,7 @@ const Routes = ({onAppEnter, onQuestionEnter, onAccountEnter}) => (
   <Router history={browserHistory}>
     <Route path="/" component={App} onEnter={onAppEnter}>
       <IndexRoute component={Home}/>
+      <Route path='/timer' component={Timer} />
       <Route path="/question/:id" component={Whiteboard} onEnter={onQuestionEnter} />
       <Route path="/users/:id" component={AccountPage} onEnter={onAccountEnter}/>
     </Route>
