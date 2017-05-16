@@ -1,4 +1,8 @@
 /* global whiteboard draws */
+window.EventEmitter = function() {
+  this.subscribers = {}
+}
+
 window.whiteboard = new window.EventEmitter();
 
 (function() {
@@ -111,11 +115,5 @@ window.whiteboard = new window.EventEmitter();
       color: strokeColor })
     ctx.closePath()
     ctx.stroke()
-
-        // If shouldBroadcast is truthy, we will emit a draw event to listeners
-        // with the start, end and color data.
-    if (shouldBroadcast) {
-      whiteboard.emit('draw', start, end, strokeColor)
-    }
   }
 })()
