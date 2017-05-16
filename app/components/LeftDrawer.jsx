@@ -54,7 +54,6 @@ export const LeftDrawer = (props) => {
                   containerElement={<Link to={`/question/${question.id}`} />}
                   key={question.id}
                   secondaryText={question.name}
-                  onTouchTap={(evt) => this.handleNav(evt, question.id)}
                 />
               )
             }
