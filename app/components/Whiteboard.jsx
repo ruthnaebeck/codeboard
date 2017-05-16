@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance Event */
+/* global SpeechSynthesisUtterance Event draws whiteboard */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -19,6 +19,7 @@ class Whiteboard extends Component {
     super(props)
     this.state = {
       inputText: '',
+      inputDraw: [],
       wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
@@ -40,7 +41,9 @@ class Whiteboard extends Component {
     if (nextProps.userQuestion) {
       this.setState({
         inputText: nextProps.userQuestion.user_answer,
+        inputDraw: nextProps.userQuestion.user_drawing
       })
+      setTimeout(this.drawWB, 500)
     } else if (!this.state.inputText) {
       this.setState({ inputText: nextProps.question.start_function })
     }
@@ -52,6 +55,12 @@ class Whiteboard extends Component {
       script.id = 'testSpecs'
       document.body.appendChild(script)
     }
+  }
+
+  drawWB = () => {
+    this.state.inputDraw.forEach(draw => {
+      window.whiteboard.draw(draw.start, draw.end, draw.color)
+    })
   }
 
   resize = () => window.dispatchEvent(new Event('resize'))

@@ -105,7 +105,10 @@ window.whiteboard = new window.EventEmitter();
     else ctx.lineWidth = 5
     ctx.moveTo(start.x, start.y)
     ctx.lineTo(end.x, end.y)
-    draws.push({ start: start, end: end, color: strokeColor })
+    draws.push({
+      start: {x: start.x, y: start.y},
+      end: {x: end.x, y: end.y},
+      color: strokeColor })
     ctx.closePath()
     ctx.stroke()
 

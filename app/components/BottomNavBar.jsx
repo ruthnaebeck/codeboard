@@ -226,7 +226,7 @@ class BottomNavBar extends Component {
           <Snackbar
             className="snackbar"
             open={this.state.snackbar}
-            message="Code Saved"
+            message="Code + Whiteboard Saved"
             autoHideDuration={2000}
             onRequestClose={this.handleClose}
           />
