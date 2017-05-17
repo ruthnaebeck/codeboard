@@ -264,6 +264,16 @@ const hints = seed(Hint, ({ questions }) =>
       text: 'Could a hash table be useful?',
       question_id: questions.checkPermutations.id
     },
+    urlify1: {
+      id: 1031,
+      text: "It's often easiest to modify strings by going from the end of the string to the beginning.",
+      question_id: questions.urlify.id
+    },
+    urlify2: {
+      id: 1032,
+      text: 'You might find it helpful to count the number of spaces in the string.',
+      question_id: questions.urlify.id
+    },
     removeDupes1: {
       id: 2011,
       text: 'Have you tried a hash table? You should be able to do this in a single pass of the linked list.',
