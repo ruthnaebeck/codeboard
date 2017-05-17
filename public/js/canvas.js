@@ -41,12 +41,13 @@ window.whiteboard = new window.EventEmitter();
 
         // Allocate backing store large enough to give us a 1:1 device pixel
         // to canvas pixel ratio.
-    var w = canvas.clientWidth * pixelRatio,
-      h = canvas.clientHeight * pixelRatio
+    var w = (canvas.clientWidth || 1) * pixelRatio,
+      h = (canvas.clientHeight || 1) * pixelRatio
     if (w !== canvas.width || h !== canvas.height) {
             // Resizing the canvas destroys the current content.
             // So, save it...
       var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+      console.log('imgData', imgData)
 
       canvas.width = w; canvas.height = h
 
@@ -61,6 +62,7 @@ window.whiteboard = new window.EventEmitter();
     ctx.lineWidth = 5
     ctx.lineJoin = 'round'
     ctx.lineCap = 'round'
+    // console.log('W', w, 'H', h)
   }
 
   resize()
@@ -124,7 +126,7 @@ window.whiteboard = new window.EventEmitter();
     whiteboard.draw(lastMousePosition, currentMousePosition, color, true)
   })
 
-  whiteboard.draw = function(start, end, strokeColor, shouldBroadcast) {
+  whiteboard.draw = function(start, end, strokeColor) {
         // Draw the line between the start and end positions
         // that is colored with the given color.
     ctx.beginPath()
