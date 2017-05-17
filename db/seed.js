@@ -113,8 +113,8 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     palindromePermutation: {
       id: 104,
       name: 'Palindrome Permutation',
-      text: '',
-      start_function: 'function palindromePermutation() {}',
+      text: 'Given a string, write a function to check if it is a permutation of a palindrome.',
+      start_function: 'function palindromePermutation(str) {}',
       tests: '1.04-palindromePermutation.spec.js',
       solution: '1.04-palindromePermutation.js',
       category_id: categories.stringsArrays.id,
@@ -124,7 +124,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 201,
       name: 'Remove Duplicates',
       text: 'Given an unsorted linked list, write code to remove the duplicates.',
-      start_function: 'function removeDupes() {}',
+      start_function: 'function removeDupes(list) {}',
       tests: '2.01-removeDupes.spec.js',
       solution: '2.01-removeDupes.js',
       category_id: categories.linkedLists.id,
@@ -273,6 +273,16 @@ const hints = seed(Hint, ({ questions }) =>
       id: 1032,
       text: 'You might find it helpful to count the number of spaces in the string.',
       question_id: questions.urlify.id
+    },
+    palindromePermutation1: {
+      id: 1041,
+      text: 'You do not have to, and should not, generate all permutations.',
+      question_id: questions.palindromePermutation.id
+    },
+    palindromePermutation2: {
+      id: 1041,
+      text: '',
+      question_id: questions.palindromePermutation.id
     },
     removeDupes1: {
       id: 2011,

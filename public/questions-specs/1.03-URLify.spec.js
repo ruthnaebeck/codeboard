@@ -1,4 +1,3 @@
-
 /* global chai describe it expect mocha urlify */
 
 describe('Strings & Arrays - URLify', function() {

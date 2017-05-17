@@ -65,7 +65,7 @@ export class Home extends React.Component {
           <div className="col-sm-12">
             <Card>
               <CardMedia
-                overlay={<CardTitle title="Practice for your JavaScript Technical Interview" subtitle="This app simulates the experience of a technical interview by providing only audio feedback. With practice, this app will help sharpen your acuity and develop the skills to ace your interview. " />}>
+                overlay={<CardTitle title="Practice for Your JavaScript Technical Interview" />}>
                 <div className="splash row"
                   style={{ backgroundImage: 'url(/images/woman_coding.jpg)' }}>
                   <div className="col-sm-12 started">
