@@ -1,4 +1,4 @@
-/* global SpeechSynthesisUtterance Event draws whiteboard */
+/* global SpeechSynthesisUtterance Event draws whiteboard mocha */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
@@ -51,6 +51,7 @@ class Whiteboard extends Component {
     // }
     const tests = nextProps.question.tests
     if (tests) {
+      mocha.suite.suites = []
       const script = document.createElement('script')
       script.src = `/questions-specs/${tests}`
       script.async = true
