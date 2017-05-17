@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { saveQuestion } from '../reducers/userQuestion'
+import { set } from '../reducers/drawer'
+import LeftDrawer from './LeftDrawer'
 
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation'
 import Paper from 'material-ui/Paper'
@@ -14,11 +16,13 @@ import Play from 'material-ui/svg-icons/av/play-arrow'
 import Help from 'material-ui/svg-icons/action/help'
 import RightArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 import Repeat from 'material-ui/svg-icons/action/record-voice-over'
+import QuestionList from 'material-ui/svg-icons/action/list'
 import Solutions from 'material-ui/svg-icons/action/lock-open'
 import Hint from 'material-ui/svg-icons/action/lightbulb-outline'
 import FlatButton from 'material-ui/FlatButton'
 import {List, ListItem} from 'material-ui/List'
 
+const list = <QuestionList />
 const save = <Save />
 const play = <Play />
 const help = <Help />
@@ -39,7 +43,7 @@ class BottomNavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedIndex: 0,
+      selectedIndex: 1,
       prompt: '',
       questionStatus: 'pending',
       spoken: false,
@@ -50,7 +54,7 @@ class BottomNavBar extends Component {
     }
   }
   repeatQuestion = (voice, words) => {
-    this.select(0)
+    this.select(1)
     if (!this.state.spoken) {
       this.speak(voice, words)
       this.setState({
@@ -60,7 +64,7 @@ class BottomNavBar extends Component {
   }
 
   giveHint = (voice, hint) => {
-    this.select(1)
+    this.select(2)
     this.speak(voice, hint)
     this.setState({
       currentHintIdx: this.state.currentHintIdx + 1
@@ -185,8 +189,14 @@ class BottomNavBar extends Component {
     if (user) {
       return (
         <div>
+          <LeftDrawer />
           <Paper zDepth={1}>
             <BottomNavigation selectedIndex={this.state.selectedIndex} >
+              <BottomNavigationItem
+                label="New Question"
+                icon={list}
+                onTouchTap={this.props.set}
+              />
               <BottomNavigationItem
                 label="Repeat Question"
                 icon={repeat}
@@ -201,25 +211,25 @@ class BottomNavBar extends Component {
                 label="Run Code"
                 icon={play}
                 onClick={this.handlePlay}
-                onTouchTap={() => this.select(2)}
+                onTouchTap={() => this.select(3)}
               />
               <BottomNavigationItem
                 label="Save"
                 icon={save}
                 onClick={this.handleSave}
-                onTouchTap={() => this.select(3) }
+                onTouchTap={() => this.select(4) }
                 />
               <BottomNavigationItem
                 label={this.state.solutionText}
                 icon={solutions}
                 onClick={this.handleSolutions}
-                onTouchTap={() => this.select(4) }
+                onTouchTap={() => this.select(5) }
                 />
               <BottomNavigationItem
                 label='Help'
                 icon={help}
                 onClick={this.handleHelp}
-                onTouchTap={() => this.select(5) }
+                onTouchTap={() => this.select(6) }
                 />
             </BottomNavigation>
           </Paper>
@@ -253,8 +263,14 @@ class BottomNavBar extends Component {
     } else {
       return (
       <div>
+        <LeftDrawer />
         <Paper zDepth={1}>
           <BottomNavigation selectedIndex={this.state.selectedIndex} >
+            <BottomNavigationItem
+              label="New Question"
+              icon={list}
+              onTouchTap={this.props.set}
+            />
             <BottomNavigationItem
               label="Repeat Question"
               icon={repeat}
@@ -269,19 +285,19 @@ class BottomNavBar extends Component {
               label="Run Code"
               icon={play}
               onClick={this.handlePlay}
-              onTouchTap={() => this.select(2)}
+              onTouchTap={() => this.select(3)}
             />
             <BottomNavigationItem
               label={this.state.solutionText}
               icon={solutions}
               onClick={this.handleSolutions}
-              onTouchTap={() => this.select(3) }
+              onTouchTap={() => this.select(4) }
             />
             <BottomNavigationItem
               label='Help'
               icon={help}
               onClick={this.handleHelp}
-              onTouchTap={() => this.select(4) }
+              onTouchTap={() => this.select(5) }
             />
           </BottomNavigation>
         </Paper>
@@ -310,6 +326,6 @@ class BottomNavBar extends Component {
 
 const mapStateToProps = ({ question, auth, userQuestions }) =>
   ({ question, auth, userQuestions })
-const mapDispatchToProps = ({ saveQuestion })
+const mapDispatchToProps = ({ saveQuestion, set })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomNavBar)
