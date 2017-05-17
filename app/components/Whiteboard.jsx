@@ -42,9 +42,13 @@ class Whiteboard extends Component {
         inputDraw: nextProps.userQuestion.user_drawing
       })
       setTimeout(this.drawWB, 500)
-    } else if (!this.state.inputText) {
+    } else {
       this.setState({ inputText: nextProps.question.start_function })
     }
+    // There was a reason for this
+    // else if (!this.state.inputText) {
+    //   this.setState({ inputText: nextProps.question.start_function })
+    // }
     const tests = nextProps.question.tests
     if (tests) {
       const script = document.createElement('script')
