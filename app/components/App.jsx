@@ -11,7 +11,7 @@ const App = ({ children, user, timer }) => (
   <div>
     <AppBar
       className="App"
-      title={timer ? <span style={{display: 'inline-block', width: '600px'}}><Link to="/">Code Board</Link><Timer /></span> : <Link to="/">Code Board</Link>}
+      title={timer ? <span style={{display: 'inline-block', width: '760px'}}><Link to="/">Code Board</Link><Timer /></span> : <Link to="/">Code Board</Link>}
       iconElementRight={user ? <Logout /> : <Login />}
       iconElementLeft={<span/>}
       iconStyleLeft={{textAlign: 'center'}}
