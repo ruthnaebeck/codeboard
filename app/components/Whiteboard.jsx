@@ -122,16 +122,22 @@ class Whiteboard extends Component {
         <div className="row">
           <div id="edit" className={this.state.colEdit}>
             <Paper className="wbPaper" zDepth={3}>
-              <span
-                className="span-arrow"
-                onClick={() => this.handleEdit('left')}>
-                <LeftArrow />
-              </span>
-              <span
-                className="span-arrow"
-                onClick={this.handleEdit}>
-                <RightArrow />
-              </span>
+            {this.state.colWB === 'col-hide'
+              ? <div><span
+                  className="span-arrow"
+                  onClick={() => this.handleEdit('left')}>
+                  <LeftArrow />
+                </span></div>
+              : <div><span
+                  className="span-arrow"
+                  onClick={() => this.handleEdit('left')}>
+                  <LeftArrow />
+                  </span>
+                  <span
+                  className="span-arrow"
+                  onClick={this.handleEdit}>
+                  <RightArrow />
+                </span></div>}
               <AceEditor
                 className="ace-editor"
                 mode="text"
@@ -148,16 +154,22 @@ class Whiteboard extends Component {
           </div>
           <div id="wb" className={this.state.colWB}>
             <Paper className="wbPaper" zDepth={3}>
-              <span
-                className="span-arrow"
-                onClick={this.handleWB}>
-                <LeftArrow />
-              </span>
-              <span
-                className="span-arrow"
-                onClick={() => this.handleWB('right')}>
-                <RightArrow />
-              </span>
+              {this.state.colEdit === 'col-hide'
+              ? <div><span
+                  className="span-arrow"
+                  onClick={() => this.handleWB('right')}>
+                  <RightArrow />
+                </span></div>
+              : <div><span
+                  className="span-arrow"
+                  onClick={this.handleWB}>
+                  <LeftArrow />
+                  </span>
+                  <span
+                  className="span-arrow"
+                  onClick={() => this.handleWB('right')}>
+                  <RightArrow />
+                </span></div>}
               <Canvas />
             </Paper>
           </div>
