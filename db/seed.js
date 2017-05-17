@@ -84,7 +84,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 101,
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
-      start_function: 'function isUnique() {}',
+      start_function: 'function isUnique(str) {}',
       tests: '1.01-isUnique.spec.js',
       solution: '1.01-isUnique.js',
       category_id: categories.stringsArrays.id,
@@ -94,7 +94,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 102,
       name: 'Check Permutations',
       text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
-      start_function: 'function checkPermutations() {}',
+      start_function: 'function checkPermutations(str1, str2) {}',
       tests: '1.02-checkPermutations.spec.js',
       solution: '1.02-checkPermutations.js',
       category_id: categories.stringsArrays.id,
@@ -103,8 +103,8 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     urlify: {
       id: 103,
       name: 'URLify',
-      text: '',
-      start_function: 'function urlify() {}',
+      text: 'Write a method to replace all spaces in a string with percent twenty. Then return the updated string.',
+      start_function: 'function urlify(str) {}',
       tests: '1.03-URLify.spec.js',
       solution: '1.03-URLify.js',
       category_id: categories.stringsArrays.id,
@@ -322,7 +322,7 @@ const userQuestions = seed(userQuestion, ({ users, questions }) =>
       status: 'pending',
       question_id: questions.isUnique.id,
       user_id: users.ruth.id,
-      user_answer: 'function isUnique() {\n\n}',
+      user_answer: 'function isUnique(str) {\n\n}',
       user_drawing: []
     }
   }))

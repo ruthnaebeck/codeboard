@@ -1,6 +1,8 @@
 // USING REGEX
 
-isUnique = (str) => !/(.).*\1/.test(str)
+function isUnique(str) {
+  return !/(.).*\1/.test(str)
+}
 
 
 // O(N^2) TIME -- O(1) SPACE
