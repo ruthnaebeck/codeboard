@@ -194,7 +194,7 @@ const RightArrow = () => (
   </SvgIcon>
 )
 
-const mapStateToProps = ({ question, auth, userQuestion, drawer}) =>
+const mapStateToProps = ({ question, auth, userQuestion, drawer }) =>
   ({ question, auth, userQuestion, drawer })
 const mapDispatchToProps = ({ fetchUserQuestion, stopTimer })
 

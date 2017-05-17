@@ -46,26 +46,6 @@ header {
     justify-content: center;
 }
 
-.write-here-wrapper{
-    position: relative;
-}
-
-.write-here{
-    position: absolute;
-    width : 100vw;
-    text-align : center;
-    padding:  0;
-    margin: -33px auto 0;
-    top: 50%;
-    font-family: 'Waiting for the Sunrise', cursive;
-    font-size: 40px;
-    z-index: 1;
-}
-
-#textInput {
-    height : calc(100vh - 170px);
-}
-
 paper-button[toggles][active] {
     background: rgba(0, 0, 0, 0.2);
 }
@@ -79,9 +59,22 @@ paper-button[toggles][active] {
   width: 100%;
 }
 
-.col-centered {
-  float: none;
-  margin: 0 auto;
+.homeRow {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.homePaper {
+    height: 92%;
+    width: 100%;
+    margin: 15px 0px 15px 0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #00bcd4
 }
 
 .wbPaper {

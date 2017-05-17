@@ -4,26 +4,24 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card'
 import Drawer from 'material-ui/Drawer'
 import Paper from 'material-ui/Paper'
-import {List, ListItem} from 'material-ui/List'
+import { List, ListItem } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import AppBar from 'material-ui/AppBar'
-import {GridList, GridTile} from 'material-ui/GridList'
+import { GridList, GridTile } from 'material-ui/GridList'
 import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import { Link } from 'react-router'
 import LeftDrawer from './LeftDrawer'
 
 import { setId } from '../reducers/question'
-import {set} from '../reducers/drawer'
+import { set } from '../reducers/drawer'
 
-const paperStyle = {
-  height: '28vh',
-  width: '28vw',
-  margin: '2%',
-  textAlign: 'center',
-  display: 'inline-block',
-  backgroundColor: '#00bcd4'
-}
+// const paperStyle = {
+//   height: '100%',
+//   width: '100%',
+//   textAlign: 'center',
+//   backgroundColor: '#00bcd4'
+// }
 
 const whyToUse = ['There are many sites to practice coding problems, but they don’t prepare you for one of the most challenging aspects of technical interviews: hearing the question read aloud instead of reading it on a screen.',
   'Code Board allows you to replicate the experience of listening to the question and hints while you try to code, so you’ll be confident and comfortable in that environment when you go through interviews.',
@@ -69,77 +67,86 @@ export class Home extends React.Component {
 
   render() {
     return (
-      <Card>
-        <CardMedia
-          overlay={<CardTitle title="Practice for your technical interview" subtitle="This app simulates the experience of a technical interview by providing only audio feedback. With practice, this app will help sharpen your acuity and develop the skills to ace your interview. " />}>
-          <div className="splash row"
-            style={{ backgroundImage: 'url(/images/woman_coding.jpg)' }}>
-            <div className="col-sm-12 started">
-              <RaisedButton
-                label="Get Started"
-                primary={true}
-                onTouchTap={this.props.set}
-                style={{margin: 8}} />
-              <RaisedButton
-                label="How It Works"
-                primary={true}
-                onTouchTap={this.handleRightToggle}
-                style={{margin: 8}} />
-              <LeftDrawer/>
-              <Drawer width={ '33%' } openSecondary={true} docked={false} open={this.state.openRight} onRequestChange={(open) => this.setState({openRight: open})} >
-                <AppBar
-                  title="How It Works"
-                  showMenuIconButton={ false }
-                />
-                <div>
-                  <GridList
-                    cellHeight={250}
-                    cols={1}
-                    padding={25}
-                    style={{margin: 25}}
-                  >
-                  {tilesData.map((tile) => (
-                    <GridTile
-                      icon={<IconButton>{tile.button}</IconButton>}
-                      key={tile.title}
-                      title={tile.title}
-                      titlePosition='top'
-                      titleStyle={{fontSize: '1.25em', textAlign: 'left', wordWrap: 'break-word'}}
-                      actionPosition='left'
-                      style={{borderStyle: 'solid', borderWidth: '2px'}}
-                      titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
-                      <img src={tile.img} />
-                    </GridTile>
-                  ))}
-                </GridList>
+      <div>
+        <div className="row">
+          <div className="col-sm-12">
+            <Card>
+              <CardMedia
+                overlay={<CardTitle title="Practice for your JavaScript Technical Interview" subtitle="This app simulates the experience of a technical interview by providing only audio feedback. With practice, this app will help sharpen your acuity and develop the skills to ace your interview. " />}>
+                <div className="splash row"
+                  style={{ backgroundImage: 'url(/images/woman_coding.jpg)' }}>
+                  <div className="col-sm-12 started">
+                    <RaisedButton
+                      label="Get Started"
+                      primary={true}
+                      onTouchTap={this.props.set}
+                      style={{ margin: 8 }} />
+                    <RaisedButton
+                      label="How It Works"
+                      primary={true}
+                      onTouchTap={this.handleRightToggle}
+                      style={{ margin: 8 }} />
+                    <LeftDrawer />
+                    <Drawer width={'33%'} openSecondary={true} docked={false} open={this.state.openRight} onRequestChange={(open) => this.setState({ openRight: open })} >
+                      <AppBar
+                        title="How It Works"
+                        showMenuIconButton={false}
+                      />
+                      <div>
+                        <GridList
+                          cellHeight={250}
+                          cols={1}
+                          padding={25}
+                          style={{ margin: 25 }}
+                        >
+                          {tilesData.map((tile) => (
+                            <GridTile
+                              icon={<IconButton>{tile.button}</IconButton>}
+                              key={tile.title}
+                              title={tile.title}
+                              titlePosition='top'
+                              titleStyle={{ fontSize: '1.25em', textAlign: 'left', wordWrap: 'break-word' }}
+                              actionPosition='left'
+                              style={{ borderStyle: 'solid', borderWidth: '2px' }}
+                              titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
+                              <img src={tile.img} />
+                            </GridTile>
+                          ))}
+                        </GridList>
+                      </div>
+                      <RaisedButton
+                        label="Get Started"
+                        primary={true}
+                        onTouchTap={this.handleLeftToggle}
+                        style={{ marginBottom: 20 }}
+                      />
+                    </Drawer>
+                  </div>
                 </div>
-                <RaisedButton
-                label="Get Started"
-                primary={true}
-                onTouchTap={this.handleLeftToggle}
-                style={{marginBottom: 20}}
-                />
-              </Drawer>
-            </div>
+              </CardMedia>
+            </Card>
           </div>
-        </CardMedia>
-          <h4>Currently supports Javascript. More languages will be supported soon!</h4>
-          <div style={{textAlign: 'center'}} >
+        </div>
+        <div className="row homeRow">
           {whyToUse.map((reason, i) =>
-            <Paper style={paperStyle} zDepth={4} key={i} >
-              <div>
-                <h3 style={{color: 'white', fontWeight: 200, padding: '30px', margin: 0}}>{reason}</h3>
-              </div>
-            </Paper>
+            <div className="col-sm-4" key={i}>
+              <Paper
+                key={i}
+                className="homePaper"
+                style={{backgroundColor: '#00bcd4'}}
+                zDepth={4} >
+                <h3 style={{ color: 'white', fontWeight: 200, padding: '30px', margin: 0 }}>{reason}</h3>
+              </Paper>
+            </div>
           )}
-          </div>
-      </Card>
+        </div>
+      </div>
     )
   }
 }
 
-const mapStateToProps = ({categories, difficulties, drawer}) =>
-  ({categories, difficulties, drawer})
+const mapStateToProps = ({ categories, difficulties, drawer }) =>
+  ({ categories, difficulties, drawer })
 const mapDispatchToProps = { setId, set }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
