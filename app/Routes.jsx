@@ -52,7 +52,6 @@ const mapDispatch = (dispatch) => ({
     const id = nextRouterState.params.id
     dispatch(fetchQuestion(id))
     dispatch(fetchUserQuestion(id))
-    draws = []
   }
 })
 

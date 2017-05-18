@@ -1,4 +1,7 @@
+'use strict'
+
 /* global whiteboard draws */
+
 window.EventEmitter = function() {
   this.subscribers = {}
 }
@@ -143,6 +146,7 @@ window.whiteboard = new window.EventEmitter();
   }
 
   whiteboard.clear = function() {
+    draws.length = 0
     ctx.clearRect(0, 0, canvas.width, canvas.height)
   }
 })()

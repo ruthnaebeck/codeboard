@@ -28,6 +28,7 @@ class Whiteboard extends Component {
   }
 
   componentDidMount() {
+    if (window.whiteboard) window.whiteboard.clear()
     const scriptc = document.createElement('script')
     scriptc.src = '/js/canvas.js'
     scriptc.async = true
@@ -37,12 +38,10 @@ class Whiteboard extends Component {
   componentWillReceiveProps(nextProps) {
     if (window.whiteboard) window.whiteboard.clear()
     if (nextProps.userQuestion) {
-      console.log('cWRP', nextProps.userQuestion)
       this.setState({
         inputText: nextProps.userQuestion.user_answer,
       })
-      // setTimeout(this.drawWB, 400)
-      this.drawWB(nextProps.userQuestion)
+      setTimeout(this.drawWB, 200)
     } else {
       this.setState({ inputText: nextProps.question.start_function })
     }
@@ -64,10 +63,13 @@ class Whiteboard extends Component {
   componentWillUnmount() {
     this.props.stopTimer()
   }
-  drawWB = (userQuestion) => {
-    userQuestion.user_drawing.forEach(draw => {
-      window.whiteboard.draw(draw.start, draw.end, draw.color)
-    })
+  drawWB = () => {
+    const userQuestion = this.props.userQuestion
+    if (userQuestion) {
+      userQuestion.user_drawing.forEach(draw => {
+        window.whiteboard.draw(draw.start, draw.end, draw.color)
+      })
+    }
   }
 
   resize = () => window.dispatchEvent(new Event('resize'))
