@@ -45,7 +45,9 @@ class Popup extends React.Component {
       />
     ]
     const voice = window.speechSynthesis
+    const voices = voice.getVoices()
     const words = new SpeechSynthesisUtterance(this.props.question.text)
+    words.voice = voices.filter((voice) => voice.name === 'Samantha')[0]
     this.speak(voice, words)
     return (
       <div>
