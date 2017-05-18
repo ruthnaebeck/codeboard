@@ -280,7 +280,7 @@ const hints = seed(Hint, ({ questions }) =>
       question_id: questions.palindromePermutation.id
     },
     palindromePermutation2: {
-      id: 1041,
+      id: 1042,
       text: '',
       question_id: questions.palindromePermutation.id
     },
