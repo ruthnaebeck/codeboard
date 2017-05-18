@@ -38,6 +38,11 @@ const users = seed(User, {
     email: 'rachel@codeboard.tech',
     name: 'Rachel Cohen',
     password: '1234',
+  },
+  cody: {
+    email: 'cody@gracehopper.edu',
+    name: 'Cody Codeman',
+    password: '1234'
   }
 })
 
@@ -344,7 +349,35 @@ const userQuestions = seed(userQuestion, ({ users, questions }) =>
       user_id: users.ruth.id,
       user_answer: 'function isUnique(str) {\n\n}',
       user_drawing: []
-    }
+    },
+    codyQuestion1: {
+      status: 'complete',
+      question_id: questions.checkPermutations.id,
+      user_id: users.cody.id,
+      user_answer: 'function checkPermutations(str1, str2) {}',
+      user_drawing: []
+    },
+    codyQuestion2: {
+      status: 'pending',
+      question_id: questions.removeDupes.id,
+      user_id: users.cody.id,
+      user_answer: 'function removeDupes(list) {}',
+      user_drawing: []
+    },
+    codyQuestion3: {
+      status: 'pending',
+      question_id: questions.threeStacksInOne.id,
+      user_id: users.cody.id,
+      user_answer: 'var TripleStack = class{\n  constructor() {}\n}',
+      user_drawing: []
+    },
+    codyQuestion4: {
+      status: 'complete',
+      question_id: questions.routesBetweenNodes.id,
+      user_id: users.cody.id,
+      user_answer: 'function routesBetweenNodes(graph, start, target) {}',
+      user_drawing: []
+    },
   }))
 
 if (module === require.main) {
