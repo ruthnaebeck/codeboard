@@ -172,11 +172,15 @@ class BottomNavBar extends Component {
 
   render() {
     const voice = window.speechSynthesis
+    const voices = voice.getVoices()
     const currentHintIdx = this.state.currentHintIdx
     const words = new SpeechSynthesisUtterance(this.props.question.text)
+    words.voice = voices.filter((voice) => voice.name === 'Samantha')[0]
     const currentHint = !this.props.question.hints ? '' : (this.props.question.hints[currentHintIdx] ? this.props.question.hints[currentHintIdx].text : 'You are out of hints')
     const hint = new SpeechSynthesisUtterance(currentHint)
+    hint.voice = voices.filter((voice) => voice.name === 'Samantha')[0]
     const prompt = new SpeechSynthesisUtterance(this.state.prompt)
+    prompt.voice = voices.filter((voice) => voice.name === 'Samantha')[0]
     voice.speak(prompt)
     const user = this.props.auth
     const actions = [
