@@ -1,27 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+import { stopTimer, startTimer } from 'APP/app/reducers/timer'
 
 class Timer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       timer: null,
-      counter: 0
+      counter: 0,
+      pathname: ''
     }
   }
 
   componentDidMount() {
+    // let timer = setInterval(this.tick, 1000)
+    // this.setState({ timer: timer, pathname: browserHistory.getCurrentLocation().pathname })
+    this.newTimer()
+  }
+  newTimer = () => {
     let timer = setInterval(this.tick, 1000)
-    this.setState({ timer })
+    this.setState({ timer: timer, pathname: browserHistory.getCurrentLocation().pathname })
   }
 
   tick = () => {
-    if (browserHistory.getCurrentLocation().pathname.slice(0, 9) === '/question') {
+    if (browserHistory.getCurrentLocation().pathname === this.state.pathname) {
       this.setState({
         counter: this.state.counter + 1
       })
-    } else clearInterval(this.state.timer)
+    } else if (browserHistory.getCurrentLocation().pathname.slice(0, 9) === '/question') {
+      clearInterval(this.state.timer)
+      this.props.stopTimer()
+      this.props.startTimer()
+    } else {
+      clearInterval(this.state.timer)
+    }
   }
 
   render() {
@@ -31,6 +44,6 @@ class Timer extends Component {
   }
 }
 
-const mapStateToProps = ({ timer }) => ({ timer })
+const mapStateToProps = ({ timer, question }) => ({ timer, question })
 
-export default connect(mapStateToProps, null)(Timer)
+export default connect(mapStateToProps, {startTimer, stopTimer})(Timer)
