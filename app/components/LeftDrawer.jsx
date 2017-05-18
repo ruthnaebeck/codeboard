@@ -52,6 +52,7 @@ export const LeftDrawer = (props) => {
             nestedItems={
               difficulty.questions.map(question =>
                 <ListItem
+                  onTouchTap={props.close}
                   containerElement={<Link to={`/question/${question.id}`} />}
                   key={question.id}
                   secondaryText={question.name}
