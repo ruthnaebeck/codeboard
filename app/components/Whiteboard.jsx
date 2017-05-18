@@ -187,7 +187,7 @@ class Whiteboard extends Component {
           <div className='col-sm-12'>
             <BottomNavBar wbState={this.state} />
           </div>
-          <div id="mocha col-hide" />
+          <div id="mocha" className="col-hide" />
         </div>
       </div>
     )
