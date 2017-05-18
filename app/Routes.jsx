@@ -25,7 +25,6 @@ const Routes = ({onAppEnter, onQuestionEnter, onAccountEnter}) => (
   <Router history={browserHistory}>
     <Route path="/" component={App} onEnter={onAppEnter}>
       <IndexRoute component={Home}/>
-      <Route path='/timer' component={Timer} />
       <Route path="/question/:id" component={Whiteboard} onEnter={onQuestionEnter} />
       <Route path="/users/:id" component={AccountPage} onEnter={onAccountEnter}/>
     </Route>
