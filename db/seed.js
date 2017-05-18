@@ -84,7 +84,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 101,
       name: 'Is Unique',
       text: 'Implement an algorithm to determine if a string has all unique characters by returning true or false.',
-      start_function: 'function isUnique() {}',
+      start_function: 'function isUnique(str) {}',
       tests: '1.01-isUnique.spec.js',
       solution: '1.01-isUnique.js',
       category_id: categories.stringsArrays.id,
@@ -94,7 +94,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 102,
       name: 'Check Permutations',
       text: 'Given two strings, write a function to decide if one is a permutation of the other by returning true or false.',
-      start_function: 'function checkPermutations() {}',
+      start_function: 'function checkPermutations(str1, str2) {}',
       tests: '1.02-checkPermutations.spec.js',
       solution: '1.02-checkPermutations.js',
       category_id: categories.stringsArrays.id,
@@ -103,8 +103,8 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     urlify: {
       id: 103,
       name: 'URLify',
-      text: '',
-      start_function: 'function urlify() {}',
+      text: 'Write a method to replace all spaces in a string with percent twenty. Then return the updated string.',
+      start_function: 'function urlify(str) {}',
       tests: '1.03-URLify.spec.js',
       solution: '1.03-URLify.js',
       category_id: categories.stringsArrays.id,
@@ -113,8 +113,8 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     palindromePermutation: {
       id: 104,
       name: 'Palindrome Permutation',
-      text: '',
-      start_function: 'function palindromePermutation() {}',
+      text: 'Given a string, write a function to check if it is a permutation of a palindrome.',
+      start_function: 'function palindromePermutation(str) {}',
       tests: '1.04-palindromePermutation.spec.js',
       solution: '1.04-palindromePermutation.js',
       category_id: categories.stringsArrays.id,
@@ -124,7 +124,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 201,
       name: 'Remove Duplicates',
       text: 'Given an unsorted linked list, write code to remove the duplicates.',
-      start_function: 'function removeDupes() {}',
+      start_function: 'function removeDupes(list) {}',
       tests: '2.01-removeDupes.spec.js',
       solution: '2.01-removeDupes.js',
       category_id: categories.linkedLists.id,
@@ -264,6 +264,26 @@ const hints = seed(Hint, ({ questions }) =>
       text: 'Could a hash table be useful?',
       question_id: questions.checkPermutations.id
     },
+    urlify1: {
+      id: 1031,
+      text: "It's often easiest to modify strings by going from the end of the string to the beginning.",
+      question_id: questions.urlify.id
+    },
+    urlify2: {
+      id: 1032,
+      text: 'You might find it helpful to count the number of spaces in the string.',
+      question_id: questions.urlify.id
+    },
+    palindromePermutation1: {
+      id: 1041,
+      text: 'You do not have to, and should not, generate all permutations.',
+      question_id: questions.palindromePermutation.id
+    },
+    palindromePermutation2: {
+      id: 1041,
+      text: '',
+      question_id: questions.palindromePermutation.id
+    },
     removeDupes1: {
       id: 2011,
       text: 'Have you tried a hash table? You should be able to do this in a single pass of the linked list.',
@@ -322,7 +342,7 @@ const userQuestions = seed(userQuestion, ({ users, questions }) =>
       status: 'pending',
       question_id: questions.isUnique.id,
       user_id: users.ruth.id,
-      user_answer: 'function isUnique() {\n\n}',
+      user_answer: 'function isUnique(str) {\n\n}',
       user_drawing: []
     }
   }))

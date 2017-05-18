@@ -1,5 +1,4 @@
 /* global chai describe it expect mocha isUnique */
-mocha.checkLeaks()
 
 describe('Strings & Arrays - isUnique: ', function() {
   [
