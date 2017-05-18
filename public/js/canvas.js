@@ -47,7 +47,6 @@ window.whiteboard = new window.EventEmitter();
             // Resizing the canvas destroys the current content.
             // So, save it...
       var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-      console.log('imgData', imgData)
 
       canvas.width = w; canvas.height = h
 
@@ -141,5 +140,9 @@ window.whiteboard = new window.EventEmitter();
       color: strokeColor })
     ctx.closePath()
     ctx.stroke()
+  }
+
+  whiteboard.clear = function() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
   }
 })()

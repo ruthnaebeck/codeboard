@@ -36,12 +36,14 @@ class Whiteboard extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('cWRP')
+    window.whiteboard.clear()
     if (nextProps.userQuestion) {
       this.setState({
         inputText: nextProps.userQuestion.user_answer,
         inputDraw: nextProps.userQuestion.user_drawing
       })
-      setTimeout(this.drawWB, 500)
+      setTimeout(this.drawWB, 400)
     } else {
       this.setState({ inputText: nextProps.question.start_function })
     }

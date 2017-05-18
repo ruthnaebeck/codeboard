@@ -1,3 +1,4 @@
+/* global draws */
 'use strict'
 import React from 'react'
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
@@ -51,6 +52,7 @@ const mapDispatch = (dispatch) => ({
     const id = nextRouterState.params.id
     dispatch(fetchQuestion(id))
     dispatch(fetchUserQuestion(id))
+    draws = []
   }
 })
 
