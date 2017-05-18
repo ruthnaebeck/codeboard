@@ -21,7 +21,6 @@ class Whiteboard extends Component {
     super(props)
     this.state = {
       inputText: '',
-      inputDraw: [],
       wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
@@ -36,14 +35,14 @@ class Whiteboard extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('cWRP')
-    window.whiteboard.clear()
+    if (window.whiteboard) window.whiteboard.clear()
     if (nextProps.userQuestion) {
+      console.log('cWRP', nextProps.userQuestion)
       this.setState({
         inputText: nextProps.userQuestion.user_answer,
-        inputDraw: nextProps.userQuestion.user_drawing
       })
-      setTimeout(this.drawWB, 400)
+      // setTimeout(this.drawWB, 400)
+      this.drawWB(nextProps.userQuestion)
     } else {
       this.setState({ inputText: nextProps.question.start_function })
     }
@@ -65,8 +64,8 @@ class Whiteboard extends Component {
   componentWillUnmount() {
     this.props.stopTimer()
   }
-  drawWB = () => {
-    this.state.inputDraw.forEach(draw => {
+  drawWB = (userQuestion) => {
+    userQuestion.user_drawing.forEach(draw => {
       window.whiteboard.draw(draw.start, draw.end, draw.color)
     })
   }
