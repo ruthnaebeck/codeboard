@@ -21,7 +21,6 @@ class Whiteboard extends Component {
     super(props)
     this.state = {
       inputText: '',
-      inputDraw: [],
       wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
@@ -29,6 +28,7 @@ class Whiteboard extends Component {
   }
 
   componentDidMount() {
+    if (window.whiteboard) window.whiteboard.clear()
     const scriptc = document.createElement('script')
     scriptc.src = '/js/canvas.js'
     scriptc.async = true
@@ -36,12 +36,12 @@ class Whiteboard extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (window.whiteboard) window.whiteboard.clear()
     if (nextProps.userQuestion) {
       this.setState({
         inputText: nextProps.userQuestion.user_answer,
-        inputDraw: nextProps.userQuestion.user_drawing
       })
-      setTimeout(this.drawWB, 500)
+      setTimeout(this.drawWB, 200)
     } else {
       this.setState({ inputText: nextProps.question.start_function })
     }
@@ -64,9 +64,12 @@ class Whiteboard extends Component {
     this.props.stopTimer()
   }
   drawWB = () => {
-    this.state.inputDraw.forEach(draw => {
-      window.whiteboard.draw(draw.start, draw.end, draw.color)
-    })
+    const userQuestion = this.props.userQuestion
+    if (userQuestion) {
+      userQuestion.user_drawing.forEach(draw => {
+        window.whiteboard.draw(draw.start, draw.end, draw.color)
+      })
+    }
   }
 
   resize = () => window.dispatchEvent(new Event('resize'))
