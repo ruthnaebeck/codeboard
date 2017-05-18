@@ -150,3 +150,13 @@ paper-button[toggles][active] {
 .marker.selected {
     border: 2px solid black;
 }
+
+/*Drawer styling*/
+
+.drawer {
+    text-align: left;
+}
+
+.drawerHeading {
+    padding-left: 15px;
+}

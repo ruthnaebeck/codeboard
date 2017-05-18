@@ -12,13 +12,13 @@ import {close} from '../reducers/drawer'
 export const LeftDrawer = (props) => {
 
   return (
-    <div>
+    <div className="drawer">
       <Drawer open={props.drawer} docked={false} onRequestChange={() => props.close()}>
         <AppBar
           title="Questions"
           iconElementLeft={<span />}
         />
-        <h3>Category</h3>
+        <h3 className='drawerHeading'>Category</h3>
         <Divider />
         {props.categories.map((category, index) =>
           <ListItem
@@ -41,7 +41,7 @@ export const LeftDrawer = (props) => {
         )}
         <br />
         <br />
-        <h3>Difficulty</h3>
+        <h3 className='drawerHeading'>Difficulty</h3>
         <Divider />
         {props.difficulties.map((difficulty, index) =>
           <ListItem
