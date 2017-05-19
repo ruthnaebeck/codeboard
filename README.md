@@ -1,8 +1,18 @@
-# Hi, I'm Codeboard!
+# Code Board
 
-## I need node >= 6.7.0
+A web app that uses audio to help developers prepare for technical interviews. Code Board allows you to replicate the experience of listening to the question and hints while you try to code, so you’ll be confident and comfortable in that environment when you go through interviews. With both a code editor and a virtual whiteboard, Code Board also helps you practice diagramming the problem. It’s your own personal mock interviewer, available to help you practice anytime, anywhere.
 
-If you don't have it, I'll complain and tell you how to install it.
+Code Board is deployed on [www.CodeBoard.tech](www.CodeBoard.tech).
+
+## Demo
+
+## Getting Started for Developers
+
+To install Code Board on your local machine:
+
+### Prerequisites
+
+```node >= 6.7.0```
 
 ## 1. How to install
 
@@ -10,10 +20,7 @@ After you have a repo on your machine:
 
 ```sh
 npm install
-npm install -g bower     // if you don\'t have bower installed globally already
-bower install
 ```
-
 
 ## 2. Start!
 
@@ -37,7 +44,7 @@ npm run build-dev
 
 In two separate terminals. The vanilla `npm start` is for production — you won't use it in development!
 
-## My anatomy
+## Contents
 
 `/app` has the React/Redux setup. `main.jsx` is the entry point.
 
@@ -50,27 +57,41 @@ assuming you're using postgres.
 
 ## Conventions
 
-I use `require` and `module.exports` in `.js` files.
+`require` and `module.exports` in `.js` files.
 
-I use `import` and `export` in `.jsx` files, unless `require` makes for cleaner code.
+`import` and `export` in `.jsx` files, unless `require` makes for cleaner code.
 
-I use two spaces, no semi-colons, and trailing commas where possible. I'll
-have a linter someday soon.
+Two spaces, no semi-colons, and trailing commas where possible
 
-## Quick Heroku deployment
+## Built With
 
-1. Set up the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and install [Yarn](https://yarnpkg.com/en/) if you haven't already (`npm install -g yarn`)
-2. `heroku login`
-3. Add a git remote for heroku:
-  - **If you're creating a new app...**
-    1. `heroku create` or `heroku create your-app-name` if you have a name in mind.
-    2. `heroku addons:create heroku-postgresql:hobby-dev` to add postgres
-    3. `npm run deploy-heroku`. This will create a new branch and compile and commit your frontend JS to it, then push that branch to Heroku.
-    4. `heroku run npm run seed` to seed the database
+* React
+* Redux
+* Node
+* Express
+* PostgreSQL
+* Sequelize
+* Passport
+* Mocha
+* Chai
+* React ACE Editor
+* Web Speech API
+* Material UI
+* Bootstrap
 
-  - **If you already have a Heroku app...**
-    1.  `heroku git:remote your-app-name` You'll need to be a collaborator on the app.
+## Authors
 
-Afterwards,
-  - *To deploy:* `npm run deploy-heroku`
-  - *To re-seed:* `heroku run npm run seed`
+* **Cigdem Aybar** - [https://github.com/cigdemaybar](https://github.com/cigdemaybar)
+* **Rachel Cohen** - [https://github.com/rachelfreya](https://github.com/rachelfreya)
+* **Fanny Jiang** - [https://github.com/fanny-jiang](https://github.com/fanny-jiang)
+* **Ruth Naebeck** - [https://github.com/ruthnaebeck](https://github.com/ruthnaebeck)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgements
+
+* **Tom Kelly** - Instructor - [https://github.com/tmkelly28](https://github.com/tmkelly28)
+* **Ashi Mysore** - Instructor - [https://github.com/queerviolet](https://github.com/queerviolet)
+* **Jenny Lee** - Teaching Fellow - [https://github.com/jeunlee](https://github.com/jeunlee)
