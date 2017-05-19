@@ -18,7 +18,7 @@ After you have a repo on your machine:
 
 ```sh
 npm install
-npm install -g bower     // if you don\'t have bower installed globally already
+npm install -g bower     //if bower is not installed globally already
 bower install
 ```
 
