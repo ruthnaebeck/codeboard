@@ -18,8 +18,6 @@ After you have a repo on your machine:
 
 ```sh
 npm install
-npm install -g bower     //if bower is not installed globally already
-bower install
 ```
 
 ## 2. Start!
@@ -63,24 +61,6 @@ assuming you're using postgres.
 
 Two spaces, no semi-colons, and trailing commas where possible
 
-## Heroku deployment
-
-1. Set up the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and install [Yarn](https://yarnpkg.com/en/) if you haven't already (`npm install -g yarn`)
-2. `heroku login`
-3. Add a git remote for heroku:
-  - **If you're creating a new app...**
-    1. `heroku create` or `heroku create your-app-name` if you have a name in mind.
-    2. `heroku addons:create heroku-postgresql:hobby-dev` to add postgres
-    3. `npm run deploy-heroku`. This will create a new branch and compile and commit your frontend JS to it, then push that branch to Heroku.
-    4. `heroku run npm run seed` to seed the database
-
-  - **If you already have a Heroku app...**
-    1.  `heroku git:remote your-app-name` You'll need to be a collaborator on the app.
-
-Afterwards,
-  - *To deploy:* `npm run deploy-heroku`
-  - *To re-seed:* `heroku run npm run seed`
-
 ## Built With
 
 * React
@@ -106,7 +86,7 @@ Afterwards,
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+## Acknowledgements
 
 * **Tom Kelly** - Instructor - [https://github.com/tmkelly28](https://github.com/tmkelly28)
 * **Ashi Mysore** - Instructor - [https://github.com/queerviolet](https://github.com/queerviolet)
