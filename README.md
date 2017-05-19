@@ -10,7 +10,7 @@ To install Code Board on your local machine:
 
 ### Prerequisites
 
-* ```node >= 6.7.0```
+```node >= 6.7.0```
 
 ## 1. How to install
 
@@ -63,7 +63,7 @@ assuming you're using postgres.
 
 Two spaces, no semi-colons, and trailing commas where possible
 
-## Quick Heroku deployment
+## Heroku deployment
 
 1. Set up the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and install [Yarn](https://yarnpkg.com/en/) if you haven't already (`npm install -g yarn`)
 2. `heroku login`
@@ -97,10 +97,10 @@ Afterwards,
 
 ## Authors
 
-* **Cigdem Aybar** - [](https://github.com/cigdemaybar)
-* **Rachel Cohen** - [](https://github.com/rachelfreya)
-* **Fanny Jiang** - [](https://github.com/fanny-jiang)
-* **Ruth Naebeck** - [](https://github.com/ruthnaebeck)
+* **Cigdem Aybar** - [https://github.com/cigdemaybar](https://github.com/cigdemaybar)
+* **Rachel Cohen** - [https://github.com/rachelfreya](https://github.com/rachelfreya)
+* **Fanny Jiang** - [https://github.com/fanny-jiang](https://github.com/fanny-jiang)
+* **Ruth Naebeck** - [https://github.com/ruthnaebeck](https://github.com/ruthnaebeck)
 
 ## License
 
@@ -108,6 +108,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* **Tom Kelly** - Instructor - [](https://github.com/tmkelly28)
-* **Ashi Mysore** - Instructor - [](https://github.com/queerviolet)
-* **Jenny Lee** - Teaching Fellow - [](https://github.com/jeunlee)
+* **Tom Kelly** - Instructor - [https://github.com/tmkelly28](https://github.com/tmkelly28)
+* **Ashi Mysore** - Instructor - [https://github.com/queerviolet](https://github.com/queerviolet)
+* **Jenny Lee** - Teaching Fellow - [https://github.com/jeunlee](https://github.com/jeunlee)
