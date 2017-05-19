@@ -1,8 +1,16 @@
-# Hi, I'm Codeboard!
+# Code Board
 
-## I need node >= 6.7.0
+A web app that uses audio to help developers prepare for technical interviews. Code Board allows you to replicate the experience of listening to the question and hints while you try to code, so you’ll be confident and comfortable in that environment when you go through interviews. With both a code editor and a virtual whiteboard, Code Board also helps you practice diagramming the problem. It’s your own personal mock interviewer, available to help you practice anytime, anywhere.
 
-If you don't have it, I'll complain and tell you how to install it.
+## Getting Started
+
+Code Board is deployed on [www.CodeBoard.tech](www.CodeBoard.tech).
+
+To install Code Board on your local machine:
+
+### Prerequisites
+
+* ```node >= 6.7.0```
 
 ## 1. How to install
 
@@ -13,7 +21,6 @@ npm install
 npm install -g bower     // if you don\'t have bower installed globally already
 bower install
 ```
-
 
 ## 2. Start!
 
@@ -37,7 +44,7 @@ npm run build-dev
 
 In two separate terminals. The vanilla `npm start` is for production — you won't use it in development!
 
-## My anatomy
+## Contents
 
 `/app` has the React/Redux setup. `main.jsx` is the entry point.
 
@@ -50,12 +57,11 @@ assuming you're using postgres.
 
 ## Conventions
 
-I use `require` and `module.exports` in `.js` files.
+`require` and `module.exports` in `.js` files.
 
-I use `import` and `export` in `.jsx` files, unless `require` makes for cleaner code.
+`import` and `export` in `.jsx` files, unless `require` makes for cleaner code.
 
-I use two spaces, no semi-colons, and trailing commas where possible. I'll
-have a linter someday soon.
+Two spaces, no semi-colons, and trailing commas where possible
 
 ## Quick Heroku deployment
 
@@ -74,3 +80,34 @@ have a linter someday soon.
 Afterwards,
   - *To deploy:* `npm run deploy-heroku`
   - *To re-seed:* `heroku run npm run seed`
+
+## Built With
+
+* React
+* Redux
+* Node
+* Express
+* PostgreSQL
+* Mocha
+* Chai
+* React ACE Editor
+* Material UI
+* Web Speech API
+* Heroku
+
+## Authors
+
+* **Cigdem Aybar** - [](https://github.com/cigdemaybar)
+* **Rachel Cohen** - [](https://github.com/rachelfreya)
+* **Fanny Jiang** - [](https://github.com/fanny-jiang)
+* **Ruth Naebeck** - [](https://github.com/ruthnaebeck)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* **Tom Kelly** - Instructor - [](https://github.com/tmkelly28)
+* **Ashi Mysore** - Instructor - [](https://github.com/queerviolet)
+* **Jenny Lee** - Teaching Fellow - [](https://github.com/jeunlee)
