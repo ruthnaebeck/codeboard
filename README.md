@@ -2,9 +2,11 @@
 
 A web app that uses audio to help developers prepare for technical interviews. Code Board allows you to replicate the experience of listening to the question and hints while you try to code, so you’ll be confident and comfortable in that environment when you go through interviews. With both a code editor and a virtual whiteboard, Code Board also helps you practice diagramming the problem. It’s your own personal mock interviewer, available to help you practice anytime, anywhere.
 
-## Getting Started
-
 Code Board is deployed on [www.CodeBoard.tech](www.CodeBoard.tech).
+
+## Demo
+
+## Getting Started for Developers
 
 To install Code Board on your local machine:
 
@@ -68,12 +70,14 @@ Two spaces, no semi-colons, and trailing commas where possible
 * Node
 * Express
 * PostgreSQL
+* Sequelize
+* Passport
 * Mocha
 * Chai
 * React ACE Editor
-* Material UI
 * Web Speech API
-* Heroku
+* Material UI
+* Bootstrap
 
 ## Authors
 
