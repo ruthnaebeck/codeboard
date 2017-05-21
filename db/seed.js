@@ -225,11 +225,11 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id
     },
-    listOfDepthBT: {
+    linkedListsOfBTDepth: {
       id: 403,
-      name: 'List of Depth BT',
-      text: '',
-      start_function: 'function listOfDepthBT(graph, start, target) {}',
+      name: 'Linked Lists of BT Depth',
+      text: 'Given a binary tree, design an algorithm which creates a linked list of all the nodes at each depth. The number of linked lists will equal the tree depth.',
+      start_function: 'function linkedListsOfBTDepth(tree) {}',
       tests: '4.03-listOfDepthBT.spec.js',
       solution: '4.03-listOfDepthBT.js',
       category_id: categories.treesGraphs.id,
@@ -383,6 +383,16 @@ const hints = seed(Hint, ({ questions }) =>
       id: 4022,
       text: 'You could implement this by finding the ideal next element to add and repeatedly calling insert value.',
       question_id: questions.minimalHeightBST.id
+    },
+    linkedListsOfBTDepth1: {
+      id: 4031,
+      text: 'Try modifying a graph search algorithm to track the depth from the root.',
+      question_id: questions.linkedListsOfBTDepth.id
+    },
+    linkedListsOfBTDepth2: {
+      id: 4032,
+      text: 'A hash table or array that maps from level number to nodes at that level might also be useful.',
+      question_id: questions.linkedListsOfBTDepth.id
     },
   }))
 
