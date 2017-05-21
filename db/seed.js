@@ -217,9 +217,9 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     },
     minimalHeightBST: {
       id: 402,
-      name: 'Minimal Height BST',
-      text: '',
-      start_function: 'function minimalHeightBST(graph, start, target) {}',
+      name: 'Minimal Tree',
+      text: 'Given a sorted, increasing order, array with unique integer elements, write an algorithm to create a binary search tree with minimal height.',
+      start_function: 'function minimalHeightBST(arr) {}\n\nfunction createMinimalHeightBST(arr, start, end) {}',
       tests: '4.02-minimalHeightBST.spec.js',
       solution: '4.02-minimalHeightBST.js',
       category_id: categories.treesGraphs.id,
@@ -373,6 +373,16 @@ const hints = seed(Hint, ({ questions }) =>
       id: 4012,
       text: 'The breadth first search should be iterative.',
       question_id: questions.routesBetweenNodes.id
+    },
+    minimalHeightBST1: {
+      id: 4021,
+      text: 'A minimal binary search tree has about the same number of nodes on the left of each node as on the right.',
+      question_id: questions.minimalHeightBST.id
+    },
+    minimalHeightBST2: {
+      id: 4022,
+      text: 'You could implement this by finding the ideal next element to add and repeatedly calling insert value.',
+      question_id: questions.minimalHeightBST.id
     },
   }))
 
