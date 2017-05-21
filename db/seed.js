@@ -188,7 +188,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     setOfStacks: {
       id: 303,
       name: 'Set of Stacks',
-      text: '',
+      text: 'Implement a data structure that creates stacks. When one stack reaches its maximum size, a new stack will be created. The class should have push, pop, and pop at methods.',
       start_function: 'var setOfStacks = class{\n  constructor() {}\n}',
       tests: '3.03-setOfStacks.spec.js',
       solution: '3.03-setOfStacks.js',
@@ -199,7 +199,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 304,
       name: 'Queue via Stacks',
       text: 'Write a class that implements a queue using two stacks. The class should have enqueue and dequeue methods.',
-      start_function: 'var queueViaStacks = class{\n  constructor() {}\n}',
+      start_function: 'var queueViaStacks = class{\n  constructor(maxSize) {}\n}',
       tests: '3.04-queueViaStacks.spec.js',
       solution: '3.04-queueViaStacks.js',
       category_id: categories.stacksQueues.id,
@@ -343,6 +343,16 @@ const hints = seed(Hint, ({ questions }) =>
       id: 3023,
       text: 'Consider having each node know the minimum of its substack, all the elements beneath it, including itself.',
       question_id: questions.stackMin.id
+    },
+    setOfStacks1: {
+      id: 3031,
+      text: 'You will need to keep track of the size of each substack. When one stack is full, you may need to create a new stack.',
+      question_id: questions.setOfStacks.id
+    },
+    setOfStacks2: {
+      id: 3032,
+      text: 'Popping an element at a specific substack will mean that some stacks are not at full capacity.',
+      question_id: questions.setOfStacks.id
     },
     queueViaStacks1: {
       id: 3041,
