@@ -6,7 +6,7 @@ Code Board is deployed on [www.CodeBoard.tech](www.CodeBoard.tech).
 
 ## Demo
 
-![CodeBoard](/readme/Demo.gif?raw=true "App Demo")
+![CodeBoard](/readme/demo.gif?raw=true "App Demo")
 
 ## Presentation
 
