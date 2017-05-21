@@ -178,7 +178,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     stackMin: {
       id: 302,
       name: 'Stack Min',
-      text: '',
+      text: 'Write a stack class that has min, push, pop, and peek methods.',
       start_function: 'var stackMin = class{\n  constructor() {}\n}',
       tests: '3.02-stackMin.spec.js',
       solution: '3.02-stackMin.js',
@@ -328,6 +328,21 @@ const hints = seed(Hint, ({ questions }) =>
       id: 3012,
       text: 'You could simulate three stacks in an array by allocating the first third of the array to the first stack, the second third to the second stack, and the final third to the third stack.',
       question_id: questions.threeStacksInOne.id
+    },
+    stackMin1: {
+      id: 3021,
+      text: 'The minimum element does not change very often. It only changes when a smaller element is added, or when the smallest element is popped.',
+      question_id: questions.stackMin.id
+    },
+    stackMin2: {
+      id: 3022,
+      text: 'What if we keep track of extra data at each stack node? What sort of data might make it easier to solve the problem?',
+      question_id: questions.stackMin.id
+    },
+    stackMin3: {
+      id: 3023,
+      text: 'Consider having each node know the minimum of its substack, all the elements beneath it, including itself.',
+      question_id: questions.stackMin.id
     },
     queueViaStacks1: {
       id: 3041,
