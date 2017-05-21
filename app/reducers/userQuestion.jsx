@@ -4,11 +4,13 @@ import axios from 'axios'
 
 const GET = 'GET_USER_QUESTION'
 const SAVE = 'SAVE_QUESTION'
+const RESET = 'RESET_QUESTION'
 
 /* ------------- ACTION CREATER ---------------- */
 
-export const get = (question) => ({ type: GET, question })
+export const get = question => ({ type: GET, question })
 export const save = question => ({ type: SAVE, question })
+export const resetQuestion = () => ({ type: RESET })
 
 /* ------------- REDUCERS ---------------- */
 
@@ -18,6 +20,8 @@ export default function reducer(question = null, action) {
     return action.question
   case SAVE:
     return action.question
+  case RESET:
+    return null
   default:
     return question
   }

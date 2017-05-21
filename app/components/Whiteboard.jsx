@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { fetchUserQuestions } from 'APP/app/reducers/userQuestions'
 import { stopTimer } from 'APP/app/reducers/timer'
 import { fetchUserQuestion } from 'APP/app/reducers/userQuestion'
+import { saveQuestion } from '../reducers/userQuestion'
 import SvgIcon from 'material-ui/SvgIcon'
 import Paper from 'material-ui/Paper'
 import brace from 'brace'
@@ -24,6 +25,7 @@ class Whiteboard extends Component {
       wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
+      questionStatus: 'pending',
     }
   }
 
@@ -45,13 +47,11 @@ class Whiteboard extends Component {
     } else {
       this.setState({ inputText: nextProps.question.start_function })
     }
-    // There was a reason for this
-    // else if (!this.state.inputText) {
-    //   this.setState({ inputText: nextProps.question.start_function })
-    // }
     const tests = nextProps.question.tests
     if (tests) {
       mocha.suite.suites = []
+      const testSpecs = document.getElementById('testSpecs')
+      if (testSpecs) testSpecs.remove()
       const script = document.createElement('script')
       script.src = `/questions-specs/${tests}`
       script.async = true
@@ -121,6 +121,30 @@ class Whiteboard extends Component {
 
   handleChange = (code) => {
     this.setState({ inputText: code })
+  }
+
+  handleSave = () => {
+    const uId = this.props.auth.id
+    const qId = this.props.question.id
+    const question = {
+      user_id: uId,
+      question_id: qId,
+      user_answer: this.state.inputText,
+      user_drawing: draws,
+      status: this.state.questionStatus
+    }
+    this.props.saveQuestion(uId, qId, question)
+  }
+
+  userCode = () => {
+    console.log('userCode')
+    var codeScript = document.getElementById('runTests')
+    const code = this.state.inputText
+    if (codeScript) codeScript.remove()
+    codeScript = document.createElement('script')
+    codeScript.id = 'runTests'
+    codeScript.appendChild(document.createTextNode(code))
+    document.body.appendChild(codeScript)
   }
 
   render() {
@@ -193,7 +217,9 @@ class Whiteboard extends Component {
             </Paper>
           </div>
           <div className='col-sm-12'>
-            <BottomNavBar wbState={this.state} />
+            <BottomNavBar
+              handleSave={this.handleSave}
+              userCode={this.userCode} />
           </div>
           <div id="mocha" className="col-hide" />
         </div>
@@ -216,6 +242,6 @@ const RightArrow = () => (
 
 const mapStateToProps = ({ question, auth, userQuestion, drawer }) =>
   ({ question, auth, userQuestion, drawer })
-const mapDispatchToProps = ({ fetchUserQuestion, stopTimer })
+const mapDispatchToProps = ({ fetchUserQuestion, stopTimer, saveQuestion })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard)

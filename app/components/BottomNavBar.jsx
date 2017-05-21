@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { saveQuestion } from '../reducers/userQuestion'
 import { set } from '../reducers/drawer'
 import LeftDrawer from './LeftDrawer'
 
@@ -45,7 +44,6 @@ class BottomNavBar extends Component {
     this.state = {
       selectedIndex: 1,
       prompt: '',
-      questionStatus: 'pending',
       spoken: false,
       currentHintIdx: 0,
       snackbar: false,
@@ -120,13 +118,7 @@ class BottomNavBar extends Component {
       if (mochaStats) mochaDiv.removeChild(mochaStats)
       if (mochaReport) mochaDiv.removeChild(mochaReport)
       // Create or Update the user's code on the DOM
-      var codeScript = document.getElementById('runTests')
-      const code = this.props.wbState.inputText
-      if (codeScript) codeScript.remove()
-      codeScript = document.createElement('script')
-      codeScript.id = 'runTests'
-      codeScript.appendChild(document.createTextNode(code))
-      document.body.appendChild(codeScript)
+      this.props.userCode()
       // Run the mocha / chai tests
       this.runTests()
       // Check the tests
@@ -138,17 +130,8 @@ class BottomNavBar extends Component {
     }
   }
 
-  handleSave = () => {
-    const uId = this.props.auth.id
-    const qId = this.props.question.id
-    const question = {
-      user_id: uId,
-      question_id: qId,
-      user_answer: this.props.wbState.inputText,
-      user_drawing: draws,
-      status: this.state.questionStatus
-    }
-    this.props.saveQuestion(uId, qId, question)
+  handleEditorSave = () => {
+    this.props.handleSave()
     this.setState({ snackbar: true })
   }
 
@@ -220,7 +203,7 @@ class BottomNavBar extends Component {
               <BottomNavigationItem
                 label="Save"
                 icon={save}
-                onClick={this.handleSave}
+                onClick={this.handleEditorSave}
                 onTouchTap={() => this.select(4) }
                 />
               <BottomNavigationItem
@@ -330,6 +313,6 @@ class BottomNavBar extends Component {
 
 const mapStateToProps = ({ question, auth, userQuestions }) =>
   ({ question, auth, userQuestions })
-const mapDispatchToProps = ({ saveQuestion, set })
+const mapDispatchToProps = ({ set })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomNavBar)
