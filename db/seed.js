@@ -158,8 +158,8 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     partition: {
       id: 204,
       name: 'Partition',
-      text: '',
-      start_function: 'function partition() {}',
+      text: 'Write code to partition a linked list around a value X, such that all nodes less than X, come before all nodes greater than or equal to X, if X, is contained within the list, the values of X, only need to be after the elements less than X, the partition element X, can appear anywhere in the right partition. It does not need to appear between the left and right partitions.',
+      start_function: 'function partition(list, partitionNum) {}',
       tests: '2.04-partition.spec.js',
       solution: '2.04-partition.js',
       category_id: categories.linkedLists.id,
@@ -313,6 +313,11 @@ const hints = seed(Hint, ({ questions }) =>
       id: 2031,
       text: 'Picture the list 1, 5, 9, 12. Removing 9 would leave 1, 5, 12.',
       question_id: questions.deleteMiddleNode.id
+    },
+    partition1: {
+      id: 2041,
+      text: 'Consider that the elements do not have to stay in the same relative order. You only need to ensure that elements less than the pivot must be before elements greater than the pivot.',
+      question_id: questions.partition.id
     },
     threeStacksInOne1: {
       id: 3011,
