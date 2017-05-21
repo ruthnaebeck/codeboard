@@ -31,6 +31,7 @@ module.exports = require('express').Router()
     mustBeLoggedIn,
     (req, res, next) =>
       UserQuestion.findAll({
+        attributes: ['status', 'user_id', 'question_id'],
         where: {
           user_id: req.params.id
         },
