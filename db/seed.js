@@ -235,13 +235,13 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id
     },
-    validateBalancedBT: {
+    checkBalancedBT: {
       id: 404,
-      name: 'Validate Balanced BT',
-      text: '',
-      start_function: 'function validateBalancedBT(graph, start, target) {}',
-      tests: '4.04-validateBalancedBT.spec.js',
-      solution: '4.04-validateBalancedBT.js',
+      name: 'Check Balanced BT',
+      text: 'Implement a function to check if a binary tree is balanced. A balanced tree is a tree where the heights of the two sub trees of any node never differ by more than one.',
+      start_function: 'function checkBalancedBT(tree) {}',
+      tests: '4.04-checkBalancedBT.spec.js',
+      solution: '4.04-checkBalancedBT.js',
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id
     },
@@ -393,6 +393,16 @@ const hints = seed(Hint, ({ questions }) =>
       id: 4032,
       text: 'A hash table or array that maps from level number to nodes at that level might also be useful.',
       question_id: questions.linkedListsOfBTDepth.id
+    },
+    checkBalancedBT1: {
+      id: 4041,
+      text: 'Think about the definition of a balanced tree. Can you check that condition for a single node? Can you check it for every node?',
+      question_id: questions.checkBalancedBT.id
+    },
+    checkBalancedBT2: {
+      id: 4042,
+      text: 'What if you could modify the binary tree node class to allow a node to store the height of its subtree?',
+      question_id: questions.checkBalancedBT.id
     },
   }))
 
