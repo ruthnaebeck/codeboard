@@ -6,9 +6,20 @@ Code Board is deployed on [www.CodeBoard.tech](www.CodeBoard.tech).
 
 ## Demo
 
+![CodeBoard](/readme/Demo.gif?raw=true "App Demo")
+
+## Presentation
+
+Insert Grace Hopper presentation here
+
 ## Getting Started for Developers
 
 To install Code Board on your local machine:
+
+```sh
+fork the repo
+git clone
+```
 
 ### Prerequisites
 
