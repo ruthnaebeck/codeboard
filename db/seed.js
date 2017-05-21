@@ -148,12 +148,12 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     deleteMiddleNode: {
       id: 203,
       name: 'Delete Middle Node',
-      text: '',
-      start_function: 'function deleteMiddleNode() {}',
+      text: 'Implement an algorithm to delete a given node from a singly linked list. The node will not be the head or tail node.',
+      start_function: 'function deleteMiddleNode(node) {}',
       tests: '2.03-deleteMiddleNode.spec.js',
       solution: '2.03-deleteMiddleNode.js',
       category_id: categories.linkedLists.id,
-      difficulty_id: difficulties.medium.id
+      difficulty_id: difficulties.easy.id
     },
     partition: {
       id: 204,
@@ -308,6 +308,11 @@ const hints = seed(Hint, ({ questions }) =>
       id: 2022,
       text: 'What if you had two pointers pointing to adjacent nodes?',
       question_id: questions.kthToLast.id
+    },
+    deleteMiddleNode1: {
+      id: 2031,
+      text: 'Picture the list 1, 5, 9, 12. Removing 9 would leave 1, 5, 12.',
+      question_id: questions.deleteMiddleNode.id
     },
     threeStacksInOne1: {
       id: 3011,
