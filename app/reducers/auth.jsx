@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router'
+import { resetQuestion } from 'APP/app/reducers/userQuestion'
 
 /* ------------- ACTIONS ---------------- */
 
@@ -52,6 +53,7 @@ export const logout = () =>
       .then(() => {
         if (browserHistory.getCurrentLocation().pathname.slice(0, 6) === '/users') browserHistory.replace('/')
       })
+      .then(() => dispatch(resetQuestion()))
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 
