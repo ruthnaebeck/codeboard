@@ -45,13 +45,11 @@ class Whiteboard extends Component {
     } else {
       this.setState({ inputText: nextProps.question.start_function })
     }
-    // There was a reason for this
-    // else if (!this.state.inputText) {
-    //   this.setState({ inputText: nextProps.question.start_function })
-    // }
     const tests = nextProps.question.tests
     if (tests) {
       mocha.suite.suites = []
+      const testSpecs = document.getElementById('testSpecs')
+      if (testSpecs) testSpecs.remove()
       const script = document.createElement('script')
       script.src = `/questions-specs/${tests}`
       script.async = true
