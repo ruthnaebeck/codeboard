@@ -48,7 +48,8 @@ class BottomNavBar extends Component {
       currentHintIdx: 0,
       snackbar: false,
       solutionText: 'Show Solutions',
-      helpDialog: false
+      helpDialog: false,
+      questionStatus: 'pending'
     }
   }
   repeatQuestion = (voice, words) => {
@@ -131,7 +132,7 @@ class BottomNavBar extends Component {
   }
 
   handleEditorSave = () => {
-    this.props.handleSave()
+    this.props.handleSave(this.state.questionStatus)
     this.setState({ snackbar: true })
   }
 

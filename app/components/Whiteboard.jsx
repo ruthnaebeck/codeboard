@@ -25,7 +25,6 @@ class Whiteboard extends Component {
       wbText: '',
       colWB: 'col-sm-6 colWB',
       colEdit: 'col-sm-6 colEdit',
-      questionStatus: 'pending',
     }
   }
 
@@ -123,7 +122,7 @@ class Whiteboard extends Component {
     this.setState({ inputText: code })
   }
 
-  handleSave = () => {
+  handleSave = (questionStatus) => {
     const uId = this.props.auth.id
     const qId = this.props.question.id
     const question = {
@@ -131,13 +130,12 @@ class Whiteboard extends Component {
       question_id: qId,
       user_answer: this.state.inputText,
       user_drawing: draws,
-      status: this.state.questionStatus
+      status: questionStatus
     }
     this.props.saveQuestion(uId, qId, question)
   }
 
   userCode = () => {
-    console.log('userCode')
     var codeScript = document.getElementById('runTests')
     const code = this.state.inputText
     if (codeScript) codeScript.remove()
