@@ -148,18 +148,18 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     deleteMiddleNode: {
       id: 203,
       name: 'Delete Middle Node',
-      text: '',
-      start_function: 'function deleteMiddleNode() {}',
+      text: 'Implement an algorithm to delete a given node from a singly linked list. The node will not be the head or tail node.',
+      start_function: 'function deleteMiddleNode(node) {}',
       tests: '2.03-deleteMiddleNode.spec.js',
       solution: '2.03-deleteMiddleNode.js',
       category_id: categories.linkedLists.id,
-      difficulty_id: difficulties.medium.id
+      difficulty_id: difficulties.easy.id
     },
     partition: {
       id: 204,
       name: 'Partition',
-      text: '',
-      start_function: 'function partition() {}',
+      text: 'Write code to partition a linked list around a value X, such that all nodes less than X, come before all nodes greater than or equal to X, if X, is contained within the list, the values of X, only need to be after the elements less than X, the partition element X, can appear anywhere in the right partition. It does not need to appear between the left and right partitions.',
+      start_function: 'function partition(list, partitionNum) {}',
       tests: '2.04-partition.spec.js',
       solution: '2.04-partition.js',
       category_id: categories.linkedLists.id,
@@ -178,7 +178,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     stackMin: {
       id: 302,
       name: 'Stack Min',
-      text: '',
+      text: 'Write a stack class that has min, push, pop, and peek methods.',
       start_function: 'var stackMin = class{\n  constructor() {}\n}',
       tests: '3.02-stackMin.spec.js',
       solution: '3.02-stackMin.js',
@@ -188,7 +188,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     setOfStacks: {
       id: 303,
       name: 'Set of Stacks',
-      text: '',
+      text: 'Implement a data structure that creates stacks. When one stack reaches its maximum size, a new stack will be created. The class should have push, pop, and pop at methods.',
       start_function: 'var setOfStacks = class{\n  constructor() {}\n}',
       tests: '3.03-setOfStacks.spec.js',
       solution: '3.03-setOfStacks.js',
@@ -199,7 +199,7 @@ const questions = seed(Question, ({ categories, difficulties }) =>
       id: 304,
       name: 'Queue via Stacks',
       text: 'Write a class that implements a queue using two stacks. The class should have enqueue and dequeue methods.',
-      start_function: 'var queueViaStacks = class{\n  constructor() {}\n}',
+      start_function: 'var queueViaStacks = class{\n  constructor(maxSize) {}\n}',
       tests: '3.04-queueViaStacks.spec.js',
       solution: '3.04-queueViaStacks.js',
       category_id: categories.stacksQueues.id,
@@ -217,31 +217,31 @@ const questions = seed(Question, ({ categories, difficulties }) =>
     },
     minimalHeightBST: {
       id: 402,
-      name: 'Minimal Height BST',
-      text: '',
-      start_function: 'function minimalHeightBST(graph, start, target) {}',
+      name: 'Minimal Tree',
+      text: 'Given a sorted, increasing order, array with unique integer elements, write an algorithm to create a binary search tree with minimal height.',
+      start_function: 'function minimalHeightBST(arr) {}\n\nfunction createMinimalHeightBST(arr, start, end) {}',
       tests: '4.02-minimalHeightBST.spec.js',
       solution: '4.02-minimalHeightBST.js',
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id
     },
-    listOfDepthBT: {
+    linkedListsOfBTDepth: {
       id: 403,
-      name: 'List of Depth BT',
-      text: '',
-      start_function: 'function listOfDepthBT(graph, start, target) {}',
+      name: 'Linked Lists of BT Depth',
+      text: 'Given a binary tree, design an algorithm which creates a linked list of all the nodes at each depth. The number of linked lists will equal the tree depth.',
+      start_function: 'function linkedListsOfBTDepth(tree) {}',
       tests: '4.03-listOfDepthBT.spec.js',
       solution: '4.03-listOfDepthBT.js',
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id
     },
-    validateBalancedBT: {
+    checkBalancedBT: {
       id: 404,
-      name: 'Validate Balanced BT',
-      text: '',
-      start_function: 'function validateBalancedBT(graph, start, target) {}',
-      tests: '4.04-validateBalancedBT.spec.js',
-      solution: '4.04-validateBalancedBT.js',
+      name: 'Check Balanced BT',
+      text: 'Implement a function to check if a binary tree is balanced. A balanced tree is a tree where the heights of the two sub trees of any node never differ by more than one.',
+      start_function: 'function checkBalancedBT(tree) {}',
+      tests: '4.04-checkBalancedBT.spec.js',
+      solution: '4.04-checkBalancedBT.js',
       category_id: categories.treesGraphs.id,
       difficulty_id: difficulties.hard.id
     },
@@ -309,6 +309,16 @@ const hints = seed(Hint, ({ questions }) =>
       text: 'What if you had two pointers pointing to adjacent nodes?',
       question_id: questions.kthToLast.id
     },
+    deleteMiddleNode1: {
+      id: 2031,
+      text: 'Picture the list 1, 5, 9, 12. Removing 9 would leave 1, 5, 12.',
+      question_id: questions.deleteMiddleNode.id
+    },
+    partition1: {
+      id: 2041,
+      text: 'Consider that the elements do not have to stay in the same relative order. You only need to ensure that elements less than the pivot must be before elements greater than the pivot.',
+      question_id: questions.partition.id
+    },
     threeStacksInOne1: {
       id: 3011,
       text: 'A stack is a data structure in which the most recently added elements are removed first.',
@@ -318,6 +328,31 @@ const hints = seed(Hint, ({ questions }) =>
       id: 3012,
       text: 'You could simulate three stacks in an array by allocating the first third of the array to the first stack, the second third to the second stack, and the final third to the third stack.',
       question_id: questions.threeStacksInOne.id
+    },
+    stackMin1: {
+      id: 3021,
+      text: 'The minimum element does not change very often. It only changes when a smaller element is added, or when the smallest element is popped.',
+      question_id: questions.stackMin.id
+    },
+    stackMin2: {
+      id: 3022,
+      text: 'What if we keep track of extra data at each stack node? What sort of data might make it easier to solve the problem?',
+      question_id: questions.stackMin.id
+    },
+    stackMin3: {
+      id: 3023,
+      text: 'Consider having each node know the minimum of its substack, all the elements beneath it, including itself.',
+      question_id: questions.stackMin.id
+    },
+    setOfStacks1: {
+      id: 3031,
+      text: 'You will need to keep track of the size of each substack. When one stack is full, you may need to create a new stack.',
+      question_id: questions.setOfStacks.id
+    },
+    setOfStacks2: {
+      id: 3032,
+      text: 'Popping an element at a specific substack will mean that some stacks are not at full capacity.',
+      question_id: questions.setOfStacks.id
     },
     queueViaStacks1: {
       id: 3041,
@@ -338,6 +373,36 @@ const hints = seed(Hint, ({ questions }) =>
       id: 4012,
       text: 'The breadth first search should be iterative.',
       question_id: questions.routesBetweenNodes.id
+    },
+    minimalHeightBST1: {
+      id: 4021,
+      text: 'A minimal binary search tree has about the same number of nodes on the left of each node as on the right.',
+      question_id: questions.minimalHeightBST.id
+    },
+    minimalHeightBST2: {
+      id: 4022,
+      text: 'You could implement this by finding the ideal next element to add and repeatedly calling insert value.',
+      question_id: questions.minimalHeightBST.id
+    },
+    linkedListsOfBTDepth1: {
+      id: 4031,
+      text: 'Try modifying a graph search algorithm to track the depth from the root.',
+      question_id: questions.linkedListsOfBTDepth.id
+    },
+    linkedListsOfBTDepth2: {
+      id: 4032,
+      text: 'A hash table or array that maps from level number to nodes at that level might also be useful.',
+      question_id: questions.linkedListsOfBTDepth.id
+    },
+    checkBalancedBT1: {
+      id: 4041,
+      text: 'Think about the definition of a balanced tree. Can you check that condition for a single node? Can you check it for every node?',
+      question_id: questions.checkBalancedBT.id
+    },
+    checkBalancedBT2: {
+      id: 4042,
+      text: 'What if you could modify the binary tree node class to allow a node to store the height of its subtree?',
+      question_id: questions.checkBalancedBT.id
     },
   }))
 
