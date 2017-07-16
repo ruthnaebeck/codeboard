@@ -4,7 +4,7 @@
   "description": "A web app that uses audio to help developers prepare for technical interviews.",
   "main": "index.js",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": ">= 7.10.1"
   },
   "scripts": {
     "dev": "node dev",
